@@ -14,7 +14,7 @@ Clone this repository and execute in your favourite shell:
 ## Local Dependencies
 * `npm i superstatic` for superstatic.
 
-* `npm i bower` for gulp typescript. 
+* `npm i bower` for bower. 
 
 * `bower install` for bower dependencies for static css and js library. 
 
