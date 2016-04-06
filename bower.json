@@ -1,0 +1,30 @@
+{
+  "name": "Angular2_beta_13",
+  "description": "A minimal Angular2 playground using TypeScript",
+  "main": "",
+  "authors": [
+    "Tameshwar Nirmalkar <tameshwar.nirmalkar@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+        "jquery": "~2.1.4",
+        "animate.css": "~3.3.0",
+        "bootstrap": "~3.3.4",
+        "moment": "~2.10.3",
+        "bootstrap-sass-official": "~3.3.4",
+        "font-awesome": "~4.4.0"        
+    }
+}
