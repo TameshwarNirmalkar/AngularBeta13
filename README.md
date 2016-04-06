@@ -16,14 +16,11 @@ Clone this repository and execute in your favourite shell:
 
 ## Global npm packages
 * `npm i gulp` to install gulp globally (if you don't have it installed already) 
-
 * `npm i` to install local npm dependencies
 
 ## Local Dependencies
 * `npm i superstatic` for superstatic.
-
 * `npm i bower` for bower. 
-
 * `bower install` for bower dependencies for static css and js library. 
 
 ## Play
