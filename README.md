@@ -1,13 +1,22 @@
-# ng2-play.ts
+# Angular 2.0 Version: Beta 13
 
 A minimal [Angular2](https://angular.io/) playground using [TypeScript](http://www.typescriptlang.org/) and [SystemJS loader](https://github.com/systemjs/systemjs)
 
 ## Install
 
-Clone this repo and execute in your favourite shell:
+Clone this repository and execute in your favourite shell:
 
-* `npm i -g gulp` to install gulp globally (if you don't have it installed already)
+## Global npm packages
+* `npm i gulp` to install gulp globally (if you don't have it installed already) 
+
 * `npm i` to install local npm dependencies
+
+## Local Dependencies
+* `npm i superstatic` for superstatic.
+
+* `npm i bower` for gulp typescript. 
+
+* `bower install` for bower dependencies for static css and js library. 
 
 ## Play
 

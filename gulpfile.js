@@ -11,7 +11,6 @@ var inject            = require('gulp-inject');
 /* Server configuration start*/
 var http = require('http');
 var connect = require('connect');
-var serveStatic = require('serve-static');
 var open = require('open');
 var port = 9000, app;
 /* Server configuration end*/
