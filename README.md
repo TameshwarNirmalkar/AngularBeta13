@@ -6,7 +6,7 @@ A minimal [Angular2](https://angular.io/) playground using [TypeScript](http://w
 * `browser-sync` Browser Synch
 * `gulp-sass` Sass for Css
 * `gulp-inject` for static file injection
-* `wiredep` for bowwer_components file injection
+* `wiredep` for bower_components file injection
 * `gulp-cache` for cache the static file.
 * `gulp-typescript` for TypeScript.
 
