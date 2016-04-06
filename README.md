@@ -2,6 +2,14 @@
 
 A minimal [Angular2](https://angular.io/) playground using [TypeScript](http://www.typescriptlang.org/) and [SystemJS loader](https://github.com/systemjs/systemjs)
 
+#### It has implemnted with the followings: 
+* `browser-sync` Browser Synch
+* `gulp-sass` Sass for Css
+* `gulp-inject` for static file injection
+* `wiredep` for bowwer_components file injection
+* `gulp-cache` for cache the static file.
+* `gulp-typescript` for TypeScript.
+
 ## Install
 
 Clone this repository and execute in your favourite shell:
