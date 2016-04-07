@@ -70,11 +70,17 @@ gulp.task('cssinject', function(){
 });
 */
 gulp.task('watch', ['sass', 'cssinject', 'fonts', 'views', 'ts2js'], function(){
+	console.log('browserSync Watching');
 	gulp.watch('src/scss/*.+(scss|sass)', ['sass']);
 	// Reloads the browser whenever HTML or JS files change
-	gulp.watch('src/**/*.html', browserSync.reload); 
-	gulp.watch('src/**/*.ts', browserSync.reload);
+	gulp.watch('src/**/*.html',  browserSync.reload()); 
+	gulp.watch('src/**/*.ts', browserSync.reload());
 	gulp.watch('src/fonts/**/*', ['fonts']);
+	//browserSync.reload({stream: true});
+});
+
+gulp.watch(['src/scss/*.+(scss|sass)', 'src/**/*.html', 'src/**/*.ts'], function(){
+	gulp.start('watch');
 });
 
 gulp.task('BS', ['watch'], function () {
@@ -87,7 +93,7 @@ gulp.task('BS', ['watch'], function () {
 				debug       : true
 			})
 		},
-		post            : 5555,
+		port            : 5555,
 		injectChanges   : true,
 		notify          : true,
 		reloadDelay     : 0,
@@ -99,4 +105,4 @@ gulp.task('BS', ['watch'], function () {
 
 //gulp.task('serve', ['BS'], function () {});
 
-gulp.task('default', ['BS']);
+gulp.task('default', ['BS', 'watch']);

@@ -21,6 +21,9 @@ export class SearchComponent {
 	private platform: String;
 	private reverse: Boolean = true;
 	public predicate: String = '+asset_name'
+	public searchresponsedata: Array<Object>; 
+	public isShow: Boolean = false;
+
 	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router) {
 		_SearchList.getAssetsList().map(res => res.json()).subscribe(assetsdata => {
 			this.assetsList = assetsdata.assets;
@@ -31,6 +34,20 @@ export class SearchComponent {
 			}
 		});
 	}
+
+	onKey(value: string) {
+		if(value.length >= 3){
+			this._SearchList.searchAnAsset(value).map(res => res.json()).subscribe(searchdata => {
+				this.searchresponsedata = searchdata.assets;
+			});
+			this.isShow = true;
+			console.log( this.isShow );
+		}
+		else{
+			this.isShow = false;
+		}
+	}
+
 
 	getanassets(id: String) {
 		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(a => {

@@ -33,4 +33,14 @@ export class SearchService{
 			headers: headers
 		})
 	}
+
+	/* @ Get list of package with 1000 data */
+	searchAnAsset(q: String) {
+		let headers = new Headers();
+		this.createAuthorizationHeader(headers);
+		var path = 'https://beta-login-123d.acg.autodesk.com/api/v2/assets?q='+ q ;
+		return this.http.get(path, {
+			headers: headers
+		})
+	}
 }
