@@ -15,8 +15,8 @@ var config      = new GulpConfig();
 var PATHS = {
 		src: 'src/**/*.ts',
 		javascript: ['./dist/js/**/*.js'],
-		css: ['dist/css/**/*.css'],
-		injectConfig: {relative: false, addRootSlash: true, ignorePath: '/dist'}
+		css: ['./dist/css/**/*.css'],
+		injectConfig: {relative: false, addRootSlash: true, ignorePath: 'dist/'}
 };
 
 gulp.task('clean', function (done) {
@@ -56,9 +56,9 @@ gulp.task('views', function() {
 
 gulp.task('cssinject', function(){
 	return gulp.src('./src/index.html')
-		.pipe(wiredep())
-		.pipe(gulp.dest('./dist'))
 		.pipe(inject(gulp.src(PATHS.css,{read: false}), PATHS.injectConfig))
+		.pipe(gulp.dest('./dist'))
+		.pipe(wiredep({ devDependencies: true }))
 		.pipe(gulp.dest('./dist'))
 		;
 });
