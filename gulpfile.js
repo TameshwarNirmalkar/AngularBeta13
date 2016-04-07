@@ -87,6 +87,6 @@ gulp.task('BS', ['watch'], function () {
 	})
 })
 
-gulp.task('play', ['BS'], function () {});
+gulp.task('serve', ['BS'], function () {});
 
 gulp.task('default', ['play']);
