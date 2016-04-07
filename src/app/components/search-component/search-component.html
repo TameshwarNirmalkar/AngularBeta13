@@ -1,0 +1,58 @@
+<div class="container-fluid" style="background-color:#fcfcfc;">
+		<h2>Search New Packages</h2>
+		<div class="col-lg-6">
+			<div class="row">
+				<div style="border:1px solid #5D5D5D; background-color:#2F2F2F; color: #999;">
+					<span>
+						<input type="text" name="" value="" placeholder="Search packages" style="background-color: #474747; border:none; width: 80%;">
+					</span>
+					<span (click)="sortOrder('+asset_name')" role="button"> A-Z</span>
+				</div>
+				<div class="searchpanel pull-left" style="width:100%">
+					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">
+						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left" [routerLink]="['Assets', {asset_id: a.asset_id}]" [class.active]="isRouteActive(['Assets', {asset_id: a.asset_id}])">
+							<span class="pull-left" style="padding: 5px; display: inline-block;">
+								<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="" height="64">
+							</span>
+							<span style="box-sizing:border-box;">
+								<div class="pull-left">
+									<b style="color: #fff;"> {{ a.asset_name | uppercase }} </b>
+									<sub>{{ a.artist_name}}</sub>
+								</div>
+								<div class="pull-right">
+									<a href="{{ a.thumb_path_prefix }}" style="border: 1px solid #C18D04;">Download</a>
+									{{ a.asset_id }}
+								</div>
+							</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-6">
+			<div style=" background-color: #2F2F2F; color: #fff; padding: 5px;" class="row">
+				<ul style="margin:0px; padding: 0px; list-style: none;">
+					<li *ngIf="singleList">
+						<blockquote>
+							<label> {{ singleList.asset_name | uppercase }} </label>
+							<sub> {{ singleList.artist.artist_name | uppercase }} </sub>
+						</blockquote>
+						
+						<p>Assets version: {{ singleList.asset_version }}</p>
+						
+						<p>
+							Dependencies: 
+							<span *ngFor="#depend of singleList.file_formats">{{ depend.name | uppercase }}, </span>
+						</p>
+
+						<p>Description</p>
+						<span>
+							{{ singleList.description}}
+						</span>
+
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>

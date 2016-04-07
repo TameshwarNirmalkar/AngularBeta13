@@ -13,7 +13,7 @@ var GulpConfig = (function () {
         this.listFilesSCSS  =   this.source + '/**/*+(scss|sass|css)';
         this.listFilesHTML  =   this.source + '/**/*.html';
         this.listFilesJS    =   this.source + '/**/*.js';
-        this.listFilesFonts =   this.source + 'fonts/**/*';
+        this.listFilesFonts =   this.source + 'fonts/*+(eot)';
 
         // Typings
         this.typings       = './tools/typings/';

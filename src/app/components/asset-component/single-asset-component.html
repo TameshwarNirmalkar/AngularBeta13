@@ -1,0 +1,24 @@
+<router-outlet></router-outlet>
+<div style=" background-color: #2F2F2F; color: #fff; padding: 5px;" class="row">
+	<ul style="margin:0px; padding: 0px; list-style: none;">
+		<li *ngIf="singleList">
+			<blockquote>
+				<label> {{ singleList.asset_name | uppercase }} </label>
+				<sub> {{ singleList.artist.artist_name | uppercase }} </sub>
+			</blockquote>
+			
+			<p>Assets version: {{ singleList.asset_version }}</p>
+			
+			<p>
+				Dependencies: 
+				<span *ngFor="#depend of singleList.file_formats">{{ depend.name | uppercase }}, </span>
+			</p>
+
+			<p>Description</p>
+			<span>
+				{{ singleList.description}}
+			</span>
+
+		</li>
+	</ul>
+</div>

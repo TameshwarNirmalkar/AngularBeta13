@@ -26,7 +26,7 @@ gulp.task('ts2js', function () {
 		var typescript = gulptypescript;
 		var tscConfig = tscCnfg;
 		var tsResult = gulp.src([PATHS.src, 'node_modules/angular2/typings/browser.d.ts'])
-										.pipe(typescript(tscConfig.compilerOptions));
+						.pipe(typescript(tscConfig.compilerOptions));
 		return tsResult.js.pipe(gulp.dest('./dist'));
 });
 
@@ -41,7 +41,7 @@ gulp.task('sass', function(){
 /* Font injector */
 gulp.task('fonts', function() {
 	return gulp.src(config.listFilesFonts)
-		.pipe(gulp.dest('./dist/fonts'));
+		.pipe(gulp.dest('./dist/fonts/'));
 });
 
 /* HTML file Injector */
@@ -60,7 +60,7 @@ gulp.task('wiredep', function () {
 });
 
 gulp.task('watch', ['views', 'sass', 'fonts', 'ts2js', 'wiredep'], function(){
-	gulp.watch('src/scss/**/*.+(scss|sass)', ['sass']);
+	gulp.watch('src/scss/*.+(scss|sass)', ['sass']);
 	// Reloads the browser whenever HTML or JS files change
 	gulp.watch('src/**/*.html', browserSync.reload); 
 	gulp.watch('src/**/*.ts', browserSync.reload);
@@ -89,4 +89,4 @@ gulp.task('BS', ['watch'], function () {
 
 gulp.task('serve', ['BS'], function () {});
 
-gulp.task('default', ['play']);
+gulp.task('default', ['serve']);

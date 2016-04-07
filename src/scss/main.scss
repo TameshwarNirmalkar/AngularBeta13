@@ -1,0 +1,35 @@
+@font-face{
+	font-family: 'http://getbootstrap.com/dist/fonts/glyphicons-halflings-regular.woff2'
+}
+
+a, a:hover{color:#999; text-decoreation:none;}
+/* Sticky footer styles-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  /*background: rgba(255,255,255,1);*/
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  
+  background-color: #eeeeee;
+	.verticalmiddle{
+		display: table;
+		height: inherit;
+
+		.tabel-cell{
+			display: table-cell;
+			vertical-align: middle;
+			height: inherit;
+		}
+	}
+}
+
