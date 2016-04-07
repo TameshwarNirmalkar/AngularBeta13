@@ -13,7 +13,10 @@ var GulpConfig        = require('./gconfig');
 var config      = new GulpConfig();
 
 var PATHS = {
-		src: 'src/**/*.ts'
+		src: 'src/**/*.ts',
+		javascript: ['./dist/js/**/*.js'],
+		css: ['dist/css/**/*.css'],
+		injectConfig: {relative: false, addRootSlash: true, ignorePath: '/dist'}
 };
 
 gulp.task('clean', function (done) {
@@ -51,15 +54,22 @@ gulp.task('views', function() {
 				.pipe( browserSync.reload({ stream: true}) );
 });
 
-gulp.task('wiredep', function () {
-	var sources = gulp.src(['./dist/css/**/*.css'], {read: false});
-	gulp.src('./src/index.html')
-		.pipe(wiredep({ devDependencies: true }))
-		.pipe(inject(sources), {relative: false, addRootSlash: true, ignorePath: 'dist/'})
+gulp.task('cssinject', function(){
+	return gulp.src('./src/index.html')
+		.pipe(wiredep())
 		.pipe(gulp.dest('./dist'))
+		.pipe(inject(gulp.src(PATHS.css,{read: false}), PATHS.injectConfig))
+		.pipe(gulp.dest('./dist'))
+		;
 });
 
-gulp.task('watch', ['views', 'sass', 'fonts', 'ts2js', 'wiredep'], function(){
+/*gulp.task('wiredep', function () {
+	gulp.src('./src/index.html')
+		.pipe(wiredep({ devDependencies: true }))
+		.pipe(gulp.dest('./dist'))
+});
+*/
+gulp.task('watch', ['sass', 'cssinject', 'fonts', 'views', 'ts2js'], function(){
 	gulp.watch('src/scss/*.+(scss|sass)', ['sass']);
 	// Reloads the browser whenever HTML or JS files change
 	gulp.watch('src/**/*.html', browserSync.reload); 
@@ -87,6 +97,6 @@ gulp.task('BS', ['watch'], function () {
 	})
 })
 
-gulp.task('serve', ['BS'], function () {});
+//gulp.task('serve', ['BS'], function () {});
 
-gulp.task('default', ['serve']);
+gulp.task('default', ['BS']);
