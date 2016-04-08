@@ -12,6 +12,7 @@ var GulpConfig = (function () {
         this.listFilesTS    =   this.source + '/**/*.ts';
         this.listFilesSCSS  =   this.source + '/**/*+(scss|sass|css)';
         this.listFilesHTML  =   this.source + '/**/*.html';
+        this.listFilesCompileHTML  =   this.sourceApp + '/**/*.html';
         this.listFilesJS    =   this.source + '/**/*.js';
         this.listFilesFonts =   this.source + 'fonts/*+(eot)';
 

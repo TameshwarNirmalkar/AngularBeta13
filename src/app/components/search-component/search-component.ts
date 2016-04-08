@@ -21,8 +21,8 @@ export class SearchComponent {
 	private platform: String;
 	private reverse: Boolean = true;
 	public predicate: String = '+asset_name'
-	public searchresponsedata: Array<Object>; 
-	public isShow: Boolean = false;
+	public searchresponsedata: Array<Object>;
+	public isShow: Boolean = true;
 
 	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router) {
 		_SearchList.getAssetsList().map(res => res.json()).subscribe(assetsdata => {
@@ -30,7 +30,7 @@ export class SearchComponent {
 			this.platform = this.params.get('platform');
 			this.asset_id = this.params.get('asset_id');
 			if (this.asset_id !== null){
-			 	this.getanassets(this.asset_id);
+			 	//this.getanassets(this.asset_id);
 			}
 		});
 	}
@@ -38,13 +38,12 @@ export class SearchComponent {
 	onKey(value: string) {
 		if(value.length >= 3){
 			this._SearchList.searchAnAsset(value).map(res => res.json()).subscribe(searchdata => {
-				this.searchresponsedata = searchdata.assets;
+				this.assetsList = searchdata.assets;
 			});
 			this.isShow = true;
-			console.log( this.isShow );
 		}
 		else{
-			this.isShow = false;
+			this.isShow = true;
 		}
 	}
 
@@ -54,7 +53,7 @@ export class SearchComponent {
 			this.singleList = a;
 		});
 	}
-	
+
 	isRouteActive(route) {
 		return this.router.isRouteActive(this.router.generate(route));
 	}
@@ -72,6 +71,6 @@ export class SearchComponent {
         else{
 			this.predicate = '+asset_name';
         }
-        
+
 	}
 }

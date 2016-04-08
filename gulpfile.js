@@ -21,7 +21,7 @@ var PATHS = {
 
 gulp.task('clean', function (done) {
 		var del = require('del');
-		del(['dist'], done);
+		del(['./dist'], done);
 });
 
 /* TypeScript Compiler and js Injector */
@@ -30,7 +30,7 @@ gulp.task('ts2js', function () {
 		var tscConfig = tscCnfg;
 		var tsResult = gulp.src([PATHS.src, 'node_modules/angular2/typings/browser.d.ts'])
 						.pipe(typescript(tscConfig.compilerOptions));
-		return tsResult.js.pipe(gulp.dest('./dist'));
+		return tsResult.js.pipe(gulp.dest('./dist')).pipe( browserSync.reload({ stream: true}) );
 });
 
 /* SCSS/CSS compiler/Injector */
@@ -54,6 +54,12 @@ gulp.task('views', function() {
 				.pipe( browserSync.reload({ stream: true}) );
 });
 
+gulp.task('compilehtml', function() {
+		gulp.src([config.listFilesCompileHTML])
+				.pipe(gulp.dest('./dist/app'))
+				.pipe( browserSync.reload({ stream: true}) );
+});
+
 gulp.task('cssinject', function(){
 	return gulp.src('./src/index.html')
 		.pipe(inject(gulp.src(PATHS.css,{read: false}), PATHS.injectConfig))
@@ -69,40 +75,43 @@ gulp.task('cssinject', function(){
 		.pipe(gulp.dest('./dist'))
 });
 */
-gulp.task('watch', ['sass', 'cssinject', 'fonts', 'views', 'ts2js'], function(){
-	console.log('browserSync Watching');
-	gulp.watch('src/scss/*.+(scss|sass)', ['sass']);
-	// Reloads the browser whenever HTML or JS files change
-	gulp.watch('src/**/*.html',  browserSync.reload()); 
-	gulp.watch('src/**/*.ts', browserSync.reload());
-	gulp.watch('src/fonts/**/*', ['fonts']);
-	//browserSync.reload({stream: true});
+gulp.task('watch', function(){
+		console.log('\n\n Start Watching \n\n');
+		gulp.watch('src/scss/*.+(scss|sass)', ['sass']);
+		// Reloads the browser whenever HTML or JS files change
+		gulp.watch('src/**/*.html', ['compilehtml']);
+		gulp.watch('src/**/*.ts', ['ts2js']);
+		gulp.watch('src/fonts/**/*', ['fonts']);
+		browserSync.reload({stream: true});
 });
 
-gulp.watch(['src/scss/*.+(scss|sass)', 'src/**/*.html', 'src/**/*.ts'], function(){
-	gulp.start('watch');
-});
+// gulp.watch(['src/scss/*.+(scss|sass)'], function(){
+// 	gulp.start('sass');
+// });
+// gulp.watch(['src/**/*.html'], function(){
+// 	gulp.start(['views','cssinject']);
+// });
+// gulp.watch(['src/**/*.ts'], function(){
+// 	gulp.start('ts2js');
+// });
 
-gulp.task('BS', ['watch'], function () {
-	process.stdout.write('\nStarting browserSync and superstatic...\n\n');
+gulp.task('BS', ['sass', 'fonts', 'views', 'ts2js', 'cssinject', 'watch'], function () {
+	process.stdout.write('\n\n Starting browserSync and superstatic...\n\n');
 	browserSync.init({
 		server: {
 			baseDir       : "./dist",
 			online        : false,
-			middleware    : superstatic({ 
+			middleware    : superstatic({
 				debug       : true
 			})
 		},
 		port            : 5555,
 		injectChanges   : true,
 		notify          : true,
-		reloadDelay     : 0,
-		logFileChanges  : false,
-		logLevel        : 'silent',
-		logPrefix       : 'Dynamo package'
+		reloadDelay     : 0
 	})
 })
 
 //gulp.task('serve', ['BS'], function () {});
 
-gulp.task('default', ['BS', 'watch']);
+gulp.task('default', ['BS']);

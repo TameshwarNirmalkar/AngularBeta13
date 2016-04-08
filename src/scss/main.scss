@@ -8,8 +8,8 @@ html {
   position: relative;
   min-height: 100%;
 }
-body {
-  /* Margin bottom by footer height */
+/*body {
+   Margin bottom by footer height
   margin-bottom: 60px;
   background: rgba(255,255,255,1);
 }
@@ -17,9 +17,9 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
+  /* Set the fixed height of the footer here
   height: 60px;
-  
+
   background-color: #eeeeee;
 	.verticalmiddle{
 		display: table;
@@ -31,5 +31,33 @@ body {
 			height: inherit;
 		}
 	}
-}
+}*/
 
+$heder-height: 40px;
+$footer-height: 20px;
+$content-height: (#{$heder-height} - #{$footer-height});
+
+html { height: 100%; }
+body {
+    position: relative;
+    min-height: 100%; /* to fill screen 100% even with less content */
+    height: 100%; /* to allocate only 100% height */
+}
+#header {
+    height: 40px;
+    background-color: #333;
+    top: 0;
+    color:#fff;
+}
+#footer {
+    height: 20px;
+    background-color: #464646;
+    width: 100%;
+    color:#7B7B7B;
+}
+#content {
+    /* allocate the remaining width except the header + footer + borders */
+    height: calc(100% - #{$content-height});
+    overflow-y: auto;
+    background-color: #212121;
+}

@@ -1,9 +1,9 @@
-<div class="container-fluid">
-	<div class="row">
-		<div *ngIf="platform === 'Web'"> <topheader></topheader> </div>
-		<container>
-			<router-outlet></router-outlet>
-		</container>		
-	</div>
+<div *ngIf="platform === 'Web'" id="header"> <topheader></topheader> </div>
+<div id="content">
+	<container>
+		<router-outlet></router-outlet>
+	</container>
 </div>
-<footer-component *ngIf="platform === 'Web'"> </footer-component>
+<div id="footer">
+	<footer-component *ngIf="platform === 'Web'"> </footer-component>
+</div>

@@ -1,14 +1,14 @@
-<div class="container-fluid" style="background-color:#fcfcfc;">
-		<h2>Search New Packages</h2>
+<div class="container-fluid">
+		<h2 style="color: #B8B8B8;">Search New Packages</h2>
 		<div class="col-lg-6">
 			<div class="row">
 				<div style="border:1px solid #5D5D5D; background-color:#2F2F2F; color: #999;">
 					<span>
 						<input #searchtext (keyup)="onKey(searchtext.value)" placeholder="Search packages" style="background-color: #474747; border:none; width: 80%;">
 					</span>
-					<span (click)="sortOrder('+asset_name')" role="button"> A-Z</span>
+					<span (click)="sortOrder('+asset_name')" role="button"> A-Z </span>
 				</div>
-				<div class="searchpanel pull-left" style="position: absolute; width: 100%; z-index: 1" [hidden]="isShow">
+				<div class="searchpanel pull-left" style="position: absolute; width: 100%; z-index: 1; max-height: 300px; height: auto; overflow-y:auto; background-color: #585858;" [hidden]="isShow">
 					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">
 						<li *ngFor="#sl of searchresponsedata | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left" [routerLink]="['Assets', {asset_id: sl.asset_id}]" [class.active]="isRouteActive(['Assets', {asset_id: sl.asset_id}])">
 							<span class="pull-left" style="padding: 5px; display: inline-block;">
@@ -29,7 +29,7 @@
 				</div>
 				<div class="searchpanel pull-left" style="width:100%">
 					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">
-						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left" [routerLink]="['Assets', {asset_id: a.asset_id}]" [class.active]="isRouteActive(['Assets', {asset_id: a.asset_id}])">
+						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left" (click)="getanassets(a.asset_id)">
 							<span class="pull-left" style="padding: 5px; display: inline-block;">
 								<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="" height="64">
 							</span>
@@ -57,11 +57,11 @@
 							<label> {{ singleList.asset_name | uppercase }} </label>
 							<sub> {{ singleList.artist.artist_name | uppercase }} </sub>
 						</blockquote>
-						
+
 						<p>Assets version: {{ singleList.asset_version }}</p>
-						
+
 						<p>
-							Dependencies: 
+							Dependencies:
 							<span *ngFor="#depend of singleList.file_formats">{{ depend.name | uppercase }}, </span>
 						</p>
 
