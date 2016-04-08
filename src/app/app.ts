@@ -44,7 +44,7 @@ import {SearchComponent}  from './components/search-component/search-component';
 
 export class AppComponent {
 	private platform: String = "Web";
-
+	public loadSpiner:Boolean = true;
 
 	constructor() {
 		console.log('app initiated.', this.platform);

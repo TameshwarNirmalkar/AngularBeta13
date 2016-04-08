@@ -1,46 +1,50 @@
 <div class="container-fluid">
-		<h2 style="color: #B8B8B8;">Search New Packages</h2>
-		<div class="col-lg-6">
+		<h2 style="color: #B8B8B8;">Explore Packages</h2>
+		<div class="col-lg-6" style="height:80vh; overflow-y:auto;">
 			<div class="row">
 				<div style="border:1px solid #5D5D5D; background-color:#2F2F2F; color: #999;">
 					<span>
 						<input #searchtext (keyup)="onKey(searchtext.value)" placeholder="Search packages" style="background-color: #474747; border:none; width: 80%;">
 					</span>
-					<span (click)="sortOrder('+asset_name')" role="button"> A-Z </span>
+					<span (click)="sortOrder('+asset_name')" role="button">
+							A-Z <small class="fa fa-sort-desc" [ngClass]="{'fa-sort-asc': isOn}"> </small>
+					</span>
 				</div>
 				<div class="searchpanel pull-left" style="position: absolute; width: 100%; z-index: 1; max-height: 300px; height: auto; overflow-y:auto; background-color: #585858;" [hidden]="isShow">
 					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">
-						<li *ngFor="#sl of searchresponsedata | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left" [routerLink]="['Assets', {asset_id: sl.asset_id}]" [class.active]="isRouteActive(['Assets', {asset_id: sl.asset_id}])">
-							<span class="pull-left" style="padding: 5px; display: inline-block;">
-								<img src="https://static.spark.autodesk.com/{{ sl.asset_image}}" alt="" height="64">
+						<li *ngFor="#sl of searchresponsedata | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left"  (click)="getanassets(sl.asset_id)">
+							<span class="pull-left hidden" style="padding: 5px; display: inline-block;">
+								<img src="https://static.spark.autodesk.com/{{ sl.asset_image}}" alt="" height="64" width="64">
 							</span>
 							<span style="box-sizing:border-box;">
 								<div class="pull-left">
-									<b style="color: #fff;"> {{ sl.asset_name | uppercase }} </b>
-									<sub>{{ sl.artist_name}}</sub>
-								</div>
-								<div class="pull-right">
-									<a href="{{ sl.thumb_path_prefix }}" style="border: 1px solid #C18D04;">Download</a>
-									{{ sl.asset_id }}
+									<dd style="color: #fff;"> {{ sl.asset_name | uppercase }} </dd>
+									<dd>{{ sl.artist_name}}</dd>
+									<dd>{{ sl.keywords }}</dd>
 								</div>
 							</span>
 						</li>
 					</ul>
 				</div>
+
+
 				<div class="searchpanel pull-left" style="width:100%">
 					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">
 						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left" (click)="getanassets(a.asset_id)">
 							<span class="pull-left" style="padding: 5px; display: inline-block;">
-								<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="" height="64">
+								<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="" height="64" width="64">
 							</span>
 							<span style="box-sizing:border-box;">
 								<div class="pull-left">
-									<b style="color: #fff;"> {{ a.asset_name | uppercase }} </b>
-									<sub>{{ a.artist_name}}</sub>
+									<dd> {{ a.asset_name | uppercase }} </dd>
+									<dd class="small">{{ a.artist_name}}</dd>
+									<dd>
+											<i class="fa fa-thumbs-up" style="color: #BC6161;"></i> {{ a.favorite_count }}
+									</dd>
 								</div>
 								<div class="pull-right">
-									<a href="{{ a.thumb_path_prefix }}" style="border: 1px solid #C18D04;">Download</a>
-									{{ a.asset_id }}
+									<a href="javascript:void(0);" style="display:table-cell; background-color:#C18D04; padding:1px; color:#fff;">Download</a>
+									<i class="fa fa-sort-desc" style="display:table-cell; background-color:#7E581D; padding:1px 3px;"></i>
 								</div>
 							</span>
 						</li>
@@ -49,29 +53,55 @@
 			</div>
 		</div>
 
-		<div class="col-lg-6">
-			<div style=" background-color: #2F2F2F; color: #fff; padding: 5px;" class="row">
+		<div class="col-lg-6" style="height:80vh; overflow-y:auto; background:#333;">
+			<div style="color: #fff; padding: 5px;" class="row">
 				<ul style="margin:0px; padding: 0px; list-style: none;">
 					<li *ngIf="singleList">
-						<blockquote>
-							<label> {{ singleList.asset_name | uppercase }} </label>
-							<sub> {{ singleList.artist.artist_name | uppercase }} </sub>
-						</blockquote>
+						<section>
+							<dd class="lead"> {{ singleList.asset_name | uppercase }} </dd>
+							<dd class="small"> {{ singleList.asset_id }} {{ singleList.artist.artist_name }} </dd>
+							<dd class="small">Assets version: {{ singleList.asset_version }}</dd>
+						</section>
 
-						<p>Assets version: {{ singleList.asset_version }}</p>
-
+						<p>
+								<i class="fa fa-thumbs-up" style="color: #BC6161;"></i> {{ singleList.favorite_count }}
+						</p>
 						<p>
 							Dependencies:
 							<span *ngFor="#depend of singleList.file_formats">{{ depend.name | uppercase }}, </span>
 						</p>
-
-						<p>Description</p>
-						<span>
-							{{ singleList.description}}
-						</span>
-
+						<p>
+							<span class="text-uppercase"> Submit Ratings:</span>
+							<span>
+								<i class="fa fa-heart-o"></i>
+								<i class="fa fa-heart-o"></i>
+								<i class="fa fa-heart-o"></i>
+								<i class="fa fa-heart-o"></i>
+								<i class="fa fa-heart-o"></i>
+							</span>
+						</p>
+						<span>Description</span>
+						<article>
+							<p>{{ singleList.description}}
+							Now Built for Dynamo 0.9** LunchBox is a collection of reusable geometry and data management nodes. The tools have been tested with Dynamo 0.9 and Revit 2016. The tool includes nodes for surface paneling, geometry, Revit data collection, and more!. After installation, search a 'LunchBox' category will appear in Dynamo. For versions compatible with Dynamo 0.6, please install version 2014.6.5 or earlier. For more information
+						</p>
+						</article>
+						<section class="col-sm-12 col-md-12 col-lg-12">
+							<div class="row" style="display:flex; height:200px;">
+									<div class="col-md-3" style="flex:1; border:1px solid #737373"> </div>
+									<div class="col-md-3" style="flex:1; border:1px solid #737373; border-left:none;  border-right:none;"> </div>
+									<div class="col-md-3" style="flex:1; border:1px solid #737373">
+										<div class="col-md-12"> </div>
+										<div class="col-md-12"> </div>
+									</div>
+							</div>
+						</section>
 					</li>
 				</ul>
 			</div>
 		</div>
+	</div>
+
+	<div [hidden]="loadSpiner" style="width:100%; height:100%; position:absolute; top:0px; left:0px; right:0px; bottom:0px; background-color:rgba(0,0,0,.3)">
+		<i class="fa fa-spinner fa-spin" style="font-size:48px; position:absolute; top:50%; left:50%; color:#FFF;"></i>
 	</div>

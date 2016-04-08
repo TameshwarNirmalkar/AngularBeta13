@@ -23,9 +23,12 @@ export class SearchComponent {
 	public predicate: String = '+asset_name'
 	public searchresponsedata: Array<Object>;
 	public isShow: Boolean = true;
-
+	public isOn:Boolean = false;
+	public loadSpiner:Boolean = false;
 	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router) {
+		this.loadSpiner = false;
 		_SearchList.getAssetsList().map(res => res.json()).subscribe(assetsdata => {
+			this.loadSpiner = true;
 			this.assetsList = assetsdata.assets;
 			this.platform = this.params.get('platform');
 			this.asset_id = this.params.get('asset_id');
@@ -37,20 +40,27 @@ export class SearchComponent {
 
 	onKey(value: string) {
 		if(value.length >= 3){
+			this.loadSpiner = false;
 			this._SearchList.searchAnAsset(value).map(res => res.json()).subscribe(searchdata => {
 				this.assetsList = searchdata.assets;
+				this.searchresponsedata = searchdata.assets;
+				this.loadSpiner = true;
 			});
-			this.isShow = true;
+			this.isShow = false;
 		}
 		else{
 			this.isShow = true;
+			this.loadSpiner = true;
 		}
 	}
 
 
 	getanassets(id: String) {
+		this.loadSpiner = false;
 		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(a => {
 			this.singleList = a;
+			this.isShow = true;
+			this.loadSpiner = true;
 		});
 	}
 
@@ -65,12 +75,14 @@ export class SearchComponent {
 	sortOrder(v){
 		// this.reverse = (this.predicate === v) ? !this.reverse : false;
 		// this.predicate = v;
-        if(this.predicate === v){
+		if(this.predicate === v){
 			this.predicate = '-asset_name';
-        }
-        else{
+			this.isOn = true;
+		}
+		else{
 			this.predicate = '+asset_name';
-        }
+			this.isOn = false;
+		}
 
 	}
 }

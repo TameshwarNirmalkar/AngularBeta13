@@ -30,7 +30,7 @@ gulp.task('ts2js', function () {
 		var tscConfig = tscCnfg;
 		var tsResult = gulp.src([PATHS.src, 'node_modules/angular2/typings/browser.d.ts'])
 						.pipe(typescript(tscConfig.compilerOptions));
-		return tsResult.js.pipe(gulp.dest('./dist')).pipe( browserSync.reload({ stream: true}) );
+		return tsResult.js.pipe(gulp.dest('./dist'));
 });
 
 /* SCSS/CSS compiler/Injector */
@@ -78,7 +78,6 @@ gulp.task('cssinject', function(){
 gulp.task('watch', function(){
 		console.log('\n\n Start Watching \n\n');
 		gulp.watch('src/scss/*.+(scss|sass)', ['sass']);
-		// Reloads the browser whenever HTML or JS files change
 		gulp.watch('src/**/*.html', ['compilehtml']);
 		gulp.watch('src/**/*.ts', ['ts2js']);
 		gulp.watch('src/fonts/**/*', ['fonts']);

@@ -3,7 +3,7 @@ import {RouteConfig, ROUTER_DIRECTIVES, RouteParams, ROUTER_PROVIDERS} from 'ang
 import {Http, Response, Headers, BaseRequestOptions} from 'angular2/http';
 
 export class SearchService{
-	
+
 	resdata: Object;
 	constructor( @Inject(Http) private http: Http) { }
 	createAuthorizationHeader(headers: Headers) {
@@ -11,7 +11,7 @@ export class SearchService{
 		//headers.append('X-Session', TOKENKEY);
 	}
 	/**
-		@ GET: all the packages list 
+		@ GET: all the packages list
 	*/
 	getAssetsList() {
 		let headers = new Headers();
@@ -23,7 +23,7 @@ export class SearchService{
 	}
 
 	/**
-		@ GET: get a packages 
+		@ GET: get a packages
 	*/
 	getAnAsset(id:String) {
 		let headers = new Headers();
