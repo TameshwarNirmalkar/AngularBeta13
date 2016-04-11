@@ -4,12 +4,13 @@ import {NgFor, NgIf, NgClass} from 'angular2/common';
 
 import {SearchService} from '../../services/search/search.service';
 import {OrderBy} from "../../pipes/orderBy/orderBy";
-import * as _ from 'underscore';
+//import * as _ from 'underscore';
+import {LoadingMask} from '../../directive/loadingmask/loadingmask';
 
 @Component({
 	selector: 'search-component',
 	templateUrl: 'build/app/components/search-component/search-component.html',
-	directives: [NgFor, NgIf, ROUTER_DIRECTIVES],
+	directives: [NgFor, NgIf, ROUTER_DIRECTIVES, LoadingMask],
 	providers: [SearchService],
 	pipes: [OrderBy]
 })
@@ -25,11 +26,13 @@ export class SearchComponent {
 	public isShow: Boolean = true;
 	public isOn:Boolean = false;
 	public loadSpiner:Boolean = false;
+	public assetloadSpiner:Boolean = true;
+	public cachedAsets: Array<Object>;
 	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router) {
 		this.loadSpiner = false;
 		_SearchList.getAssetsList().map(res => res.json()).subscribe(assetsdata => {
 			this.loadSpiner = true;
-			this.assetsList = assetsdata.assets;
+			this.assetsList = this.cachedAsets = assetsdata.assets;
 			this.platform = this.params.get('platform');
 			this.asset_id = this.params.get('asset_id');
 			if (this.asset_id !== null){
@@ -48,19 +51,21 @@ export class SearchComponent {
 			});
 			this.isShow = false;
 		}
+		else if(value.length <= 0){
+			this.assetsList = this.cachedAsets;
+		}
 		else{
 			this.isShow = true;
 			this.loadSpiner = true;
 		}
 	}
 
-
 	getanassets(id: String) {
-		this.loadSpiner = false;
+		this.assetloadSpiner = false;
 		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(a => {
 			this.singleList = a;
 			this.isShow = true;
-			this.loadSpiner = true;
+			this.assetloadSpiner = true;
 		});
 	}
 

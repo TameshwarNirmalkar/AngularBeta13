@@ -9,6 +9,10 @@
     "removeComments": true,
     "sourceMap": false
   },
+  "compileOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  },
   "exclude": [
     "node_modules"
   ]
