@@ -14,9 +14,10 @@ var GulpConfig = (function () {
 				this.listFilesJS		=	 this.source + '**/*.js';
 				this.listFilesFonts =	 this.source + 'fonts/*+(eot)';
 				this.injectConfig	  =	 {relative: false, addRootSlash: true, ignorePath: 'build/'};
+				this.listFilesCompileHTML = this.sourceApp+'**/*.html';
 				// Typings
-				this.typings				= './tools/typings/';
-				this.libraryTypeScriptDefinitions = './tools/typings/**/*.ts';
+				this.typings				= './typings/';
+				this.libraryTypeScriptDefinitions = './typings/**/*.ts';
 
 				// Production Build
 				this.tsOutputPath		  =	 this.build	+ 'js';

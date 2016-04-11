@@ -3,8 +3,8 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouteParams, ROUTER_PROVIDERS, R
 import {NgFor, NgIf, NgClass} from 'angular2/common';
 
 import {SearchService} from '../../services/search/search.service';
-import {OrderBy} from "../../pipes/orderBy/orderBy"
-
+import {OrderBy} from "../../pipes/orderBy/orderBy";
+import * as _ from 'underscore';
 
 @Component({
 	selector: 'search-component',

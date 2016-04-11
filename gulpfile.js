@@ -67,12 +67,6 @@ gulp.task('cssinject', ['views'], function(){
 		;
 });
 
-/*gulp.task('wiredep', function () {
-	gulp.src('./src/index.html')
-		.pipe(wiredep({ devDependencies: true }))
-		.pipe(gulp.dest('./dist'))
-});
-*/
 gulp.task('watch', function(){
 		console.log('\n\n Start Watching \n\n');
 		gulp.watch('src/**/*+(scss|sass)', ['sass']);
