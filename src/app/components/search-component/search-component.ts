@@ -18,21 +18,21 @@ import {LoadingMask} from '../../directive/loadingmask/loadingmask';
 export class SearchComponent {
 	private assetsList: Array<Object>;
 	private singleList: Object;
-	private asset_id: String;
-	private platform: String;
-	private reverse: Boolean = true;
-	public predicate: String = '+asset_name'
+	private asset_id: string;
+	private platform: string;
+	private reverse: boolean = true;
+	public predicate: string = '+asset_name'
 	public searchresponsedata: Array<Object>;
-	public isShow: Boolean = true;
-	public isOn:Boolean = false;
-	public loadSpiner:Boolean = false;
-	public assetloadSpiner:Boolean = true;
-	public cachedAsets: Array<Object>;
+	public isShow: boolean = true;
+	public isOn:boolean = false;
+	public loadSpiner:boolean = false;
+	public assetloadSpiner:boolean = true;
+	public cachedAssets: Array<Object>;
 	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router) {
 		this.loadSpiner = false;
 		_SearchList.getAssetsList().map(res => res.json()).subscribe(assetsdata => {
 			this.loadSpiner = true;
-			this.assetsList = this.cachedAsets = assetsdata.assets;
+			this.assetsList = this.cachedAssets = assetsdata.assets;
 			this.platform = this.params.get('platform');
 			this.asset_id = this.params.get('asset_id');
 			if (this.asset_id !== null){
@@ -41,7 +41,7 @@ export class SearchComponent {
 		});
 	}
 
-	onKey(value: string) {
+	onKey(value:string) {
 		if(value.length >= 3){
 			this.loadSpiner = false;
 			this._SearchList.searchAnAsset(value).map(res => res.json()).subscribe(searchdata => {
@@ -52,7 +52,7 @@ export class SearchComponent {
 			this.isShow = false;
 		}
 		else if(value.length <= 0){
-			this.assetsList = this.cachedAsets;
+			this.assetsList = this.cachedAssets;
 		}
 		else{
 			this.isShow = true;
@@ -60,7 +60,7 @@ export class SearchComponent {
 		}
 	}
 
-	getanassets(id: String) {
+	getanassets(id:string) {
 		this.assetloadSpiner = false;
 		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(a => {
 			this.singleList = a;
@@ -77,9 +77,7 @@ export class SearchComponent {
 		return this.platform;
 	}
 
-	sortOrder(v){
-		// this.reverse = (this.predicate === v) ? !this.reverse : false;
-		// this.predicate = v;
+	sortOrder(v:string){
 		if(this.predicate === v){
 			this.predicate = '-asset_name';
 			this.isOn = true;
@@ -88,6 +86,6 @@ export class SearchComponent {
 			this.predicate = '+asset_name';
 			this.isOn = false;
 		}
-
 	}
+
 }
