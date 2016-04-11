@@ -5,6 +5,5 @@ import {Component, Directive, ElementRef, Input} from 'angular2/core';
 })
 export class LoadingMask {
     constructor(el: ElementRef) {
-       console.log(el);
     }
 }

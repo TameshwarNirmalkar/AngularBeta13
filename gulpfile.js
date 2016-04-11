@@ -12,20 +12,13 @@ var del 							= require('del');
 // Create config
 var config      = new GulpConfig();
 
-var PATHS = {
-		src: 'src/**/*.ts',
-		javascript: ['./dist/js/**/*.js'],
-		css: ['./dist/css/**/*.css'],
-		injectConfig: {relative: false, addRootSlash: true, ignorePath: 'dist/'}
-};
-
 gulp.task('clean', function (done) { del([config.build, './dist'], done);});
 
 /* TypeScript Compiler and js Injector */
 gulp.task('ts2js', function () {
 		var typescript = gulptypescript;
 		var tscConfig = tscCnfg;
-		var tsResult = gulp.src([PATHS.src, 'node_modules/angular2/typings/browser.d.ts'])
+		var tsResult = gulp.src([config.listFilesTS, 'node_modules/angular2/typings/browser.d.ts'])
 						.pipe(typescript(tscConfig.compilerOptions));
 		return tsResult.js.pipe(gulp.dest(config.build));
 });

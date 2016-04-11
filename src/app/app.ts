@@ -47,7 +47,6 @@ export class AppComponent {
 	public loadSpiner:Boolean = true;
 
 	constructor() {
-		console.log('app initiated.', this.platform);
 	}
 
 }
