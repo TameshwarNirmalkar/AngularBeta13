@@ -39,7 +39,7 @@
 	    System.config({
 	    	"baseURL": "/",
 			packages: {
-				'dist/': {
+				'build/': {
 					main 				: "main",
 					defaultJSExtensions : true,
         			'node_modules/rxjs': { defaultExtension: 'ts' }
@@ -47,7 +47,7 @@
 			}
 	    });
 	    //bootstrap the Angular2 application
-	    System.import('./dist/main').catch(console.log.bind(console));
+	    System.import('./build/main').catch(console.log.bind(console));
 	</script>
 </body>
 </html>

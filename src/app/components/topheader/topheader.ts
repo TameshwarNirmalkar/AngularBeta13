@@ -6,7 +6,7 @@ import {SearchComponent} from '../search-component/search-component';
 
 @Component({
     selector    : 'topheader',
-    templateUrl : 'dist/app/components/topheader/topheader.html',
+    templateUrl : 'build/app/components/topheader/topheader.html',
     directives: [ROUTER_DIRECTIVES]
 })
 export class TopHeader { }

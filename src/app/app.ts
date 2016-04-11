@@ -16,7 +16,7 @@ import {SearchComponent}  from './components/search-component/search-component';
 
 @Component({
 	selector: 'my-app',
-	templateUrl: 'dist/app/app.html',
+	templateUrl: 'build/app/app.html',
 	directives: [TopHeader, FooterComponent, ROUTER_DIRECTIVES, NgIf]
 })
 @RouteConfig([

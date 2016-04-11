@@ -7,7 +7,7 @@ import {SearchService} from '../../services/search/search.service';
 
 @Component({
 	selector: 'asset-component',
-	templateUrl: 'dist/app/components/search-component/single-asset-component.html',
+	templateUrl: 'build/app/components/search-component/single-asset-component.html',
 	directives: [NgFor, NgIf, ROUTER_DIRECTIVES],
 	providers: [SearchService]
 })

@@ -8,7 +8,7 @@ import {OrderBy} from "../../pipes/orderBy/orderBy"
 
 @Component({
 	selector: 'search-component',
-	templateUrl: 'dist/app/components/search-component/search-component.html',
+	templateUrl: 'build/app/components/search-component/search-component.html',
 	directives: [NgFor, NgIf, ROUTER_DIRECTIVES],
 	providers: [SearchService],
 	pipes: [OrderBy]
