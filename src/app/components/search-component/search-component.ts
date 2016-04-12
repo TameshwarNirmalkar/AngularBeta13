@@ -6,11 +6,12 @@ import {SearchService} from '../../services/search/search.service';
 import {OrderBy} from "../../pipes/orderBy/orderBy";
 import * as _ from 'underscore';
 import {LoadingMask} from '../../directive/loadingmask/loadingmask';
+import OffClickDirective from '../../directive/clickoutsidehide/clickoutsidehide';
 
 @Component({
 	selector: 'search-component',
 	templateUrl: 'build/app/components/search-component/search-component.html',
-	directives: [NgFor, NgIf, ROUTER_DIRECTIVES, LoadingMask],
+	directives: [NgFor, NgIf, ROUTER_DIRECTIVES, LoadingMask, OffClickDirective],
 	providers: [SearchService],
 	pipes: [OrderBy]
 })
@@ -40,6 +41,7 @@ export class SearchComponent {
 			if (this.asset_id !== null){
 			 	//this.getanassets(this.asset_id);
 			}
+			this.clickedOutside = this.clickedOutside.bind(this);
 		});
 	}
 
@@ -52,13 +54,14 @@ export class SearchComponent {
 				this.searchresponsedata = _.uniq(searchdata.assets, function(a) {
 					return a["asset_name"].toLowerCase();
 				});
-				//console.log(this.searchresponsedata);
 				this.loadSpiner = true;
 			});
 			this.isShow = false;
 		}
-		else if(value.length <= 0){
+		else if(value.length <= 2){
 			this.assetsList = this.cachedAssets;
+			this.isShow = true;
+			this.loadSpiner = true;
 		}
 		else{
 			this.isShow = true;
@@ -84,6 +87,7 @@ export class SearchComponent {
 	}
 
 	sortOrder(v:string){
+		this.isShow = true;
 		if(this.predicate === v){
 			this.predicate = '-asset_name';
 			this.isOn = true;
@@ -93,5 +97,9 @@ export class SearchComponent {
 			this.isOn = false;
 		}
 	}
+
+	clickedOutside(){
+        this.isShow = true;
+  }
 
 }

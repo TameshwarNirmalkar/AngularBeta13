@@ -14,18 +14,11 @@
 		</div>
 		<div class="col-lg-6" style="height:78vh; overflow-y:auto;">
 			<div class="row">
-				<div class="searchpanel pull-left" style="position: absolute; width: 100%; z-index: 1; max-height: 300px; height: auto; overflow-y:auto; background-color: #585858;" [hidden]="isShow">
+				<div class="searchpanel pull-left" style="position: absolute; width: 100%; z-index: 1; max-height: 200px; height: auto; overflow-y:auto; background-color: #585858;" [hidden]="isShow" [offClick]="clickedOutside">
 					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">
 						<li *ngFor="#sl of searchresponsedata | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left"  (click)="getanassets(sl.asset_id)">
-							<span class="pull-left hidden" style="padding: 5px; display: inline-block;">
-								<img src="https://static.spark.autodesk.com/{{ sl.asset_image}}" alt="" height="64" width="64">
-							</span>
 							<span style="box-sizing:border-box;">
-								<div class="pull-left">
-									<dd style="color: #fff;"> {{ sl.asset_name | uppercase }} </dd>
-									<dd>{{ sl.artist_name}}</dd>
-									<dd>{{ sl.keywords }}</dd>
-								</div>
+									<dd style="color: #fff;"> {{ sl.asset_name | lowercase }} </dd>
 							</span>
 						</li>
 					</ul>
