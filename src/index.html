@@ -43,10 +43,12 @@
         	'build/': {
         		main 				: "main",
         		defaultJSExtensions : true,
-          	'node_modules/rxjs': { defaultExtension: 'ts' },
-            'node_modules/underscore/': { defaultExtension: 'js' }
+          	'node_modules/rxjs': { defaultExtension: 'ts' }
         	}
-        }
+        },
+				paths: {
+			    underscore: 'node_modules/underscore/underscore.js'
+			  }
 	    });
 	    //bootstrap the Angular2 application
 	    System.import('./build/main').catch(console.log.bind(console));

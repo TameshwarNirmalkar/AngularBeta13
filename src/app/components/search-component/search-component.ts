@@ -4,7 +4,7 @@ import {NgFor, NgIf, NgClass} from 'angular2/common';
 
 import {SearchService} from '../../services/search/search.service';
 import {OrderBy} from "../../pipes/orderBy/orderBy";
-//import * as _ from 'underscore';
+import * as _ from 'underscore';
 import {LoadingMask} from '../../directive/loadingmask/loadingmask';
 
 @Component({
@@ -28,11 +28,13 @@ export class SearchComponent {
 	public loadSpiner:boolean = false;
 	public assetloadSpiner:boolean = true;
 	public cachedAssets: Array<Object>;
+	public list:Array<Object>;
 	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router) {
 		this.loadSpiner = false;
 		_SearchList.getAssetsList().map(res => res.json()).subscribe(assetsdata => {
 			this.loadSpiner = true;
-			this.assetsList = this.cachedAssets = assetsdata.assets;
+			this.assetsList = assetsdata.assets;
+			this.cachedAssets = assetsdata.assets;// cached data;
 			this.platform = this.params.get('platform');
 			this.asset_id = this.params.get('asset_id');
 			if (this.asset_id !== null){
@@ -46,7 +48,11 @@ export class SearchComponent {
 			this.loadSpiner = false;
 			this._SearchList.searchAnAsset(value).map(res => res.json()).subscribe(searchdata => {
 				this.assetsList = searchdata.assets;
-				this.searchresponsedata = searchdata.assets;
+				//this.searchresponsedata = searchdata.assets;
+				this.searchresponsedata = _.uniq(searchdata.assets, function(a) {
+					return a["asset_name"].toLowerCase();
+				});
+				//console.log(this.searchresponsedata);
 				this.loadSpiner = true;
 			});
 			this.isShow = false;
