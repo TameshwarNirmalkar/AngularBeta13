@@ -1,12 +1,19 @@
-import {Component, Inject}               from 'angular2/core';
+//// <reference path="../../../../typings/tsd.d.ts" />
+/// <reference path="../../../../typings/jquery/jquery.d.ts" />
+/// <reference path="../../../../typings/underscore/underscore.d.ts" />
+
+import {Component, Inject, ElementRef}               from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, RouteParams, ROUTER_PROVIDERS, RouterLink} from 'angular2/router';
 import {NgFor, NgIf, NgClass} from 'angular2/common';
 
 import {SearchService} from '../../services/search/search.service';
 import {OrderBy} from "../../pipes/orderBy/orderBy";
 import * as _ from 'underscore';
+//import * as $ from 'jquery';
 import {LoadingMask} from '../../directive/loadingmask/loadingmask';
 import OffClickDirective from '../../directive/clickoutsidehide/clickoutsidehide';
+//import { InfiniteScroll } from '../../directive/infinitescroll/infinite-scroll';
+declare var jQuery: JQueryStatic;
 
 @Component({
 	selector: 'search-component',
@@ -30,7 +37,7 @@ export class SearchComponent {
 	public assetloadSpiner:boolean = true;
 	public cachedAssets: Array<Object>;
 	public list:Array<Object>;
-	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router) {
+	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router, private el:ElementRef) {
 		this.loadSpiner = false;
 		_SearchList.getAssetsList().map(res => res.json()).subscribe(assetsdata => {
 			this.loadSpiner = true;
@@ -41,7 +48,15 @@ export class SearchComponent {
 			if (this.asset_id !== null){
 			 	//this.getanassets(this.asset_id);
 			}
-			this.clickedOutside = this.clickedOutside.bind(this);
+			//this.clickedOutside = this.clickedOutside.bind(this);
+			let _self = this;
+			$('#SearchComponent').on('scroll',  function(){
+				if( $(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight)
+        {
+					_self.assetsList = $.merge(_self.assetsList, _self.cachedAssets);
+					console.log(  _self.assetsList  );
+        }
+			})
 		});
 	}
 
@@ -69,13 +84,14 @@ export class SearchComponent {
 		}
 	}
 
-	getanassets(id:string) {
+	getanassets(e:Event, id:string) {
 		this.assetloadSpiner = false;
 		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(a => {
 			this.singleList = a;
 			this.isShow = true;
 			this.assetloadSpiner = true;
 		});
+		e.stopPropagation();
 	}
 
 	isRouteActive(route) {
@@ -86,20 +102,26 @@ export class SearchComponent {
 		return this.platform;
 	}
 
-	sortOrder(v:string){
+	sortOrder(e:Event,v:string){
 		this.isShow = true;
 		if(this.predicate === v){
 			this.predicate = '-asset_name';
 			this.isOn = true;
+			return false;
 		}
 		else{
 			this.predicate = '+asset_name';
 			this.isOn = false;
 		}
+		e.stopPropagation();
 	}
 
 	clickedOutside(){
         this.isShow = true;
+  }
+
+	onScroll () {
+      console.log('scrolled!!')
   }
 
 }
