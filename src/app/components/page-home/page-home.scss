@@ -1,0 +1,26 @@
+@mixin fullcircle($radius) {
+  -webkit-border-radius: $radius+px;
+     -moz-border-radius: $radius+px;
+      -ms-border-radius: $radius+px;
+          border-radius: $radius+px;
+          width: ($radius*2)+px;
+          height: ($radius*2)+px;
+}
+.center-vertically{
+	display: table;
+	center{
+		display: table-cell;
+		vertical-align: middle;
+		height: inherit;
+		text-align: center; color: #fff;
+		a{color:#fff;}
+	}
+}
+.full-circle {
+	 background-color: rgba(0,0,0,.5);
+	 @include fullcircle(75);
+}
+.distance_in_between{
+	display: inline-table;
+	margin: 0px 10px;
+}

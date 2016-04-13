@@ -2,7 +2,8 @@
 
 A minimal [Angular2](https://angular.io/) playground using [TypeScript](http://www.typescriptlang.org/) and [SystemJS loader](https://github.com/systemjs/systemjs)
 
-#### It has implemnted with the followings: 
+#### It has implemnted with the followings:
+
 * `browser-sync` Browser Synch
 * `gulp-sass` Sass for Css
 * `gulp-inject` for static file injection
@@ -15,16 +16,16 @@ A minimal [Angular2](https://angular.io/) playground using [TypeScript](http://w
 Clone this repository and execute in your favourite shell:
 
 ## Global npm packages
-* `npm i -g gulp` to install gulp globally (if you don't have it installed already) 
-* `npm i -g bower` for bower. 
+* `npm i -g gulp` to install gulp globally (if you don't have it installed already)
+* `npm i -g bower` for bower.
 * `npm i` to install local npm dependencies
 
 ## Local Dependencies
 * `npm i superstatic` for superstatic.
-* `bower install` for bower dependencies for static css and js library. 
+* `bower install` for bower dependencies for static css and js library.
 
 ## Play
 
-After completing installation type in your favourite shell:
+After completing installation type in your favorite shell:
 
-* `gulp play` to start a "Hello World" app in a new browser window. App files are observed and will be re-transpiled on each change.
+* `gulp` to start a "app" in a new browser window. App files are observed and will be re-transpiled on each change.

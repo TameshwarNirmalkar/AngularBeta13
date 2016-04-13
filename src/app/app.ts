@@ -1,26 +1,52 @@
-import {bootstrap} from 'angular2/platform/browser';
-import {Component, provide} from 'angular2/core';
-import {APP_BASE_HREF, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig} from 'angular2/router';
-import { HTTP_PROVIDERS } from 'angular2/http';
+// Libraries
+import {Component}                      from 'angular2/core';
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {NgIf} from 'angular2/common';
 
-//import {Home} from './components/home/home';
-import {Search} from './components/search/search';
-import {Browse} from './components/browse/browse';
-import { NamesList } from './services/NameList';
-import {PackageList} from './services/packages/PackageList';
+// Custom Components
+import {NavigationComponent} from './components/navigation/navigation';
+import {HomePageComponent}   from './components/page-home/page-home';
+import {AboutPageComponent}  from './components/page-about/page-about';
+import {TopHeader}  from './components/topheader/topheader';
+import { FooterComponent } from './components/footer/footer';
+import {RegisterComponent}  from './components/register-component/register-component';
+import {SignInComponent}  from './components/sign-in-component/sign-in-component';
+import {SearchComponent}  from './components/search-component/search-component';
+//import { SingleAssetComponent } from '../asset-component/single-asset-component';
 
 @Component({
-  selector: 'my-app',
-  templateUrl: 'app/app.html',
-  providers: [NamesList, PackageList],
-  directives: [ROUTER_DIRECTIVES]
+	selector: 'my-app',
+	templateUrl: 'build/app/app.html',
+	directives: [TopHeader, FooterComponent, ROUTER_DIRECTIVES, NgIf]
 })
 @RouteConfig([
-	{path: '/', component: Browse, name: 'Browse'},
-  {path: '/search', component: Search, name: 'Search'}
+	{
+		path: '/',
+		name: 'Home',
+		component: HomePageComponent
+	},
+	{
+		path: '/register',
+		name: 'Register',
+		component: RegisterComponent
+	},
+	{
+		path: '/signin',
+		name: 'SignIn',
+		component: SignInComponent
+	},
+	{
+		path: '/assets',
+		name: 'Assets',
+		component: SearchComponent
+	}
 ])
-export class AppComponent {
-  constructor() {}
-}
 
-bootstrap(AppComponent,[ ROUTER_PROVIDERS, HTTP_PROVIDERS ]);
+export class AppComponent {
+	private platform: String = "Web";
+	public loadSpiner:Boolean = true;
+
+	constructor() {
+	}
+
+}
