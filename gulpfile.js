@@ -8,6 +8,7 @@ var superstatic       = require('superstatic');
 var wiredep           = require('wiredep').stream; // bower component injector.
 var inject            = require('gulp-inject');
 var GulpConfig        = require('./gconfig');
+
 var del 							= require('del');
 // Create config
 var config      = new GulpConfig();

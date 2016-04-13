@@ -3,6 +3,7 @@
 A minimal [Angular2](https://angular.io/) playground using [TypeScript](http://www.typescriptlang.org/) and [SystemJS loader](https://github.com/systemjs/systemjs)
 
 #### It has implemnted with the followings:
+
 * `browser-sync` Browser Synch
 * `gulp-sass` Sass for Css
 * `gulp-inject` for static file injection
@@ -25,6 +26,6 @@ Clone this repository and execute in your favourite shell:
 
 ## Play
 
-After completing installation type in your favourite shell:
+After completing installation type in your favorite shell:
 
 * `gulp` to start a "app" in a new browser window. App files are observed and will be re-transpiled on each change.
