@@ -86,11 +86,11 @@ export class SearchComponent {
 			this.loadSpiner = false;
 			this._SearchList.searchAnAsset(value).map(res => res.json()).subscribe(searchdata => {
 				this.assetsList = searchdata.assets;
-				//this.searchresponsedata = searchdata.assets;
 				this.searchresponsedata = _.uniq(searchdata.assets, function(a) {
 					return a["asset_name"].toLowerCase();
 				});
-
+				// let x = _.pluck(searchdata.assets, 'asset_name');
+				// console.log(x);
 				this.loadSpiner = true;
 			});
 			this.isShow = false;
