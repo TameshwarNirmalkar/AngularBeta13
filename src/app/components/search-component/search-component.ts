@@ -50,11 +50,15 @@ export class SearchComponent {
 			}
 			//this.clickedOutside = this.clickedOutside.bind(this);
 			let _self = this;
+			let limit = 20;
+			let offsetlimit = 0
 			$('#SearchComponent').on('scroll',  function(){
 				if( $(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight)
         {
 					_self.assetsList = $.merge(_self.assetsList, _self.cachedAssets);
-					console.log(  _self.assetsList  );
+					//limit += 20
+					offsetlimit += 20;
+					console.log(  limit, ':', offsetlimit  );
         }
 			})
 		});
@@ -120,8 +124,8 @@ export class SearchComponent {
         this.isShow = true;
   }
 
-	onScroll () {
-      console.log('scrolled!!')
+	onScroll (event) {
+      console.log('scrolled!!', event);
   }
 
 }
