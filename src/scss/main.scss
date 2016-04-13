@@ -65,8 +65,8 @@ body {
 .input-group{
   .form-control{
     background-color: #252525;
-    border-color: #444444;
-    color: #555;
+    border-color: #404040;
+    color: #aaaaaa;
     border-radius: 0;
     font-size: 16px;
     height: 40px;
@@ -77,30 +77,19 @@ body {
     }
   }
   ::-webkit-input-placeholder {
-     color: #565656;
+     color: #4b4b4b;
   }
 
   :-moz-placeholder { /* Firefox 18- */
-     color: #565656;  
+     color: #4b4b4b;  
   }
 
   ::-moz-placeholder {  /* Firefox 19+ */
-     color: #565656;  
+     color: #4b4b4b;  
   }
 
   :-ms-input-placeholder {  
-     color: #565656;  
+     color: #4b4b4b;  
   }
 
-  label{
-    
-  }
-  .input-group-addon{
-    font-size: 16px;
-    color: #8b8b8b;
-    padding: 0 5px;
-    background: transparent;
-    border: none;
-    font-weight: 600;
-  }
 }

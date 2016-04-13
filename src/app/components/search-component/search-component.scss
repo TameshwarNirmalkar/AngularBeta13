@@ -27,15 +27,13 @@
 			width: 25%;
 			a{
 				background-color: #282828;
-				border-right: 1px solid #303130;
-				border-left: 1px solid #303130;
 				padding: 7px 15px;
 				color: #555555;
 				margin-right: 0;
 				border-radius: 0;
 				&:hover{
 					background-color: #424242;
-					color: #bcbcbc;
+					color: #e2e2e2;
 					border-color: #424242;
 					border-radius: 0;
 				}
@@ -44,21 +42,12 @@
 			&.active{
 				a{
 					background-color: #424242;
-					color: #bcbcbc;
+					color: #e2e2e2;
 					border-color: #424242;
 					border-radius: 0;
 				}
 			}
-			&:first-child{
-				a{
-					border-left: none;
-				}
-			}
-			&:last-child{
-				a{
-					border-right: none;
-				}
-			}
+			
 			
 		}
 	}
@@ -77,7 +66,12 @@
 					float: right;
 					color: #8b8b8b;
 				}
+				.btn-show{
+					margin-left: 30px;
+					width: calc(100% - 30px);
+				}
 			}
+
 			.search-box{
 				font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
 				font-style: normal;
@@ -97,10 +91,66 @@
 				.listdisplay{
 					display:block;
 					clear:both;
-					height: 160px;
+					height: 150px;
 					background: #3a3a3a;
 					margin-bottom: 3px;
-					padding: 15px 10px;
+					padding:10px;
+
+					.asset-content{
+						padding: 0;
+
+						img{
+							height: 80px;
+							width: 80px;
+							margin-right: 10px;
+						}
+						.ptitle{
+							font-size: 16px;
+						}
+						dd{
+							color: #9b9b9b;
+						}
+
+						&:after{
+							content: '';
+							width: calc(100% - 90px);
+							height: 2px;
+							background: #404040;
+							position: absolute;
+							right: 0;
+							bottom: 0;
+						}
+						.btn-download{
+							padding: 5px 12px;
+							width: 150px;
+							background: #507b45;
+							color: #a6a6a6;
+							border-radius: 0;
+							border: none;
+
+							&:hover{
+								background: #5a864f;
+								color: #dcdcdc;
+							}
+						}
+					}
+					.asset-footer{
+						padding: 10px 0;
+						.footer-list{
+							li{
+								margin: 0;
+								padding: 0;
+								color: #696969;
+								&:hover{
+									background: none;
+								}
+								.fa{
+									color: #7a7a7a;
+								}
+							}
+						}
+
+					}
 				}
 			}
 		}

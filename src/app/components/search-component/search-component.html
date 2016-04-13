@@ -21,17 +21,15 @@
 						</li>
 					</ul>
 				</div>
-				<div class="input-group col-lg-6 col-md-6 pull-left">
-					<span class="input-group-addon">Sort by:</span>
+				<div class="input-group col-lg-4 col-md-4 pull-left">
 					<span (click)="sortOrder($event, '+asset_name')" role="button" class="form-control">
-							A-Z <small class="fa fa-sort-desc" [ngClass]="{'fa-sort-asc': isOn}"> </small>
+							SORT BY <small class="fa fa-sort-desc" [ngClass]="{'fa-sort-asc': isOn}"> </small>
 					</span>
 
 				</div>
-				<div class="input-group col-lg-6 col-md-6">
-					<span class="input-group-addon">Show:</span>
-					<span (click)="sortOrder($event, '+asset_name')" role="button" class="form-control">
-							All Packages <small class="fa fa-sort-desc" [ngClass]="{'fa-sort-asc': isOn}"> </small>
+				<div class="input-group col-lg-8 col-md-8">
+					<span (click)="sortOrder($event, '+asset_name')" role="button" class="form-control btn-show">
+							SHOW <small class="fa fa-sort-desc" [ngClass]="{'fa-sort-asc': isOn}"> </small>
 					</span>
 				</div>
 			</div>
@@ -40,20 +38,39 @@
 				<div class="searchpanel pull-left" style="width:100%">
 					<ul>
 						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left pkg-item" (click)="getanassets($event, a.asset_id)">
-							<span class="pull-left" style="padding: 5px; display: inline-block;">
-								<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="" height="64" width="64">
-							</span>
+							
 							<span style="box-sizing:border-box;">
-								<div class="pull-left">
-									<dd> {{ a.asset_name | uppercase }} </dd>
-									<dd class="small">{{ a.artist_name}}</dd>
-									<dd>
-											<i class="fa fa-thumbs-up" style="color: #BC6161;"></i> {{ a.favorite_count }}
-									</dd>
+								<div class="asset-content col-md-12 col-lg-12">
+									<span class="pull-left" >
+										<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="">
+									</span>
+									<div class="pull-left">
+										<dd class="ptitle"><strong> {{ a.asset_name }} </strong></dd>
+										<dd><i><span>12345</span>&nbsp;|&nbsp;<span>{{ a.artist_name}}</span></i></dd>
+										<dd><i>Group name</i></dd>
+									</div>
+									<div class="pull-right">
+										<a href="javascript:void(0);" class="btn btn-default btn-download">Download</a>
+										
+									</div>
 								</div>
-								<div class="pull-right">
-									<a href="javascript:void(0);" style="display:table-cell; background-color:#C18D04; padding:1px; color:#fff;">Download</a>
-									<i class="fa fa-sort-desc" style="display:table-cell; background-color:#7E581D; padding:1px 3px;"></i>
+								<div class="asset-footer col-md-12 col-lg-12">
+									<ul class="footer-list">
+										<li class="col-md-4 col-lg-4 text-left">
+											<dd>Likes:</dd>
+											<dd><i class="fa fa-thumbs-up"></i> {{ a.favorite_count }}</dd>
+										<li>
+										<li class="col-md-4 col-lg-4">
+											<dd>Downloads:</dd>
+											<dd><i class="fa fa-download"></i> {{ a.favorite_count }}</dd>
+										<li>
+										<li class="col-md-4 col-lg-4">
+											<dd>Updated:</dd>
+											<dd><i class="fa fa-clock-o"></i> {{ a.favorite_count }}&nbsp;days ago</dd>
+										<li>
+									</ul>
+											
+
 								</div>
 							</span>
 						</li>
