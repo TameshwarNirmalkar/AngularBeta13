@@ -1,16 +1,18 @@
-<div class="container-fluid">
-		<h2 style="color: #B8B8B8;">Explore Packages</h2>
-		<div class="col-lg-12" style="padding:0px 0px;">
-			<div class="col-lg-6" style="padding:0px 0px;">
-				<div style="border:1px solid #5D5D5D; background-color:#2F2F2F; color: #999;">
-					<span>
-						<input #searchtext (keyup)="onKey(searchtext.value)" placeholder="Search packages" style="background-color: #474747; border:none; width: 80%;">
-					</span>
-					<span (click)="sortOrder($event, '+asset_name')" role="button">
-							A-Z <small class="fa fa-sort-desc" [ngClass]="{'fa-sort-asc': isOn}"> </small>
-					</span>
+<div class="container-fluid search-component">
+		<ul class="nav nav-tabs">
+		  <li role="presentation" class="active"><a href="#"><h4>Explore Packages</h4></a></li>
+		  <li role="presentation"><a href="#"><h4>Explore Authors</h4></a></li>
+		  <li role="presentation"><a href="#"><h4>My Packages</h4></a></li>
+		  <li role="presentation"><a href="#"><h4>Publish</h4></a></li>
+		</ul>
+		<div class="col-lg-5 search-left-panel">
+
+
+			<div class="row search-input-group">
+				<div class="input-group col-lg-12 col-md-12">
+					<input #searchtext (keyup)="onKey(searchtext.value)" placeholder="&#xf002; &nbsp; SEARCH PACKAGES" class="form-control search-box" >
 				</div>
-				<div class="searchpanel pull-left" style="position: absolute; width: 100%; z-index: 1; max-height: 200px; height: auto; overflow-y:auto; background-color: #585858;" [hidden]="isShow">
+				<div class="searchpanel pull-left" style="position: absolute; width: 100%; z-index: 3; max-height: 200px; height: auto; overflow-y:auto; background-color: #585858;" [hidden]="isShow">
 					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">
 						<li *ngFor="#sl of searchresponsedata | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left"  (click)="getanassets($event, sl.asset_id)">
 							<span style="box-sizing:border-box;">
@@ -19,45 +21,68 @@
 						</li>
 					</ul>
 				</div>
+				<div class="input-group col-lg-4 col-md-4 pull-left">
+					<span (click)="sortOrder($event, '+asset_name')" role="button" class="form-control">
+							SORT BY <small class="fa fa-sort-desc" [ngClass]="{'fa-sort-asc': isOn}"> </small>
+					</span>
+
+				</div>
+				<div class="input-group col-lg-8 col-md-8">
+					<span role="button" class="form-control btn-show">
+							SHOW <small class="fa fa-sort-desc"> </small>
+					</span>
+				</div>
 			</div>
-		</div>
-		<div class="col-lg-6" style="height:78vh; overflow-y:auto;" data-role="search-list-panel">
-			<div class="row">
+
+			<div class="row" style="height:62vh; overflow-y:auto;" data-role="search-list-panel">
 				<div class="searchpanel pull-left" style="width:100%">
-					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">
-						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left" (click)="getanassets($event, a.asset_id)">
-							<span class="pull-left" style="padding: 5px; display: inline-block;">
-								<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="" height="64" width="64">
-							</span>
+					<ul>
+						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left pkg-item" (click)="getanassets($event, a.asset_id)">
+
 							<span style="box-sizing:border-box;">
-								<div class="pull-left">
-									<dd> {{ a.asset_name | uppercase }} </dd>
-									<dd class="small">{{ a.artist_name}}</dd>
-									<dd>
-											<i class="fa fa-thumbs-up" style="color: #BC6161;"></i> {{ a.favorite_count }}
-									</dd>
-									<dd>
-											Download count
-											<i class="" style="color: #BC6161;"></i> {{ a.download_count }}
-									</dd>
-									<dd>
-											Updated
-											<i class="" style="color: #BC6161;"></i> {{ a.date_modified }}
-									</dd>
+								<div class="asset-content col-md-12 col-lg-12">
+									<span class="pull-left" >
+										<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="">
+									</span>
+									<div class="pull-left">
+										<dd class="ptitle"><strong> {{ a.asset_name }} </strong></dd>
+										<dd><i><span>12345</span>&nbsp;|&nbsp;<span>{{ a.artist_name}}</span></i></dd>
+										<dd><i>Group name</i></dd>
+									</div>
+									<div class="pull-right">
+										<a href="javascript:void(0);" class="btn btn-default btn-download">Download</a>
+
+									</div>
 								</div>
-								<div class="pull-right">
-									<a href="javascript:void(0);" style="display:table-cell; background-color:#C18D04; padding:1px; color:#fff;">Download</a>
-									<i class="fa fa-sort-desc" style="display:table-cell; background-color:#7E581D; padding:1px 3px;"></i>
+								<div class="asset-footer col-md-12 col-lg-12">
+									<ul class="footer-list">
+										<li class="col-md-4 col-lg-4 text-left">
+											<dd>Likes:</dd>
+											<dd><i class="fa fa-thumbs-up"></i> {{ a.favorite_count }}</dd>
+										<li>
+										<li class="col-md-4 col-lg-4">
+											<dd>Downloads:</dd>
+											<dd><i class="fa fa-download"></i> {{ a.favorite_count }}</dd>
+										<li>
+										<li class="col-md-4 col-lg-4">
+											<dd>Updated:</dd>
+											<dd><i class="fa fa-clock-o"></i> {{ a.favorite_count }}&nbsp;days ago</dd>
+										<li>
+									</ul>
+
+
 								</div>
 							</span>
 						</li>
 					</ul>
+					<loading-mask [hidden]="loadSpiner"></loading-mask>
 				</div>
 			</div>
-			<loading-mask [hidden]="loadSpiner" style="position:fixed; z-index: 1; width: inherit; top: 50%; bottom: 50%;"></loading-mask>
+
 		</div>
 
-		<div class="col-lg-6" style="height:78vh; overflow-y:auto; background:#333; display:flex;">
+
+		<div class="col-lg-7" style="height:78vh; overflow-y:auto; background:#333; display:flex;">
 			<div style="color: #fff; padding: 5px;" class="row">
 				<ul style="margin:0px; padding: 0px; list-style: none;">
 					<li *ngIf="singleList">

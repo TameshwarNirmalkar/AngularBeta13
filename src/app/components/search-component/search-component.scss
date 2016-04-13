@@ -9,16 +9,150 @@
 
 	}
 }
-.listdisplay{
-	display:block;
-	clear:both;
-	border-bottom:1px solid #737373;
-}
+
 
 .searchpanel{
-	background-color:#3B3B3B;
 	color: #999;
 	ul li:hover{
 			background-color:#333;
+	}
+}
+
+.search-component{
+	.nav-tabs{
+		border-bottom: none;
+	}
+	.nav{
+		li{
+			width: 25%;
+			a{
+				background-color: #282828;
+				padding: 7px 15px;
+				color: #555555;
+				margin-right: 0;
+				border-radius: 0;
+				&:hover{
+					background-color: #424242;
+					color: #e2e2e2;
+					border-color: #424242;
+					border-radius: 0;
+				}
+
+			}
+			&.active{
+				a{
+					background-color: #424242;
+					color: #e2e2e2;
+					border-color: #424242;
+					border-radius: 0;
+				}
+			}
+
+
+		}
+	}
+	.search-left-panel{
+		background-color: #212121;
+		padding: 5px;
+		.row{
+			margin: 0;
+		}
+		.search-input-group{
+			//min-height: 106px;
+
+			.input-group{
+				margin-bottom: 10px;
+				.fa-sort-desc{
+					float: right;
+					color: #8b8b8b;
+				}
+				.btn-show{
+					margin-left: 30px;
+					width: calc(100% - 30px);
+				}
+			}
+
+			.search-box{
+				font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+				font-style: normal;
+				font-weight: normal;
+				text-decoration: inherit;
+			}
+		}
+		.searchpanel{
+			ul{
+				margin:0px;
+				padding: 0px;
+				list-style: none;
+				width: inherit;
+				.pkg-item{
+
+				}
+				.listdisplay{
+					display:block;
+					clear:both;
+					height: 150px;
+					background: #3a3a3a;
+					margin-bottom: 3px;
+					padding:10px;
+
+					.asset-content{
+						padding: 0;
+
+						img{
+							height: 80px;
+							width: 80px;
+							margin-right: 10px;
+						}
+						.ptitle{
+							font-size: 16px;
+						}
+						dd{
+							color: #9b9b9b;
+						}
+
+						&:after{
+							content: '';
+							width: calc(100% - 90px);
+							height: 2px;
+							background: #404040;
+							position: absolute;
+							right: 0;
+							bottom: 0;
+						}
+						.btn-download{
+							padding: 5px 12px;
+							width: 150px;
+							background: #507b45;
+							color: #a6a6a6;
+							border-radius: 0;
+							border: none;
+
+							&:hover{
+								background: #5a864f;
+								color: #dcdcdc;
+							}
+						}
+					}
+					.asset-footer{
+						padding: 10px 0;
+						.footer-list{
+							li{
+								margin: 0;
+								padding: 0;
+								color: #696969;
+								&:hover{
+									background: none;
+								}
+								.fa{
+									color: #7a7a7a;
+								}
+							}
+						}
+
+					}
+				}
+			}
+		}
 	}
 }

@@ -90,6 +90,7 @@ export class SearchComponent {
 				this.searchresponsedata = _.uniq(searchdata.assets, function(a) {
 					return a["asset_name"].toLowerCase();
 				});
+
 				this.loadSpiner = true;
 			});
 			this.isShow = false;
