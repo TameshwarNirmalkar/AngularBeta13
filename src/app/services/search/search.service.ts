@@ -43,4 +43,16 @@ export class SearchService{
 			headers: headers
 		})
 	}
+
+	/**
+		@ GET load assets for with limit:20 and offsetlimit:incremental of 20;
+	*/
+	inrementalAssets(limit:number, offsetlimit:number) {
+		let headers = new Headers();
+		this.createAuthorizationHeader(headers);
+		var path = 'https://beta-login-123d.acg.autodesk.com/api/v2/assets/?limit='+limit+"&offset="+offsetlimit ;
+		return this.http.get(path, {
+			headers: headers
+		})
+	}
 }

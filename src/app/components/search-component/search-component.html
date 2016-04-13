@@ -36,6 +36,14 @@
 									<dd>
 											<i class="fa fa-thumbs-up" style="color: #BC6161;"></i> {{ a.favorite_count }}
 									</dd>
+									<dd>
+											Download count
+											<i class="" style="color: #BC6161;"></i> {{ a.download_count }}
+									</dd>
+									<dd>
+											Updated
+											<i class="" style="color: #BC6161;"></i> {{ a.date_modified }}
+									</dd>
 								</div>
 								<div class="pull-right">
 									<a href="javascript:void(0);" style="display:table-cell; background-color:#C18D04; padding:1px; color:#fff;">Download</a>
@@ -44,9 +52,9 @@
 							</span>
 						</li>
 					</ul>
-					<loading-mask [hidden]="loadSpiner"></loading-mask>
 				</div>
 			</div>
+			<loading-mask [hidden]="loadSpiner" style="position:fixed; z-index: 1; width: inherit; top: 50%; bottom: 50%;"></loading-mask>
 		</div>
 
 		<div class="col-lg-6" style="height:78vh; overflow-y:auto; background:#333; display:flex;">

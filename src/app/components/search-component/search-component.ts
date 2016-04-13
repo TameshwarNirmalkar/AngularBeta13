@@ -63,8 +63,14 @@ export class SearchComponent {
 	}
 
 	scrollPagination(limit, offsetlimit){
-		this.assetsList = $.merge(this.assetsList, this.cachedAssets);
+		this.loadSpiner = false;
+		//this.assetsList = $.merge(this.assetsList, this.cachedAssets);
 		console.log(  limit, ':', offsetlimit  );
+		this._SearchList.inrementalAssets(limit, offsetlimit).map(res => res.json()).subscribe(aslist => {
+			console.log( aslist.assets );
+			this.assetsList = $.merge(this.assetsList,aslist.assets);
+			this.loadSpiner = true;
+		})
 	}
 
 	ngDoCheck(){
