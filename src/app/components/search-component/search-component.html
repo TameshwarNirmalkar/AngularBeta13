@@ -1,14 +1,16 @@
-<div class="container-fluid">
-		<h2 style="color: #B8B8B8;">Explore Packages</h2>
-		<div class="col-lg-12" style="padding:0px 0px;">
-			<div class="col-lg-6" style="padding:0px 0px;">
-				<div style="border:1px solid #5D5D5D; background-color:#2F2F2F; color: #999;">
-					<span>
-						<input #searchtext (keyup)="onKey(searchtext.value)" placeholder="Search packages" style="background-color: #474747; border:none; width: 80%;">
-					</span>
-					<span (click)="sortOrder($event, '+asset_name')" role="button">
-							A-Z <small class="fa fa-sort-desc" [ngClass]="{'fa-sort-asc': isOn}"> </small>
-					</span>
+<div class="container-fluid search-component">
+		<ul class="nav nav-tabs">
+		  <li role="presentation" class="active"><a href="#"><h4>Explore Packages</h4></a></li>
+		  <li role="presentation"><a href="#"><h4>Explore Authors</h4></a></li>
+		  <li role="presentation"><a href="#"><h4>My Packages</h4></a></li>
+		  <li role="presentation"><a href="#"><h4>Publish</h4></a></li>
+		</ul>
+		<div class="col-lg-5 search-left-panel">
+
+
+			<div class="row search-input-group">
+				<div class="input-group col-lg-12 col-md-12">
+					<input #searchtext (keyup)="onKey(searchtext.value)" placeholder="&#xf002; &nbsp; SEARCH PACKAGES" class="form-control search-box" >
 				</div>
 				<div class="searchpanel pull-left" style="position: absolute; width: 100%; z-index: 1; max-height: 200px; height: auto; overflow-y:auto; background-color: #585858;" [hidden]="isShow">
 					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">
@@ -19,13 +21,25 @@
 						</li>
 					</ul>
 				</div>
+				<div class="input-group col-lg-6 col-md-6 pull-left">
+					<span class="input-group-addon">Sort by:</span>
+					<span (click)="sortOrder($event, '+asset_name')" role="button" class="form-control">
+							A-Z <small class="fa fa-sort-desc" [ngClass]="{'fa-sort-asc': isOn}"> </small>
+					</span>
+
+				</div>
+				<div class="input-group col-lg-6 col-md-6">
+					<span class="input-group-addon">Show:</span>
+					<span (click)="sortOrder($event, '+asset_name')" role="button" class="form-control">
+							All Packages <small class="fa fa-sort-desc" [ngClass]="{'fa-sort-asc': isOn}"> </small>
+					</span>
+				</div>
 			</div>
-		</div>
-		<div class="col-lg-6" style="height:78vh; overflow-y:auto;" data-role="search-list-panel">
-			<div class="row">
+
+			<div class="row" style="height:62vh; overflow-y:auto;">
 				<div class="searchpanel pull-left" style="width:100%">
-					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">
-						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left" (click)="getanassets($event, a.asset_id)">
+					<ul>
+						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left pkg-item" (click)="getanassets($event, a.asset_id)">
 							<span class="pull-left" style="padding: 5px; display: inline-block;">
 								<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="" height="64" width="64">
 							</span>
@@ -47,9 +61,11 @@
 					<loading-mask [hidden]="loadSpiner"></loading-mask>
 				</div>
 			</div>
+
 		</div>
 
-		<div class="col-lg-6" style="height:78vh; overflow-y:auto; background:#333; display:flex;">
+
+		<div class="col-lg-7" style="height:78vh; overflow-y:auto; background:#333; display:flex;">
 			<div style="color: #fff; padding: 5px;" class="row">
 				<ul style="margin:0px; padding: 0px; list-style: none;">
 					<li *ngIf="singleList">
