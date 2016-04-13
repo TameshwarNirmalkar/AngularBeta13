@@ -10,7 +10,7 @@
 							A-Z <small class="fa fa-sort-desc" [ngClass]="{'fa-sort-asc': isOn}"> </small>
 					</span>
 				</div>
-				<div class="searchpanel pull-left" style="position: absolute; width: 100%; z-index: 1; max-height: 200px; height: auto; background-color: #585858;" [hidden]="isShow">
+				<div class="searchpanel pull-left" style="position: absolute; width: 100%; z-index: 1; max-height: 200px; height: auto; overflow-y:auto; background-color: #585858;" [hidden]="isShow">
 					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">
 						<li *ngFor="#sl of searchresponsedata | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left"  (click)="getanassets($event, sl.asset_id)">
 							<span style="box-sizing:border-box;">
@@ -21,7 +21,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-6" style="height:78vh; overflow-y:auto;" id="SearchComponent">
+		<div class="col-lg-6" style="height:78vh; overflow-y:auto;" data-role="search-list-panel">
 			<div class="row">
 				<div class="searchpanel pull-left" style="width:100%">
 					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">

@@ -45,23 +45,34 @@ export class SearchComponent {
 			this.cachedAssets = assetsdata.assets;// cached data;
 			this.platform = this.params.get('platform');
 			this.asset_id = this.params.get('asset_id');
-			if (this.asset_id !== null){
-			 	//this.getanassets(this.asset_id);
+		})
+	}
+
+	ngOnInit(){
+		let _self = this;
+		let limit:number = 20;
+		let offsetlimit:number = 0;
+		console.log(this.el.nativeElement);
+		$(this.el.nativeElement).find('[data-role="search-list-panel"]').on('scroll',  function(){
+			if( $(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight)
+			{
+				offsetlimit +=20;
+				_self.scrollPagination(limit, offsetlimit);
 			}
-			//this.clickedOutside = this.clickedOutside.bind(this);
-			let _self = this;
-			let limit = 20;
-			let offsetlimit = 0
-			$('#SearchComponent').on('scroll',  function(){
-				if( $(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight)
-        {
-					_self.assetsList = $.merge(_self.assetsList, _self.cachedAssets);
-					//limit += 20
-					offsetlimit += 20;
-					console.log(  limit, ':', offsetlimit  );
-        }
-			})
-		});
+		})
+	}
+
+	scrollPagination(limit, offsetlimit){
+		this.assetsList = $.merge(this.assetsList, this.cachedAssets);
+		console.log(  limit, ':', offsetlimit  );
+	}
+
+	ngDoCheck(){
+		let _self = this;
+		$(document).on('click', function(){
+			//console.log('doc click', _self);
+			_self.isShow = true;
+		})
 	}
 
 	onKey(value:string) {
