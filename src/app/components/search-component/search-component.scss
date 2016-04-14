@@ -329,10 +329,16 @@
 		}
 		.article-container{
 			font-size: 16px;
-
+			p{
+				margin: 0;
+			}
 			.section-heading{
 				color: #5b5b5b;
 				text-transform: uppercase;
+				padding-bottom: 5px;
+			}
+			.remove-padding{
+				padding: 0;
 			}
 
 			.right-drop-panel{
@@ -404,6 +410,7 @@
 		}
 		.desc-img-section{
 			height: 170px;
+			margin-top: 10px;
 			.img-big-section{
 				display: inline-block;
 				float: left;
