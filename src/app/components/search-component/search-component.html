@@ -12,11 +12,11 @@
 				<div class="input-group col-lg-12 col-md-12">
 					<input #searchtext (keyup)="onKey(searchtext.value)" placeholder="&#xf002; &nbsp; SEARCH PACKAGES" class="form-control search-box" >
 				</div>
-				<div class="searchpanel pull-left" style="position: absolute; width: 100%; z-index: 1; max-height: 200px; height: auto; overflow-y:auto; background-color: #585858;" [hidden]="isShow">
-					<ul style="margin:0px; padding: 0px; list-style: none; width: inherit;">
-						<li *ngFor="#sl of searchresponsedata | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left"  (click)="getanassets($event, sl.asset_id)">
+				<div class="searchdrop pull-left"  [hidden]="isShow">
+					<ul style="margin:0px; padding: 0px; list-style: none;">
+						<li *ngFor="#sl of searchresponsedata | orderBy:[predicate]" role="button" class="listdisplay pull-left"  (click)="getanassets($event, sl.asset_id)">
 							<span style="box-sizing:border-box;">
-									<dd style="color: #fff;"> {{ sl.asset_name | lowercase }} </dd>
+									<dd> {{ sl.asset_name | lowercase }} </dd>
 							</span>
 						</li>
 					</ul>
@@ -44,9 +44,9 @@
 									<span class="pull-left" >
 										<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="">
 									</span>
-									<div class="pull-left">
+									<div class="pull-left ">
 										<dd class="ptitle"><strong> {{ a.asset_name }} </strong></dd>
-										<dd><i><span>12345</span>&nbsp;|&nbsp;<span>{{ a.artist_name}}</span></i></dd>
+										<dd><i>12345</i>&nbsp;|&nbsp;<i>{{ a.artist_name}}</i></dd>
 										<dd><i>Group name</i></dd>
 									</div>
 									<div class="pull-right">
@@ -82,52 +82,126 @@
 		</div>
 
 
-		<div class="col-lg-7" style="height:78vh; overflow-y:auto; background:#333; display:flex;">
-			<div style="color: #fff; padding: 5px;" class="row">
-				<ul style="margin:0px; padding: 0px; list-style: none;">
-					<li *ngIf="singleList">
-						<section>
-							<dd class="lead"> {{ singleList.asset_name | uppercase }} </dd>
-							<dd class="small"> {{ singleList.asset_id }} {{ singleList.artist.artist_name }} </dd>
-							<dd class="small">Assets version: {{ singleList.asset_version }}</dd>
-						</section>
-
-						<p>
-								<i class="fa fa-thumbs-up" style="color: #BC6161;"></i> {{ singleList.favorite_count }}
-						</p>
-						<p>
-							Dependencies:
-							<span *ngFor="#depend of singleList.file_formats">{{ depend.name | uppercase }}, </span>
-						</p>
-						<p>
-							<span class="text-uppercase"> Submit Ratings:</span>
+		<div class="col-lg-7 search-right-panel">
+			<div *ngIf="singleList" class="row">
+					<section class="col-md-12 col-lg-12">
+						<ul class="nav nav-pills pull-right">
+							<li>
+								<a href="#" class="link-text">Website</a>
+							</li>
+							<li>
+								<a href="#" class="link-text">Contact</a>
+							</li>
+							<li>
+								<a href="#" class="link-text">Support</a>
+							</li>
+							<li>
+								<a href="#" class="link-text">Repository</a>
+							</li>
+						</ul>
+					</section>
+					<section class="col-md-12 col-lg-12">
+						<dd class="ptitle"><strong> {{ singleList.asset_name }} </strong></dd>
+						<dd><i> {{ singleList.asset_id }} </i>&nbsp;|&nbsp;<i> {{ singleList.artist.artist_name }} </i></dd>
+						<dd><i>Group name</i></dd>
+					</section>
+					<section class="row col-md-12 col-lg-12 ver-section">
+						<span class="col-md-6 col-lg-6"><i class="fa fa-play" aria-hidden="true"></i> {{ singleList.asset_version }}</span>
+						<span class="col-md-3 col-lg-3">
 							<span>
-								<i class="fa fa-heart-o"></i>
-								<i class="fa fa-heart-o"></i>
-								<i class="fa fa-heart-o"></i>
-								<i class="fa fa-heart-o"></i>
-								<i class="fa fa-heart-o"></i>
+								<input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox" checked>
+								<label for="checkbox-1" class="checkbox-custom-label">include examples</label>
 							</span>
+						</span>
+						<span class="col-md-3 col-lg-3">
+							<span class="pull-right">
+								<a href="javascript:void(0);" class="btn btn-default btn-download">Download</a>
+							</span>
+						</span>
+					</section>
+					<section class="col-md-12 col-lg-12 dtl-section right-margin-top">
+						<ul class="footer-list">
+							<li class="col-md-3 col-lg-3 text-left">
+								<dd>Likes:</dd>
+								<dd><i class="fa fa-thumbs-up"></i> {{ singleList.favorite_count }} <a href="#" class="link-text">Like</a></dd>
+							<li>
+							<li class="col-md-3 col-lg-3">
+								<dd>Downloads:</dd>
+								<dd><i class="fa fa-download"></i> {{ singleList.favorite_count }}</dd>
+							<li>
+							<li class="col-md-3 col-lg-3">
+								<dd>Updated:</dd>
+								<dd><i class="fa fa-clock-o"></i> {{ singleList.favorite_count }}&nbsp;days ago</dd>
+							<li>
+								<li class="col-md-3 col-lg-3">
+								<dd>Size:</dd>
+								<dd><i> 0 KB</i></dd>
+							<li>
+						</ul>
+					</section>
+					<article class="col-md-12 col-lg-12 right-margin-top article-container">
+						<dd class="section-heading">DESCRIPTION:</dd>
+						<p>
+							{{ singleList.description}}
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. <a class="link-text" href="#">Show more...</a>
 						</p>
-						<span>Description</span>
-						<article>
-							<p>{{ singleList.description}}
-							Now Built for Dynamo 0.9** LunchBox is a collection of reusable geometry and data management nodes. The tools have been tested with Dynamo 0.9 and Revit 2016. The tool includes nodes for surface paneling, geometry, Revit data collection, and more!. After installation, search a 'LunchBox' category will appear in Dynamo. For versions compatible with Dynamo 0.6, please install version 2014.6.5 or earlier. For more information
+					</article>
+					<section class="col-sm-12 col-md-12 col-lg-12 desc-img-section">
+						<span class="img-big-section">
+							<img src="https://static.spark.autodesk.com/2012/12/17__13_07_38/17738_SigTagged.png2bcc3468-0314-4d32-951b-e6c11b36e669Small.jpg" alt="">
+							<img src="https://static.spark.autodesk.com/2012/12/17__13_07_38/17738_SigTagged.png2bcc3468-0314-4d32-951b-e6c11b36e669Small.jpg" alt="">
+						</span>
+						<span class="img-small-section">
+							<img src="https://static.spark.autodesk.com/2012/12/17__13_07_38/17738_SigTagged.png2bcc3468-0314-4d32-951b-e6c11b36e669Small.jpg" alt="">
+							<img src="https://static.spark.autodesk.com/2012/12/17__13_07_38/17738_SigTagged.png2bcc3468-0314-4d32-951b-e6c11b36e669Small.jpg" alt="">
+						</span>
+					</section>
+					<span class="col-md-12 col-lg-12 right-margin-top article-container">
+						<dd><span class="section-heading">WORKS WITH:</span><span> Dynamo Version 0.7.5+</span></dd>
+					</span>
+					<span class="col-md-12 col-lg-12 right-margin-top article-container">
+						<dd><span class="section-heading">DEPENDENCIES:</span><span *ngFor="#depend of singleList.file_formats"> {{ depend.name | uppercase }}, </span></dd>
+					</span>
+					<article class="col-md-12 col-lg-12 right-margin-top article-container">
+						<dd class="section-heading">WHATS NEW:</dd>
+						<p>
+							{{ singleList.description}}
+							It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Loremis that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like. <a class="link-text" href="#">Show more...</a>
 						</p>
-						</article>
-						<section class="col-sm-12 col-md-12 col-lg-12">
-							<div class="row" style="display:flex; height:200px;">
-									<div class="col-md-3" style="flex:1; border:1px solid #737373"> </div>
-									<div class="col-md-3" style="flex:1; border:1px solid #737373; border-left:none;  border-right:none;"> </div>
-									<div class="col-md-3" style="flex:1; border:1px solid #737373">
-										<div class="col-md-12"> </div>
-										<div class="col-md-12"> </div>
-									</div>
-							</div>
-						</section>
-					</li>
-				</ul>
-				<loading-mask [hidden]="assetloadSpiner"></loading-mask>
+					</article>
+					<article class="col-md-12 col-lg-12 right-margin-top article-container">
+						<dd class="section-heading">KNOWN ISSUES:</dd>
+						<ol>
+							<li>There are many variations of passages of Lorem Ipsum available,</li>
+							<li>But the majority have suffered alteration in some form, by injected.</li>
+							<li>Humour, or randomised words which don't look even slightly believable.</li>
+							<li>If you are going to use a passage of Lorem Ipsum, you need. <a class="link-text" href="#">Show more...</a></li>
+						</ol>
+					</article>
+					<section class="col-md-12 col-lg-12 right-margin-top article-container">
+						<dd class="section-heading">LIBRARY ITEMS from this PAckage:</dd>
+						<div class="panel-group right-drop-panel">
+						    <div class="panel panel-default">
+						      <div class="panel-heading">
+						        <h4 class="panel-title">
+						          <a data-toggle="collapse" href="#collapse1" class="arrow-col collapsed"><span class="arr-holder"></span> Package name title</a>
+						        </h4>
+						      </div>
+						      <div id="collapse1" class="panel-collapse collapse">
+						        <ul class="list-group">
+						          <li class="list-group-item"><span class="arr-holder"></span> Category 1</li>
+						          <li class="list-group-item"><span class="arr-holder"></span> Category 2</li>
+						          <li class="list-group-item"><span class="arr-holder"></span> Category 3</li>
+						        </ul>
+						      </div>
+						    </div>
+						  </div>
+					</section>
+					
+					
+					
 			</div>
-		</div>
+	
+			<loading-mask [hidden]="assetloadSpiner"></loading-mask>
+			</div>
 	</div>
