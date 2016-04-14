@@ -12,7 +12,6 @@ import * as _ from 'underscore';
 //import * as $ from 'jquery';
 import {LoadingMask} from '../../directive/loadingmask/loadingmask';
 import OffClickDirective from '../../directive/clickoutsidehide/clickoutsidehide';
-//import { InfiniteScroll } from '../../directive/infinitescroll/infinite-scroll';
 declare var jQuery: JQueryStatic;
 
 @Component({
@@ -52,7 +51,7 @@ export class SearchComponent {
 		let _self = this;
 		let limit:number = 20;
 		let offsetlimit:number = 0;
-		console.log(this.el.nativeElement);
+		//console.log(this.el.nativeElement);
 		$(this.el.nativeElement).find('[data-role="search-list-panel"]').on('scroll',  function(){
 			if( $(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight)
 			{
@@ -64,10 +63,7 @@ export class SearchComponent {
 
 	scrollPagination(limit, offsetlimit){
 		this.loadSpiner = false;
-		//this.assetsList = $.merge(this.assetsList, this.cachedAssets);
-		console.log(  limit, ':', offsetlimit  );
 		this._SearchList.inrementalAssets(limit, offsetlimit).map(res => res.json()).subscribe(aslist => {
-			console.log( aslist.assets );
 			this.assetsList = $.merge(this.assetsList,aslist.assets);
 			this.loadSpiner = true;
 		})
