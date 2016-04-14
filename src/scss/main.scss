@@ -1,5 +1,5 @@
 @font-face{
-	font-family: 'http://getbootstrap.com/build/fonts/glyphicons-halflings-regular.woff2'
+  font-family: 'http://getbootstrap.com/build/fonts/glyphicons-halflings-regular.woff2'
 }
 
 a, a:hover{color:#999; text-decoreation:none;}
@@ -21,16 +21,16 @@ html {
   height: 60px;
 
   background-color: #eeeeee;
-	.verticalmiddle{
-		display: table;
-		height: inherit;
+  .verticalmiddle{
+    display: table;
+    height: inherit;
 
-		.tabel-cell{
-			display: table-cell;
-			vertical-align: middle;
-			height: inherit;
-		}
-	}
+    .tabel-cell{
+      display: table-cell;
+      vertical-align: middle;
+      height: inherit;
+    }
+  }
 }*/
 
 $heder-height: 40px;
@@ -60,4 +60,36 @@ body {
     height: calc(100% - #{$content-height});
     overflow-y: auto;
     background-color: #212121;
+}
+
+.input-group{
+  .form-control{
+    background-color: #252525;
+    border-color: #404040;
+    color: #aaaaaa;
+    border-radius: 0;
+    font-size: 16px;
+    height: 40px;
+    padding: 10px 15px;
+    &:focus{
+      box-shadow: none;
+      border-color: #555;
+    }
+  }
+  ::-webkit-input-placeholder {
+     color: #4b4b4b;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+     color: #4b4b4b;  
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+     color: #4b4b4b;  
+  }
+
+  :-ms-input-placeholder {  
+     color: #4b4b4b;  
+  }
+
 }
