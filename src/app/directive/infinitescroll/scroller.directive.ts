@@ -9,21 +9,18 @@ import { BrowserDomAdapter } from 'angular2/platform/browser'
 })
 
 export class ScrollableDirective{
-  @Input() _scrollEnd: boolean;
   _el: HTMLElement;
   _renderer: Renderer;
   _DOM = new BrowserDomAdapter();
-  //_scrollEnd = false;
   constructor(el:ElementRef){
       this._el = el.nativeElement;
   }
 
   onScroll(){
-    if( $(this._el).scrollTop() + $(this._el).innerHeight() >= $(this._el)[0].scrollHeight)
+    //console.log( this._el.scrollTop, ':', this._el.scrollHeight, ':', this._el.innerHTML);
+    if( this._el.scrollTop + this._el.offsetHeight >= this._el.scrollHeight)
     {
-        //offsetlimit +=20;
-        //_self.scrollPagination(limit, offsetlimit);
-       this._scrollEnd = true;
+        console.log('scrolling logic');
     }
   }
 
