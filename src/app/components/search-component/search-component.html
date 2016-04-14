@@ -43,12 +43,11 @@
 							<span style="box-sizing:border-box;">
 								<div class="asset-content col-md-12 col-lg-12">
 									<span class="pull-left" >
-										<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="">
+										<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="{{ a.asset_name }}" title="{{ a.asset_name }}">
 									</span>
 									<div class="pull-left ">
 										<dd class="ptitle"><strong> {{ a.asset_name }} </strong></dd>
-										<dd><i>12345</i>&nbsp;|&nbsp;<i>{{ a.artist_name}}</i></dd>
-										<dd><i>Group name</i></dd>
+										<dd><i>{{ a.artist_id}}</i> | <i>{{ a.artist_name}}</i></dd>
 									</div>
 									<div class="pull-right">
 										<a href="javascript:void(0);" class="btn btn-default btn-download">Download</a>
@@ -62,11 +61,11 @@
 										<li>
 										<li class="col-md-4 col-lg-4">
 											<dd>Downloads:</dd>
-											<dd><i class="fa fa-download"></i> {{ a.favorite_count }}</dd>
+											<dd><i class="fa fa-download"></i> {{ a.download_count }}</dd>
 										<li>
 										<li class="col-md-4 col-lg-4">
 											<dd>Updated:</dd>
-											<dd><i class="fa fa-clock-o"></i> {{ a.favorite_count }}&nbsp;days ago</dd>
+											<dd><i class="fa fa-clock-o"></i>{{ momentDate(a.date_modified) }}</dd>
 										<li>
 									</ul>
 								</div>

@@ -1,6 +1,7 @@
 //// <reference path="../../../../typings/tsd.d.ts" />
 /// <reference path="../../../../typings/jquery/jquery.d.ts" />
 /// <reference path="../../../../typings/underscore/underscore.d.ts" />
+/// <reference path="../../../../typings/moment/moment.d.ts" />
 
 import {Component, Inject, ElementRef}               from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, RouteParams, ROUTER_PROVIDERS, RouterLink} from 'angular2/router';
@@ -9,6 +10,7 @@ import {NgFor, NgIf, NgClass} from 'angular2/common';
 import {SearchService} from '../../services/search/search.service';
 import {OrderBy} from "../../pipes/orderBy/orderBy";
 import * as _ from 'underscore';
+import moment from 'moment';
 //import * as $ from 'jquery';
 import {LoadingMask} from '../../directive/loadingmask/loadingmask';
 import OffClickDirective from '../../directive/clickoutsidehide/clickoutsidehide';
@@ -38,6 +40,7 @@ export class SearchComponent {
 	public list:Array<Object>;
 	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router, private el:ElementRef) {
 		this.loadSpiner = false;
+        console.log( moment().format('MMM DD, YYYY') );
 		_SearchList.getAssetsList().map(res => res.json()).subscribe(assetsdata => {
 			this.loadSpiner = true;
 			this.assetsList = assetsdata.assets;
@@ -134,12 +137,17 @@ export class SearchComponent {
 		e.stopPropagation();
 	}
 
-	clickedOutside(){
-        this.isShow = true;
-  }
+    clickedOutside(){
+            this.isShow = true;
+    }
 
-	onScroll (event) {
-      console.log('scrolled!!', event);
-  }
+    onScroll (event) {
+        console.log('scrolled!!', event);
+    }
+    
+    momentDate (dateval:string){
+        //console.log(dateval,"::::::", moment(dateval, 'MMMM DD, YYYY HH:mm:ss').format('HH') );
+        return moment(dateval).format('MMM DD, YYYY');
+    }
 
 }

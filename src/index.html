@@ -26,7 +26,6 @@
  	<!-- endinject -->
 
 	<!-- ES6-related imports -->
-  <script src="node_modules/underscore/underscore.js"></script>
 	<script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
 	<script src="node_modules/es6-shim/es6-shim.min.js"></script>
 	<script src="node_modules/systemjs/dist/system.js"></script>
@@ -38,17 +37,18 @@
   <script>
 		//configure system loader
 	    System.config({
-        "baseURL": "/",
-        packages: {
-        	'build/': {
-        		main 				: "main",
-        		defaultJSExtensions : true,
-          	'node_modules/rxjs': { defaultExtension: 'ts' }
-        	}
-        },
-				paths: {
-			    underscore: 'node_modules/underscore/underscore.js'
-			  }
+            "baseURL": "/",
+            packages: {
+                'build/': {
+                    main 				: "main",
+                    defaultJSExtensions : true,
+                    'node_modules/rxjs': { defaultExtension: 'ts' }
+                }
+            },
+            paths: {
+			    underscore: 'node_modules/underscore/underscore.js',
+                moment: 'node_modules/moment/moment.js'
+			}
 	    });
 	    //bootstrap the Angular2 application
 	    System.import('./build/main').catch(console.log.bind(console));
