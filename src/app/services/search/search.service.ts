@@ -20,8 +20,7 @@ export class SearchService{
 	getAssetsList() {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		var path = 'https://beta-login-123d.acg.autodesk.com/api/v2/assets/';
-		return this.http.get(path, {
+		return this.http.get(this._ServerConfig.acgiasset, {
 			headers: headers
 		})
 	}
@@ -32,8 +31,7 @@ export class SearchService{
 	getAnAsset(id:String) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		var path = 'https://beta-login-123d.acg.autodesk.com/api/v2/assets/' + id;
-		return this.http.get(path, {
+		return this.http.get(this._ServerConfig.acgiasset+id, {
 			headers: headers
 		})
 	}
@@ -42,8 +40,7 @@ export class SearchService{
 	searchAnAsset(q: String) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		var path = 'https://beta-login-123d.acg.autodesk.com/api/v2/assets?q='+ q ;
-		return this.http.get(path, {
+		return this.http.get(this._ServerConfig.acgisearch+q, {
 			headers: headers
 		})
 	}
@@ -54,8 +51,7 @@ export class SearchService{
 	inrementalAssets(limit:number, offsetlimit:number) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		var path = 'https://beta-login-123d.acg.autodesk.com/api/v2/assets/?limit='+limit+"&offset="+offsetlimit ;
-		return this.http.get(path, {
+		return this.http.get(this._ServerConfig.acgimoreasset+limit+"&offset="+offsetlimit, {
 			headers: headers
 		})
 	}
@@ -66,8 +62,7 @@ export class SearchService{
 	downloadAsset(file_ids:string, asset_id:string){
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		var path = 'https://'+this._ServerConfig.ds+'/api/v2/files/download?file_ids='+file_ids+'&asset_id='+asset_id;
-		return this.http.get(path, {
+		return this.http.get(this._ServerConfig.acgidownload+file_ids+'&asset_id='+asset_id, {
 			headers: headers
 		})
 	}
