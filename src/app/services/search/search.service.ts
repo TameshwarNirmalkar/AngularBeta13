@@ -1,5 +1,5 @@
 import {Component, Injectable, Inject}               from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES, RouteParams, ROUTER_PROVIDERS} from 'angular2/router';
+//import {RouteConfig, ROUTER_DIRECTIVES, RouteParams, ROUTER_PROVIDERS} from 'angular2/router';
 import {Http, Response, Headers, BaseRequestOptions} from 'angular2/http';
 
 export class SearchService{

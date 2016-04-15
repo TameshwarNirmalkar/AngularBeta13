@@ -3,11 +3,14 @@
 /// <reference path="../../../../typings/underscore/underscore.d.ts" />
 /// <reference path="../../../../typings/moment/moment.d.ts" />
 
+'use strict';
+
 import {Component, Inject, ElementRef}               from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, RouteParams, ROUTER_PROVIDERS, RouterLink} from 'angular2/router';
 import {NgFor, NgIf, NgClass} from 'angular2/common';
 
 import {SearchService} from '../../services/search/search.service';
+import {DateFormatClass} from '../../services/utilityservice/dateformat.services';
 import {OrderBy} from "../../pipes/orderBy/orderBy";
 import * as _ from 'underscore';
 import moment from 'moment';
@@ -16,11 +19,13 @@ import {LoadingMask} from '../../directive/loadingmask/loadingmask';
 import OffClickDirective from '../../directive/clickoutsidehide/clickoutsidehide';
 declare var jQuery: JQueryStatic;
 
+
+
 @Component({
 	selector: 'search-component',
 	templateUrl: 'build/app/components/search-component/search-component.html',
 	directives: [NgFor, NgIf, ROUTER_DIRECTIVES, LoadingMask, OffClickDirective],
-	providers: [SearchService],
+	providers: [SearchService, DateFormatClass],
 	pipes: [OrderBy]
 })
 
@@ -38,9 +43,12 @@ export class SearchComponent {
 	public assetloadSpiner:boolean = true;
 	public cachedAssets: Array<Object>;
 	public list:Array<Object>;
+	
+	private _dfromate = new DateFormatClass();
+	
 	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router, private el:ElementRef) {
 		this.loadSpiner = false;
-        console.log( moment().format('MMM DD, YYYY') );
+		
 		_SearchList.getAssetsList().map(res => res.json()).subscribe(assetsdata => {
 			this.loadSpiner = true;
 			this.assetsList = assetsdata.assets;
@@ -48,6 +56,8 @@ export class SearchComponent {
 			this.platform = this.params.get('platform');
 			this.asset_id = this.params.get('asset_id');
 		})
+		
+		console.log( this._dfromate );
 	}
 
 	ngOnInit(){
@@ -138,7 +148,7 @@ export class SearchComponent {
 	}
 
     clickedOutside(){
-            this.isShow = true;
+       this.isShow = true;
     }
 
     onScroll (event) {
@@ -146,8 +156,9 @@ export class SearchComponent {
     }
     
     momentDate (dateval:string){
-        //console.log(dateval,"::::::", moment(dateval, 'MMMM DD, YYYY HH:mm:ss').format('HH') );
-        return moment(dateval).format('MMM DD, YYYY');
+        //let today = moment().format('MMMM DD, YYYY HH:mm:ss');
+		//let endtoday = moment(dateval).format('YYYY, MM, DD');
+        return this._dfromate.dateHumanizeFromNow(dateval);
     }
 
 }
