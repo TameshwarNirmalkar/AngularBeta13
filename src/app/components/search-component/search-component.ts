@@ -10,6 +10,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouteParams, ROUTER_PROVIDERS, R
 import {NgFor, NgIf, NgClass} from 'angular2/common';
 
 import {SearchService} from '../../services/search/search.service';
+import {CommonClass} from '../../services/utilityservice/common.service';
 import {DateFormatClass} from '../../services/utilityservice/dateformat.services';
 import {OrderBy} from "../../pipes/orderBy/orderBy";
 import * as _ from 'underscore';
@@ -45,6 +46,7 @@ export class SearchComponent {
 	public list:Array<Object>;
 	
 	private _dfromate = new DateFormatClass();
+	private _commonclass = new CommonClass();
 	
 	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router, private el:ElementRef) {
 		this.loadSpiner = false;
@@ -56,8 +58,6 @@ export class SearchComponent {
 			this.platform = this.params.get('platform');
 			this.asset_id = this.params.get('asset_id');
 		})
-		
-		console.log( this._dfromate );
 	}
 
 	ngOnInit(){
@@ -156,9 +156,31 @@ export class SearchComponent {
     }
     
     momentDate (dateval:string){
-        //let today = moment().format('MMMM DD, YYYY HH:mm:ss');
-		//let endtoday = moment(dateval).format('YYYY, MM, DD');
         return this._dfromate.dateHumanizeFromNow(dateval);
     }
+	
+	convertArraytoString(res){
+		this._commonclass.convertArrayToString(res);
+	}
+	
+	downloadPackage(e:Event, id:string){
+		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(resp => {
+			//let file_id = this.convertArraytoString(resp);
+			let file_id = _.pluck(resp.file_formats, 'file_id').toString();
+			console.log( file_id );
+			// this._SearchList.downloadAsset(file_id, id).map(res => res.json()).subscribe(response => {
+			// 	console.log(response);
+			// })
+			//this.downloadAsset(file_id, id)
+		});
+		e.stopPropagation();
+		e.preventDefault();
+	}
+	
+	downloadAsset(fileid, assetid){
+		this._SearchList.downloadAsset(fileid,assetid).map(res => res.json()).subscribe(msg => {
+			console.log(msg);
+		})
+	}
 
 }

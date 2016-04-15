@@ -1,9 +1,13 @@
 import {Component, Injectable, Inject}               from 'angular2/core';
-//import {RouteConfig, ROUTER_DIRECTIVES, RouteParams, ROUTER_PROVIDERS} from 'angular2/router';
 import {Http, Response, Headers, BaseRequestOptions} from 'angular2/http';
 
-export class SearchService{
+/**
+ * Server config import
+ */
+import { ServerConfig } from '../configfile/configfile';
 
+export class SearchService{
+	private _ServerConfig = new ServerConfig();
 	resdata: Object;
 	constructor( @Inject(Http) private http: Http) { }
 	createAuthorizationHeader(headers: Headers) {
@@ -45,12 +49,24 @@ export class SearchService{
 	}
 
 	/**
-		@ GET load assets for with limit:20 and offsetlimit:incremental of 20;
-	*/
+	 *	@ GET load assets for with limit:20 and offsetlimit:incremental of 20;
+	 */
 	inrementalAssets(limit:number, offsetlimit:number) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
 		var path = 'https://beta-login-123d.acg.autodesk.com/api/v2/assets/?limit='+limit+"&offset="+offsetlimit ;
+		return this.http.get(path, {
+			headers: headers
+		})
+	}
+	
+	/**
+	 * @GET downloadAsset: for donwloading assets. 
+	 */
+	downloadAsset(file_ids:string, asset_id:string){
+		let headers = new Headers();
+		this.createAuthorizationHeader(headers);
+		var path = 'https://'+this._ServerConfig.ds+'/api/v2/files/download?file_ids='+file_ids+'&asset_id='+asset_id;
 		return this.http.get(path, {
 			headers: headers
 		})

@@ -50,7 +50,7 @@
 										<dd><i>{{ a.artist_id}}</i> | <i>{{ a.artist_name}}</i></dd>
 									</div>
 									<div class="pull-right">
-										<a href="javascript:void(0);" class="btn btn-default btn-download">Download</a>
+										<a href="javascript:void(0);" class="btn btn-default btn-download" (click)="downloadPackage($event, a.asset_id)">Download</a>
 									</div>
 								</div>
 								<div class="asset-footer col-md-12 col-lg-12">
