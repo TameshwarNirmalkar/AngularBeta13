@@ -10,7 +10,7 @@
 
 			<div class="row search-input-group">
 				<div class="input-group col-lg-12 col-md-12">
-					<input #searchtext (keyup)="onKey(searchtext.value)" placeholder="&#xf002; SEARCH PACKAGES" class="form-control search-box" >
+					<input #searchtext (keyup)="onKey($event, searchtext.value)" placeholder="&#xf002; SEARCH PACKAGES" class="form-control search-box" >
 				</div>
 				<div class="searchdrop pull-left"  [hidden]="isShow">
 					<ul style="margin:0px; padding: 0px; list-style: none;">
@@ -57,7 +57,7 @@
 									<ul class="footer-list">
 										<li class="col-md-4 col-lg-4 text-left">
 											<dd>Likes:</dd>
-											<dd><i class="fa" [ngClass]="(a.favorite_count == 0) ? 'fa-thumbs-o-up':'fa-thumbs-up'"></i> {{ a.favorite_count }}</dd>
+											<dd><i class="fa" [ngClass]="(a.favorite_count == 0) ? 'fa-thumbs-o-up':'fa-thumbs-up'"></i> {{ likeUnlike(a.favorite_count) }}</dd>
 										<li>
 										<li class="col-md-4 col-lg-4">
 											<dd>Downloads:</dd>
@@ -119,7 +119,7 @@
 						<ul class="footer-list">
 							<li class="col-md-3 col-lg-3 text-left">
 								<dd>Likes:</dd>
-								<dd><i class="fa" [ngClass]="(singleList.favorite_count == 0) ? 'fa-thumbs-o-up':'fa-thumbs-up'"></i> {{ singleList.favorite_count }} <a href="#" class="link-text">Like</a></dd>
+								<dd><i class="fa" [ngClass]="(singleList.favorite_count == 0) ? 'fa-thumbs-o-up':'fa-thumbs-up'"></i> {{ likeUnlike(singleList.favorite_count) }} <a href="#" class="link-text">Like</a></dd>
 							<li>
 							<li class="col-md-3 col-lg-3">
 								<dd>Downloads:</dd>

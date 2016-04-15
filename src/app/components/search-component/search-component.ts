@@ -90,7 +90,7 @@ export class SearchComponent {
 		})
 	}
 
-	onKey(value:string) {
+	onKey(e:Event, value:string) {
 		if(value.length >= 3){
 			this.loadSpiner = false;
 			this._SearchList.searchAnAsset(value).map(res => res.json()).subscribe(searchdata => {
@@ -105,7 +105,7 @@ export class SearchComponent {
 			this.isShow = false;
 		}
 		else if(value.length <= 2){
-			this.assetsList = this.cachedAssets;
+			//this.assetsList = this.cachedAssets;
 			this.isShow = true;
 			this.loadSpiner = true;
 		}
@@ -113,6 +113,7 @@ export class SearchComponent {
 			this.isShow = true;
 			this.loadSpiner = true;
 		}
+		e.stopImmediatePropagation();
 	}
 
 	getanassets(e:Event, id:string) {
@@ -177,6 +178,10 @@ export class SearchComponent {
 		this._SearchList.downloadAsset(fieldid,assetid).map(res => res.json()).subscribe(response => {
 			console.log( response.headers() );
 		})
+	}
+	
+	likeUnlike(count:number){
+		return this._commonclass.likeUnlike(count);
 	}
 
 }
