@@ -160,26 +160,22 @@ export class SearchComponent {
     }
 	
 	convertArraytoString(res){
-		this._commonclass.convertArrayToString(res);
+		return this._commonclass.convertArrayToString(res);
 	}
 	
 	downloadPackage(e:Event, id:string){
 		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(resp => {
-			//let file_id = this.convertArraytoString(resp);
-			let file_id = _.pluck(resp.file_formats, 'file_id').toString();
-			console.log( file_id );
-			// this._SearchList.downloadAsset(file_id, id).map(res => res.json()).subscribe(response => {
-			// 	console.log(response);
-			// })
-			//this.downloadAsset(file_id, id)
+			let file_id = this.convertArraytoString(resp);
+			this.downloadAsset(file_id, id)
 		});
 		e.stopPropagation();
 		e.preventDefault();
 	}
 	
-	downloadAsset(fileid, assetid){
-		this._SearchList.downloadAsset(fileid,assetid).map(res => res.json()).subscribe(msg => {
-			console.log(msg);
+	downloadAsset(fieldid, assetid){
+		console.log(fieldid);
+		this._SearchList.downloadAsset(fieldid,assetid).map(res => res.json()).subscribe(response => {
+			console.log( response.headers() );
 		})
 	}
 

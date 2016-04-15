@@ -6,7 +6,5 @@ const downloadserver = {
 };
 export class ServerConfig{
     public ds:string = downloadserver.server;
-    constructor() {
-        console.log(downloadserver);
-    }
+    constructor() {}
 }
