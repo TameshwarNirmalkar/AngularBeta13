@@ -15,12 +15,10 @@ import {DateFormatClass} from '../../services/utilityservice/dateformat.services
 import {OrderBy} from "../../pipes/orderBy/orderBy";
 import * as _ from 'underscore';
 import moment from 'moment';
-//import * as $ from 'jquery';
+import $ from 'jquery';
 import {LoadingMask} from '../../directive/loadingmask/loadingmask';
 import OffClickDirective from '../../directive/clickoutsidehide/clickoutsidehide';
-declare var jQuery: JQueryStatic;
-
-
+//declare var jQuery: JQueryStatic;
 
 @Component({
 	selector: 'search-component',
@@ -39,18 +37,18 @@ export class SearchComponent {
 	public predicate: string = '+asset_name'
 	public searchresponsedata: Array<Object>;
 	public isShow: boolean = true;
-	public isOn:boolean = false;
-	public loadSpiner:boolean = false;
-	public assetloadSpiner:boolean = true;
+	public isOn: boolean = false;
+	public loadSpiner: boolean = false;
+	public assetloadSpiner: boolean = true;
 	public cachedAssets: Array<Object>;
-	public list:Array<Object>;
-	
+	public list: Array<Object>;
+
 	private _dfromate = new DateFormatClass();
 	private _commonclass = new CommonClass();
-	
-	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router, private el:ElementRef) {
+
+	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router, private el: ElementRef) {
 		this.loadSpiner = false;
-		
+
 		_SearchList.getAssetsList().map(res => res.json()).subscribe(assetsdata => {
 			this.loadSpiner = true;
 			this.assetsList = assetsdata.assets;
@@ -60,42 +58,43 @@ export class SearchComponent {
 		})
 	}
 
-	ngOnInit(){
+	ngOnInit() {
 		let _self = this;
-		let limit:number = 20;
-		let offsetlimit:number = 0;
+		let limit: number = 20;
+		let offsetlimit: number = 0;
 		//console.log(this.el.nativeElement);
-		$(this.el.nativeElement).find('[data-role="search-list-panel"]').on('scroll',  function(){
-			if( $(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight)
-			{
-				offsetlimit +=20;
+		$(this.el.nativeElement).find('[data-role="search-list-panel"]').on('scroll', function (e) {
+			if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+				offsetlimit += 20;
 				_self.scrollPagination(limit, offsetlimit);
 			}
+			e.stopImmediatePropagation();
 		})
 	}
 
-	scrollPagination(limit, offsetlimit){
+	scrollPagination(limit, offsetlimit) {
 		this.loadSpiner = false;
 		this._SearchList.inrementalAssets(limit, offsetlimit).map(res => res.json()).subscribe(aslist => {
-			this.assetsList = $.merge(this.assetsList,aslist.assets);
+			this.assetsList = $.merge(this.assetsList, aslist.assets);
 			this.loadSpiner = true;
 		})
 	}
 
-	ngDoCheck(){
+	ngDoCheck() {
 		let _self = this;
-		$(document).on('click', function(){
+		$(document).on('click', function (e) {
 			//console.log('doc click', _self);
 			_self.isShow = true;
+			e.stopImmediatePropagation();
 		})
 	}
 
-	onKey(e:Event, value:string) {
-		if(value.length >= 3){
+	onKey(e: Event, value: string) {
+		if (value.length >= 3) {
 			this.loadSpiner = false;
 			this._SearchList.searchAnAsset(value).map(res => res.json()).subscribe(searchdata => {
 				this.assetsList = searchdata.assets;
-				this.searchresponsedata = _.uniq(searchdata.assets, function(a) {
+				this.searchresponsedata = _.uniq(searchdata.assets, function (a) {
 					return a["asset_name"].toLowerCase();
 				});
 				// let x = _.pluck(searchdata.assets, 'asset_name');
@@ -104,19 +103,19 @@ export class SearchComponent {
 			});
 			this.isShow = false;
 		}
-		else if(value.length <= 2){
-			//this.assetsList = this.cachedAssets;
+		else if (value.length <= 2) {
+			this.assetsList = this.cachedAssets;
 			this.isShow = true;
 			this.loadSpiner = true;
 		}
-		else{
+		else {
 			this.isShow = true;
 			this.loadSpiner = true;
 		}
 		e.stopImmediatePropagation();
 	}
 
-	getanassets(e:Event, id:string) {
+	getanassets(e: Event, id: string) {
 		this.assetloadSpiner = false;
 		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(a => {
 			this.singleList = a;
@@ -130,58 +129,44 @@ export class SearchComponent {
 		return this.router.isRouteActive(this.router.generate(route));
 	}
 
-	getPlatform(){
+	getPlatform() {
 		return this.platform;
 	}
 
-	sortOrder(e:Event,v:string){
+	sortOrder(e: Event, v: string) {
 		this.isShow = true;
-		if(this.predicate === v){
+		if (this.predicate === v) {
 			this.predicate = '-asset_name';
 			this.isOn = true;
 			return false;
 		}
-		else{
+		else {
 			this.predicate = '+asset_name';
 			this.isOn = false;
 		}
 		e.stopPropagation();
 	}
 
-    clickedOutside(){
-       this.isShow = true;
+    clickedOutside() {
+		this.isShow = true;
     }
 
-    onScroll (event) {
+    onScroll(event) {
         console.log('scrolled!!', event);
     }
-    
-    momentDate (dateval:string){
-        return this._dfromate.dateHumanizeFromNow(dateval);
-    }
-	
-	convertArraytoString(res){
-		return this._commonclass.convertArrayToString(res);
-	}
-	
-	downloadPackage(e:Event, id:string){
+
+	downloadPackage(e: Event, id: string) {
 		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(resp => {
-			let file_id = this.convertArraytoString(resp);
-			this.downloadAsset(file_id, id)
+			let file_id = this._commonclass.convertArrayToString(resp);
+			this.downloadAsset(file_id, id);
 		});
 		e.stopPropagation();
 		e.preventDefault();
 	}
-	
-	downloadAsset(fieldid, assetid){
-		console.log(fieldid);
-		this._SearchList.downloadAsset(fieldid,assetid).map(res => res.json()).subscribe(response => {
-			console.log( response.headers() );
+
+	downloadAsset(fieldid, assetid) {
+		this._SearchList.downloadAsset(fieldid, assetid).map(res => res.json()).subscribe(response => {
+			console.log(response.headers());
 		})
 	}
-	
-	likeUnlike(count:number){
-		return this._commonclass.likeUnlike(count);
-	}
-
 }
