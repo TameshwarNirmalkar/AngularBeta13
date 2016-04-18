@@ -12,7 +12,7 @@
 			</div>
 			<div class="searchdrop pull-left" [hidden]="isShow">
 				<ul style="margin:0px; padding: 0px; list-style: none;">
-					<li *ngFor="#sl of searchresponsedata | orderBy:[predicate]" role="button" class="listdisplay pull-left" (click)="getanassets($event, sl.asset_id)">
+					<li *ngFor="#sl of searchresponsedata | orderBy:[predicate]" role="button" class="listdisplay pull-left" (click)="getAsset($event, sl.asset_id)">
 						<span style="box-sizing:border-box;">
 							<dd> {{ sl.asset_name | lowercase }} </dd>
 						</span>
@@ -35,7 +35,7 @@
 			<div class="searchpanel pull-left" style="width:100%">
 				<ul>
 					<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left pkg-item"
-						(click)="getanassets($event, a.asset_id)">
+						(click)="getAsset($event, a.asset_id)">
 						<span style="box-sizing:border-box;">
 							<div class="asset-content col-md-12 col-lg-12">
 								<span class="pull-left" >

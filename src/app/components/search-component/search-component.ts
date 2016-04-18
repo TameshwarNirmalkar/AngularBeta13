@@ -25,7 +25,10 @@ import OffClickDirective from '../../directive/clickoutsidehide/clickoutsidehide
 	templateUrl: 'build/app/components/search-component/search-component.html',
 	directives: [NgFor, NgIf, ROUTER_DIRECTIVES, LoadingMask, OffClickDirective],
 	providers: [SearchService, DateFormatClass],
-	pipes: [OrderBy]
+	pipes: [OrderBy],
+	host: {
+		"(document: click)": "clickedOutside( $event )"
+	}
 })
 
 export class SearchComponent {
@@ -47,18 +50,22 @@ export class SearchComponent {
 	private _commonclass = new CommonClass();
 
 	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router, private el: ElementRef) {
-		this.loadSpiner = false;
+		
+	}
 
-		_SearchList.getAssetsList().map(res => res.json()).subscribe(assetsdata => {
+	ngOnInit() {
+		/**
+		 * Service call to get all assets.
+		 */
+		this.loadSpiner = false;
+		this._SearchList.getAssetsList().map(res => res.json()).subscribe(assetsdata => {
 			this.loadSpiner = true;
 			this.assetsList = assetsdata.assets;
 			this.cachedAssets = assetsdata.assets;// cached data;
 			this.platform = this.params.get('platform');
 			this.asset_id = this.params.get('asset_id');
 		})
-	}
-
-	ngOnInit() {
+		
 		let _self = this;
 		let limit: number = 20;
 		let offsetlimit: number = 0;
@@ -69,7 +76,7 @@ export class SearchComponent {
 				_self.scrollPagination(limit, offsetlimit);
 			}
 			e.stopImmediatePropagation();
-		})
+		});
 	}
 
 	scrollPagination(limit, offsetlimit) {
@@ -80,16 +87,9 @@ export class SearchComponent {
 		})
 	}
 
-	ngDoCheck() {
-		let _self = this;
-		$(document).on('click', function (e) {
-			//console.log('doc click', _self);
-			_self.isShow = true;
-			e.stopImmediatePropagation();
-		})
-	}
-
 	onKey(e: Event, value: string) {
+		//this.isShow = false;
+		//this.searchresponsedata = [{"asset_name": "Test1"},{"asset_name": "Test2"}, {"asset_name": "Test3"}];
 		if (value.length >= 3) {
 			this.loadSpiner = false;
 			this._SearchList.searchAnAsset(value).map(res => res.json()).subscribe(searchdata => {
@@ -115,7 +115,7 @@ export class SearchComponent {
 		e.stopImmediatePropagation();
 	}
 
-	getanassets(e: Event, id: string) {
+	getAsset(e: Event, id: string) {
 		this.assetloadSpiner = false;
 		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(a => {
 			this.singleList = a;
@@ -169,4 +169,5 @@ export class SearchComponent {
 			console.log(response.headers());
 		})
 	}
+
 }
