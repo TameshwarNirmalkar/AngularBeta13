@@ -9,7 +9,7 @@ import {HomePageComponent}   from './components/page-home/page-home';
 import {TopHeader}  from './components/topheader/topheader';
 import { FooterComponent } from './components/footer/footer';
 import {SearchComponent}  from './components/search-component/search-component';
-//import { SingleAssetComponent } from '../asset-component/single-asset-component';
+import { PublishComponent } from './components/publish-component/publish.component';
 
 @Component({
 	selector: 'my-app',
@@ -26,6 +26,11 @@ import {SearchComponent}  from './components/search-component/search-component';
 		path: '/assets',
 		name: 'Assets',
 		component: SearchComponent
+	},
+	{
+		path: '/publish',
+		name: 'Publish',
+		component: PublishComponent
 	}
 ])
 
