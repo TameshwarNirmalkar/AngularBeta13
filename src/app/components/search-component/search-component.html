@@ -45,7 +45,7 @@
 
 			<div class="row search-input-group">
 				<div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<input #searchtext (keyup)="onKey(searchtext.value)" placeholder="&#xf002; &nbsp; SEARCH PACKAGES" class="form-control search-box" >
+					<input #searchtext (keyup)="onKey($event, searchtext.value)" placeholder="&#xf002; &nbsp; SEARCH PACKAGES" class="form-control search-box" >
 				</div>
 				<div class="searchdrop pull-left"  [hidden]="isShow">
 					<ul style="margin:0px; padding: 0px; list-style: none;">
