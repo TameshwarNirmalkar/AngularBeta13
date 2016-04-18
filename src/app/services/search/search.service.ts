@@ -1,9 +1,13 @@
 import {Component, Injectable, Inject}               from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES, RouteParams, ROUTER_PROVIDERS} from 'angular2/router';
 import {Http, Response, Headers, BaseRequestOptions} from 'angular2/http';
 
-export class SearchService{
+/**
+ * Server config import
+ */
+import { ServerConfig } from '../configfile/configfile';
 
+export class SearchService{
+	private _ServerConfig = new ServerConfig();
 	resdata: Object;
 	constructor( @Inject(Http) private http: Http) { }
 	createAuthorizationHeader(headers: Headers) {
@@ -16,8 +20,7 @@ export class SearchService{
 	getAssetsList() {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		var path = 'https://beta-login-123d.acg.autodesk.com/api/v2/assets/';
-		return this.http.get(path, {
+		return this.http.get(this._ServerConfig.acgiasset, {
 			headers: headers
 		})
 	}
@@ -28,8 +31,7 @@ export class SearchService{
 	getAnAsset(id:String) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		var path = 'https://beta-login-123d.acg.autodesk.com/api/v2/assets/' + id;
-		return this.http.get(path, {
+		return this.http.get(this._ServerConfig.acgiasset+id, {
 			headers: headers
 		})
 	}
@@ -38,20 +40,29 @@ export class SearchService{
 	searchAnAsset(q: String) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		var path = 'https://beta-login-123d.acg.autodesk.com/api/v2/assets?q='+ q ;
-		return this.http.get(path, {
+		return this.http.get(this._ServerConfig.acgisearch+q, {
 			headers: headers
 		})
 	}
 
 	/**
-		@ GET load assets for with limit:20 and offsetlimit:incremental of 20;
-	*/
+	 *	@ GET load assets for with limit:20 and offsetlimit:incremental of 20;
+	 */
 	inrementalAssets(limit:number, offsetlimit:number) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		var path = 'https://beta-login-123d.acg.autodesk.com/api/v2/assets/?limit='+limit+"&offset="+offsetlimit ;
-		return this.http.get(path, {
+		return this.http.get(this._ServerConfig.acgimoreasset+limit+"&offset="+offsetlimit, {
+			headers: headers
+		})
+	}
+	
+	/**
+	 * @GET downloadAsset: for donwloading assets. 
+	 */
+	downloadAsset(file_ids:string, asset_id:string){
+		let headers = new Headers();
+		this.createAuthorizationHeader(headers);
+		return this.http.get(this._ServerConfig.acgidownload+file_ids+'&asset_id='+asset_id, {
 			headers: headers
 		})
 	}
