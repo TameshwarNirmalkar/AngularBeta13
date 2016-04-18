@@ -7,6 +7,7 @@ a, a:hover{color:#999; text-decoreation:none;}
 html {
   position: relative;
   min-height: 100%;
+  font-family: 'Open Sans'
 }
 /*body {
    Margin bottom by footer height
@@ -60,6 +61,7 @@ body {
     height: calc(100% - #{$content-height});
     overflow-y: auto;
     background-color: #212121;
+    font-family: Open Sans;
 }
 
 .input-group{
@@ -93,3 +95,4 @@ body {
   }
 
 }
+html, body { width:100%;  overflow:hidden; }

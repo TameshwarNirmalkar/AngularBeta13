@@ -1,15 +1,50 @@
 <div class="container-fluid search-component">
-		<ul class="nav nav-tabs">
-		  <li role="presentation" class="active"><a href="#"><h4>Explore Packages</h4></a></li>
-		  <li role="presentation"><a href="#"><h4>Explore Authors</h4></a></li>
-		  <li role="presentation"><a href="#"><h4>My Packages</h4></a></li>
-		  <li role="presentation"><a href="#"><h4>Publish</h4></a></li>
-		</ul>
+		<nav class="navbar nav-tabs">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                
+                <button type="button" class="pull-left navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-toggle pull-left" data-toggle="collapse">Explore Packages</a>
+                
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-floating" id="bs-example-navbar-collapse-1">
+            	<button type="button" class="btn-menu-close hidden-md hidden-lg" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >&#215;</button>
+                <ul class="nav nav-tabs">
+                    <!--li class="hidden">
+                        <a class="hvr-sweep-to-right" href="#page-top"></a>
+                    </li-->
+                    <li class="hidden-md hidden-lg">
+                        <a href="#"><h4>Home</h4></a>
+                    </li>
+                    <li class="active">
+                        <a href="#"><h4>Explore Packages</h4></a>
+                    </li>
+                    <li>
+                        <a class="#" href="work.html"><h4>Explore Authors</h4></a>
+                    </li>
+                    <li>
+                        <a href="#"><h4>My Packages</h4></a>
+                    </li>
+                    <li>
+                        <a class="" href="#"><h4>Publish</h4></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        <!-- /.container-fluid -->
+    </nav>
 		<div class="col-lg-5 search-left-panel">
 
 
 			<div class="row search-input-group">
-				<div class="input-group col-lg-12 col-md-12">
+				<div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<input #searchtext (keyup)="onKey(searchtext.value)" placeholder="&#xf002; &nbsp; SEARCH PACKAGES" class="form-control search-box" >
 				</div>
 				<div class="searchdrop pull-left"  [hidden]="isShow">
@@ -21,32 +56,32 @@
 						</li>
 					</ul>
 				</div>
-				<div class="input-group col-lg-4 col-md-4 pull-left">
+				<div class="input-group col-lg-4 col-md-4 col-sm-4 col-xs-4 pull-left">
 					<span (click)="sortOrder($event, '+asset_name')" role="button" class="form-control">
 							SORT BY <small class="fa fa-sort-desc" [ngClass]="{'fa-sort-asc': isOn}"> </small>
 					</span>
 
 				</div>
-				<div class="input-group col-lg-8 col-md-8">
+				<div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
 					<span role="button" class="form-control btn-show">
 							SHOW <small class="fa fa-sort-desc"> </small>
 					</span>
 				</div>
 			</div>
 
-			<div class="row" style="height:62vh; overflow-y:auto;" data-role="search-list-panel">
+			<div class="row" style="height:62vh; overflow-y:auto;" data-role="search-list-panel" class="search-list-panel">
 				<div class="searchpanel pull-left" style="width:100%">
 					<ul>
 						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left pkg-item" (click)="getanassets($event, a.asset_id)">
 							
 
 							<span style="box-sizing:border-box;">
-								<div class="asset-content col-md-12 col-lg-12">
+								<div class="asset-content col-md-12 col-lg-12 col-sm-12 col-xs-12">
 									<span class="pull-left" >
 										<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="{{ a.asset_name }}" title="{{ a.asset_name }}">
 									</span>
-									<div class="pull-left ">
-										<dd class="ptitle"><strong> {{ a.asset_name }} </strong></dd>
+									<div class="pull-left left-panel-title">
+										<dd class="ptitle"> {{ a.asset_name }} </dd>
 										<dd><i>{{ a.artist_id}}</i> | <i>{{ a.artist_name}}</i></dd>
 									</div>
 									<div class="pull-right">
@@ -55,21 +90,22 @@
 								</div>
 								<div class="asset-footer col-md-12 col-lg-12">
 									<ul class="footer-list">
-										<li class="col-md-4 col-lg-4 text-left">
+										<li class="col-md-4 col-lg-4 col-sm-4 col-xs-4 text-left">
 											<dd>Likes:</dd>
 											<dd><i class="fa fa-thumbs-up"></i> {{ a.favorite_count }}</dd>
 										<li>
-										<li class="col-md-4 col-lg-4">
+										<li class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
 											<dd>Downloads:</dd>
 											<dd><i class="fa fa-download"></i> {{ a.download_count }}</dd>
 										<li>
-										<li class="col-md-4 col-lg-4">
+										<li class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
 											<dd>Updated:</dd>
-											<dd><i class="fa fa-clock-o"></i>{{ momentDate(a.date_modified) }}</dd>
+											<dd><i class="fa fa-clock-o"></i>&nbsp;{{ momentDate(a.date_modified) }}</dd>
 										<li>
 									</ul>
 								</div>
 							</span>
+
 						</li>
 					</ul>
 					<loading-mask [hidden]="loadSpiner"></loading-mask>
@@ -80,7 +116,7 @@
 
 		<div class="col-lg-7 search-right-panel">
 			<div *ngIf="singleList" class="row">
-					<section class="col-md-12 col-lg-12">
+					<section class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 						<ul class="nav nav-pills pull-right">
 							<li>
 								<a href="#" class="link-text">Website</a>
@@ -96,76 +132,83 @@
 							</li>
 						</ul>
 					</section>
-					<section class="col-md-12 col-lg-12">
-						<dd class="ptitle"><strong> {{ singleList.asset_name }} </strong></dd>
+					<section class="col-md-12 col-lg-12 col-sm-12 col-xs-12 right-panel-title">
+						<dd class="ptitle"> {{ singleList.asset_name }} </dd>
 						<dd><i> {{ singleList.asset_id }} </i>&nbsp;|&nbsp;<i> {{ singleList.artist.artist_name }} </i></dd>
 						<dd><i>Group name</i></dd>
 					</section>
-					<section class="row col-md-12 col-lg-12 ver-section">
+					<section class="row col-md-12 col-lg-12 col-sm-12 col-xs-12 ver-section">
 						<span class="col-md-6 col-lg-6"><i class="fa fa-play" aria-hidden="true"></i> {{ singleList.asset_version }}</span>
-						<span class="col-md-3 col-lg-3">
-							<span>
+						<span class="col-md-3 col-lg-3 mob-check">
+							<span class="">
 								<input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox" checked>
 								<label for="checkbox-1" class="checkbox-custom-label">include examples</label>
 							</span>
 						</span>
-						<span class="col-md-3 col-lg-3">
-							<span class="pull-right">
+						<span class="col-md-3 col-lg-3 mob-down">
+							<span class="pull-right ">
 								<a href="javascript:void(0);" class="btn btn-default btn-download">Download</a>
 							</span>
 						</span>
 					</section>
-					<section class="col-md-12 col-lg-12 dtl-section right-margin-top">
+					<section class="col-md-12 col-lg-12 col-sm-12 col-xs-12 dtl-section right-margin-top">
 						<ul class="footer-list">
-							<li class="col-md-3 col-lg-3 text-left">
+							<li class="col-md-3 col-lg-3 col-sm-3 col-xs-3 text-left">
 								<dd>Likes:</dd>
 								<dd><i class="fa fa-thumbs-up"></i> {{ singleList.favorite_count }} <a href="#" class="link-text">Like</a></dd>
 							<li>
-							<li class="col-md-3 col-lg-3">
+							<li class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
 								<dd>Downloads:</dd>
 								<dd><i class="fa fa-download"></i> {{ singleList.favorite_count }}</dd>
 							<li>
-							<li class="col-md-3 col-lg-3">
+							<li class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
 								<dd>Updated:</dd>
 								<dd><i class="fa fa-clock-o"></i> {{ singleList.favorite_count }}&nbsp;days ago</dd>
 							<li>
-								<li class="col-md-3 col-lg-3">
+								<li class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
 								<dd>Size:</dd>
 								<dd><i> 0 KB</i></dd>
 							<li>
 						</ul>
 					</section>
-					<article class="col-md-12 col-lg-12 right-margin-top article-container">
+					<article class="col-md-12 col-lg-12 col-sm-12 col-xs-12 right-margin-top article-container">
 						<dd class="section-heading">DESCRIPTION:</dd>
 						<p>
 							{{ singleList.description}}
 							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. <a class="link-text" href="#">Show more...</a>
 						</p>
 					</article>
-					<section class="col-sm-12 col-md-12 col-lg-12 desc-img-section">
-						<span class="img-big-section">
+					<section class="col-sm-12 col-md-12 col-lg-12 col-sm-12 col-xs-12 desc-img-section">
+						<span class="img-big-section hidden-xs hidden-sm">
 							<img src="https://static.spark.autodesk.com/2012/12/17__13_07_38/17738_SigTagged.png2bcc3468-0314-4d32-951b-e6c11b36e669Small.jpg" alt="">
 							<img src="https://static.spark.autodesk.com/2012/12/17__13_07_38/17738_SigTagged.png2bcc3468-0314-4d32-951b-e6c11b36e669Small.jpg" alt="">
 						</span>
-						<span class="img-small-section">
+						<span class="img-small-section hidden-xs hidden-sm">
 							<img src="https://static.spark.autodesk.com/2012/12/17__13_07_38/17738_SigTagged.png2bcc3468-0314-4d32-951b-e6c11b36e669Small.jpg" alt="">
 							<img src="https://static.spark.autodesk.com/2012/12/17__13_07_38/17738_SigTagged.png2bcc3468-0314-4d32-951b-e6c11b36e669Small.jpg" alt="">
 						</span>
+						<div class="pic-row img-big-section hidden-md hidden-lg">
+							<img src="https://static.spark.autodesk.com/2012/12/17__13_07_38/17738_SigTagged.png2bcc3468-0314-4d32-951b-e6c11b36e669Small.jpg" alt="">
+							<img src="https://static.spark.autodesk.com/2012/12/17__13_07_38/17738_SigTagged.png2bcc3468-0314-4d32-951b-e6c11b36e669Small.jpg" alt="">
+							<img src="https://static.spark.autodesk.com/2012/12/17__13_07_38/17738_SigTagged.png2bcc3468-0314-4d32-951b-e6c11b36e669Small.jpg" alt="">
+							<img src="https://static.spark.autodesk.com/2012/12/17__13_07_38/17738_SigTagged.png2bcc3468-0314-4d32-951b-e6c11b36e669Small.jpg" alt="">
+					    </div>
 					</section>
-					<span class="col-md-12 col-lg-12 right-margin-top article-container">
+
+					<span class="col-md-12 col-lg-12 col-sm-12 col-xs-12 right-margin-top article-container">
 						<dd><span class="section-heading">WORKS WITH:</span><span> Dynamo Version 0.7.5+</span></dd>
 					</span>
-					<span class="col-md-12 col-lg-12 right-margin-top article-container">
+					<span class="col-md-12 col-lg-12 col-sm-12 col-xs-12 right-margin-top article-container">
 						<dd><span class="section-heading">DEPENDENCIES:</span><span *ngFor="#depend of singleList.file_formats"> {{ depend.name | uppercase }}, </span></dd>
 					</span>
-					<article class="col-md-12 col-lg-12 right-margin-top article-container">
+					<article class="col-md-12 col-lg-12 col-sm-12 col-xs-12 right-margin-top article-container">
 						<dd class="section-heading">WHATS NEW:</dd>
 						<p>
 							{{ singleList.description}}
 							It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Loremis that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like. <a class="link-text" href="#">Show more...</a>
 						</p>
 					</article>
-					<article class="col-md-12 col-lg-12 right-margin-top article-container">
+					<article class="col-md-12 col-lg-12 col-sm-12 col-xs-12 right-margin-top article-container">
 						<dd class="section-heading">KNOWN ISSUES:</dd>
 						<ol>
 							<li>There are many variations of passages of Lorem Ipsum available,</li>
@@ -174,7 +217,7 @@
 							<li>If you are going to use a passage of Lorem Ipsum, you need. <a class="link-text" href="#">Show more...</a></li>
 						</ol>
 					</article>
-					<section class="col-md-12 col-lg-12 right-margin-top article-container">
+					<section class="col-md-12 col-lg-12 col-sm-12 col-xs-12 right-margin-top article-container">
 						<dd class="section-heading">LIBRARY ITEMS from this PAckage:</dd>
 						<div class="panel-group right-drop-panel">
 						    <div class="panel panel-default">
@@ -193,7 +236,6 @@
 						    </div>
 						  </div>
 					</section>
-					
 					
 					
 			</div>
