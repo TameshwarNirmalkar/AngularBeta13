@@ -208,6 +208,7 @@
 				font-size: 16px;
 				font-weight: 600;
 				line-height: 1.2;
+			    word-wrap: break-word;
 			}
 			ul{
 				margin:0px; 
@@ -344,6 +345,7 @@
 			max-width: calc(100% - 100px - 150px);
 			//line-height: 1;
 			font-weight: 600;
+		    word-wrap: break-word;
 		}
 		dd{
 			font-size: 17px;
@@ -624,6 +626,7 @@
 				max-width: 100%;
 				margin-top: 10px;
 			    font-weight: 600;
+		        word-wrap: break-word;
 			}
 			.ver-section{
 				position: inherit;

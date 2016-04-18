@@ -41,6 +41,8 @@
         <!-- /.container-fluid -->
     </nav>
 		<div class="col-lg-5 search-left-panel">
+
+
 			<div class="row search-input-group">
 				<div class="input-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<input #searchtext (keyup)="onKey(searchtext.value)" placeholder="&#xf002; &nbsp; SEARCH PACKAGES" class="form-control search-box" >
@@ -66,10 +68,11 @@
 					</span>
 				</div>
 			</div>
+
 			<div class="row" style="height:62vh; overflow-y:auto;" data-role="search-list-panel" class="search-list-panel">
 				<div class="searchpanel pull-left" style="width:100%">
 					<ul>
-						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left pkg-item" (click)="getAssets($event, a.asset_id)">
+						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left pkg-item" (click)="getAsset($event, a.asset_id)">
 							
 
 							<span style="box-sizing:border-box;">
@@ -89,7 +92,7 @@
 									<ul class="footer-list">
 										<li class="col-md-4 col-lg-4 col-sm-4 col-xs-4 text-left">
 											<dd>Likes:</dd>
-											<dd><i class="fa fa-thumbs-up"></i> {{ a.favorite_count }}</dd>
+											<dd><i class="fa" [ngClass]="(a.favorite_count == 0) ? 'fa-thumbs-o-up':'fa-thumbs-up'"></i> {{ _commonclass.likeUnlike(a.favorite_count) }}</dd>
 										<li>
 										<li class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
 											<dd>Downloads:</dd>
@@ -97,7 +100,7 @@
 										<li>
 										<li class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
 											<dd>Updated:</dd>
-											<dd><i class="fa fa-clock-o"></i>&nbsp;{{ momentDate(a.date_modified) }}</dd>
+											<dd><i class="fa fa-clock-o"></i>{{ _dfromate.dateHumanizeFromNow(a.date_modified) }}</dd>
 										<li>
 									</ul>
 								</div>
@@ -108,64 +111,24 @@
 					<loading-mask [hidden]="loadSpiner"></loading-mask>
 				</div>
 			</div>
-		<div class="row" style="height:62vh; overflow-y:auto;" data-role="search-list-panel">
-			<div class="searchpanel pull-left" style="width:100%">
-				<ul>
-					<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left pkg-item"
-						(click)="getAsset($event, a.asset_id)">
-						<span style="box-sizing:border-box;">
-							<div class="asset-content col-md-12 col-lg-12">
-								<span class="pull-left" >
-									<img src="https://static.spark.autodesk.com/{{ a.asset_image}}" alt="{{ a.asset_name }}" title="{{ a.asset_name }}">
-								</span>
-								<div class="pull-left ">
-									<dd class="ptitle"><strong> {{ a.asset_name }} </strong></dd>
-									<dd><i>{{ a.artist_id}}</i> | <i>{{ a.artist_name}}</i></dd>
-								</div>
-								<div class="pull-right">
-									<a href="javascript:void(0);" class="btn btn-default btn-download" (click)="downloadPackage($event, a.asset_id)">Download</a>
-								</div>
-							</div>
-							<div class="asset-footer col-md-12 col-lg-12">
-								<ul class="footer-list">
-									<li class="col-md-4 col-lg-4 text-left">
-										<dd>Likes:</dd>
-										<dd>
-											<i class="fa" [ngClass]="(a.favorite_count == 0) ? 'fa-thumbs-o-up':'fa-thumbs-up'"></i>
-											{{ _commonclass.likeUnlike(a.favorite_count) }}
-										</dd>
-									<li>
-									<li class="col-md-4 col-lg-4">
-										<dd>Downloads:</dd>
-										<dd><i class="fa fa-download"></i> {{ a.download_count }}</dd>
-									<li>
-									<li class="col-md-4 col-lg-4">
-										<dd>Updated:</dd>
-										<dd><i class="fa fa-clock-o"></i> {{ _dfromate.dateHumanizeFromNow(a.date_modified) }}</dd>
-									<li>
-								</ul>
-							</div>
-						</span>
-					</li>
-				</ul>
-				<loading-mask [hidden]="loadSpiner"></loading-mask>
-			</div>
+
 		</div>
+
 		<div class="col-lg-7 search-right-panel">
 			<div *ngIf="singleList" class="row">
 					<section class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 						<ul class="nav nav-pills pull-right">
 							<li>
-								<a href="#" class="link-text">Website</a>
+								<a href="javascript:void(0);" class="link-text">Website</a>
 							</li>
 							<li>
-								<a href="#" class="link-text">Contact</a>
+								<a href="javascript:void(0);" class="link-text">Contact</a>
 							</li>
 							<li>
-								<a href="#" class="link-text">Support</a>
+								<a href="javascript:void(0);" class="link-text">Support</a>
 							</li>
 							<li>
-								<a href="#" class="link-text">Repository</a>
+								<a href="javascript:void(0);" class="link-text">Repository</a>
 							</li>
 						</ul>
 					</section>
@@ -192,19 +155,19 @@
 						<ul class="footer-list">
 							<li class="col-md-3 col-lg-3 col-sm-3 col-xs-3 text-left">
 								<dd>Likes:</dd>
-								<dd><i class="fa fa-thumbs-up"></i> {{ singleList.favorite_count }} <a href="#" class="link-text">Like</a></dd>
+								<dd><i class="fa" [ngClass]="(singleList.favorite_count == 0) ? 'fa-thumbs-o-up':'fa-thumbs-up'"></i> {{ _commonclass.likeUnlike(singleList.favorite_count) }} <a href="#" class="link-text">Like</a></dd>
 							<li>
 							<li class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
 								<dd>Downloads:</dd>
-								<dd><i class="fa fa-download"></i> {{ singleList.favorite_count }}</dd>
+								<dd><i class="fa fa-download"></i> {{ singleList.download_count }}</dd>
 							<li>
 							<li class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
 								<dd>Updated:</dd>
-								<dd><i class="fa fa-clock-o"></i> {{ singleList.favorite_count }}&nbsp;days ago</dd>
+								<dd><i class="fa fa-clock-o"></i> {{ _dfromate.dateHumanizeFromNow(singleList.date_modified) }}</dd>
 							<li>
 								<li class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
 								<dd>Size:</dd>
-								<dd><i> 0 KB</i></dd>
+								<dd><i> 3012 KB</i></dd>
 							<li>
 						</ul>
 					</section>
@@ -260,10 +223,10 @@
 						    <div class="panel panel-default">
 						      <div class="panel-heading">
 						        <h4 class="panel-title">
-						          <a data-toggle="collapse" href="#collapse1" class="arrow-col collapsed"><span class="arr-holder"></span> Package name title</a>
+						          <a data-toggle="collapse" href="#assetlist" class="arrow-col collapsed"><span class="arr-holder"></span> Package name title</a>
 						        </h4>
 						      </div>
-						      <div id="collapse1" class="panel-collapse collapse">
+						      <div id="assetlist" class="panel-collapse collapse">
 						        <ul class="list-group">
 						          <li class="list-group-item"><span class="arr-holder"></span> Category 1</li>
 						          <li class="list-group-item"><span class="arr-holder"></span> Category 2</li>
@@ -279,127 +242,4 @@
 	
 			<loading-mask [hidden]="assetloadSpiner"></loading-mask>
 			</div>
-	<div class="col-lg-7 search-right-panel">
-		<div *ngIf="singleList" class="row">
-			<section class="col-md-12 col-lg-12">
-				<ul class="nav nav-pills pull-right">
-					<li>
-						<a href="javascript:void(0);" class="link-text">Website</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);" class="link-text">Contact</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);" class="link-text">Support</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);" class="link-text">Repository</a>
-					</li>
-				</ul>
-			</section>
-			<section class="col-md-12 col-lg-12">
-				<dd class="ptitle"><strong> {{ singleList.asset_name }} </strong></dd>
-				<dd><i> {{ singleList.asset_id }} </i> | <i> {{ singleList.artist.artist_name }} </i></dd>
-				<dd><i>Group name</i></dd>
-			</section>
-			<section class="row col-md-12 col-lg-12 ver-section">
-				<span class="col-md-6 col-lg-6"><i class="fa fa-play" aria-hidden="true"></i> {{ singleList.asset_version }}</span>
-				<span class="col-md-3 col-lg-3">
-					<span>
-						<input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox" checked>
-						<label for="checkbox-1" class="checkbox-custom-label">include examples</label>
-					</span>
-				</span>
-				<span class="col-md-3 col-lg-3">
-					<span class="pull-right">
-						<a href="javascript:void(0);" class="btn btn-default btn-download" (click)="downloadAsset(_commonclass.convertArrayToString(singleList), singleList.asset_id)">Download</a>
-					</span>
-				</span>
-			</section>
-			<section class="col-md-12 col-lg-12 dtl-section right-margin-top">
-				<ul class="footer-list">
-					<li class="col-md-3 col-lg-3 text-left">
-						<dd>Likes:</dd>
-						<dd>
-							<i class="fa" [ngClass]="(singleList.favorite_count == 0) ? 'fa-thumbs-o-up':'fa-thumbs-up'"></i> 
-							{{ _commonclass.likeUnlike(singleList.favorite_count) }} <a href="#" class="link-text">Like</a>
-						</dd>
-					<li>
-					<li class="col-md-3 col-lg-3">
-						<dd>Downloads:</dd>
-						<dd><i class="fa fa-download"></i> {{ singleList.download_count }}</dd>
-					<li>
-					<li class="col-md-3 col-lg-3">
-						<dd>Updated:</dd>
-						<dd><i class="fa fa-clock-o"></i> {{ _dfromate.dateHumanizeFromNow(singleList.date_modified) }}</dd>
-					<li>
-					<li class="col-md-3 col-lg-3">
-						<dd>Size:</dd>
-						<dd><i> 3012 KB</i></dd>
-					<li>
-				</ul>
-			</section>
-			<article class="col-md-12 col-lg-12 right-margin-top article-container">
-				<dd class="section-heading">DESCRIPTION:</dd>
-				<p>
-					{{ singleList.description}} Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-					the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-					it to make a type specimen book. <a class="link-text" href="#">Show more...</a>
-				</p>
-			</article>
-			<section class="col-sm-12 col-md-12 col-lg-12 desc-img-section">
-				<span class="img-big-section">
-					<img src="" alt="">
-					<img src="" alt="">
-				</span>
-				<span class="img-small-section">
-					<img src="" alt="">
-					<img src="" alt="">
-				</span>
-			</section>
-			<span class="col-md-12 col-lg-12 right-margin-top article-container">
-				<dd><span class="section-heading">WORKS WITH:</span><span> Dynamo Version 0.7.5+</span></dd>
-			</span>
-			<span class="col-md-12 col-lg-12 right-margin-top article-container">
-				<dd><span class="section-heading">DEPENDENCIES:</span><span *ngFor="#depend of singleList.file_formats"> {{ depend.name | uppercase }}, </span></dd>
-			</span>
-			<article class="col-md-12 col-lg-12 right-margin-top article-container">
-				<dd class="section-heading">WHATS NEW:</dd>
-				<p>
-					{{ singleList.description}} It is a long established fact that a reader will be distracted by the readable content of a page
-					when looking at its layout. The point of using Loremis that it has a more-or-less normal distribution of letters, as
-					opposed to using 'Content here, content here', making it look like. <a class="link-text" href="#">Show more...</a>
-				</p>
-			</article>
-			<article class="col-md-12 col-lg-12 right-margin-top article-container">
-				<dd class="section-heading">KNOWN ISSUES:</dd>
-				<ol>
-					<li>There are many variations of passages of Lorem Ipsum available,</li>
-					<li>But the majority have suffered alteration in some form, by injected.</li>
-					<li>Humour, or randomised words which don't look even slightly believable.</li>
-					<li>If you are going to use a passage of Lorem Ipsum, you need. <a class="link-text" href="#">Show more...</a></li>
-				</ol>
-			</article>
-			<section class="col-md-12 col-lg-12 right-margin-top article-container">
-				<dd class="section-heading">LIBRARY ITEMS from this PAckage:</dd>
-				<div class="panel-group right-drop-panel">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="#assetlist" href="#assetlist" class="arrow-col collapsed"><span class="arr-holder"></span> Package name title</a>
-							</h4>
-						</div>
-						<div id="assetlist" class="panel-collapse collapse">
-							<ul class="list-group">
-								<li class="list-group-item"><span class="arr-holder"></span> Category 1</li>
-								<li class="list-group-item"><span class="arr-holder"></span> Category 2</li>
-								<li class="list-group-item"><span class="arr-holder"></span> Category 3</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-		<loading-mask [hidden]="assetloadSpiner"></loading-mask>
 	</div>
-</div>
