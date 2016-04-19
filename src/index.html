@@ -8,7 +8,7 @@
 	<base href="/">
     <!-- bower:css -->
 	<!-- endbower -->
-
+	<link href="node_modules/ng2-toastr/bundles/ng2-toastr.min.css" rel="stylesheet" />
 	<!-- inject:css -->
  	<!-- endinject -->
 </head>
@@ -48,7 +48,8 @@
             paths: {
 			    underscore: 'node_modules/underscore/underscore.js',
                 moment: 'node_modules/moment/moment.js',
-				jquery: '../bower_components/jquery/dist/jquery.js'
+				jquery: '../bower_components/jquery/dist/jquery.js',
+				"ng2-toastr": "node_modules/ng2-toastr/bundles/ng2-toastr.min.js"
 			}
 	    });
 	    //bootstrap the Angular2 application

@@ -19,12 +19,13 @@ import $ from 'jquery';
 import {LoadingMask} from '../../directive/loadingmask/loadingmask';
 import OffClickDirective from '../../directive/clickoutsidehide/clickoutsidehide';
 //declare var jQuery: JQueryStatic;
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
 	selector: 'search-component',
 	templateUrl: 'build/app/components/search-component/search-component.html',
 	directives: [NgFor, NgIf, ROUTER_DIRECTIVES, LoadingMask, OffClickDirective],
-	providers: [SearchService, DateFormatClass],
+	providers: [SearchService, DateFormatClass, ToastsManager],
 	pipes: [OrderBy],
 	host: {
 		"(document: click)": "clickedOutside( $event )"
@@ -49,7 +50,7 @@ export class SearchComponent {
 	private _dfromate = new DateFormatClass();
 	private _commonclass = new CommonClass();
 
-	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router, private el: ElementRef) {
+	constructor(private _SearchList: SearchService, public params: RouteParams, private router: Router, private el: ElementRef, public toastr: ToastsManager) {
 		
 	}
 
@@ -159,7 +160,11 @@ export class SearchComponent {
 		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(resp => {
 			console.log( resp );
 			let file_id = this._commonclass.convertArrayToString(resp);
-			this.downloadAsset(file_id, id);
+			if(file_id !== ''){
+				this.downloadAsset(file_id, id);
+			}else{
+				this.toastr.error('Files id is null or blank', 'Error');
+			}
 		});
 		e.stopPropagation();
 		e.preventDefault();
