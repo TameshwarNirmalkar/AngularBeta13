@@ -33,7 +33,7 @@
                         <a href="#"><h4>My Packages</h4></a>
                     </li>
                     <li>
-                        <a href="#"><h4>Publish</h4></a>
+                        <a [routerLink]="['Publish']"><h4>Publish</h4></a>
                     </li>
                 </ul>
             </div>
@@ -85,7 +85,7 @@
 										<dd><i>{{ a.artist_id}}</i> | <i>{{ a.artist_name}}</i></dd>
 									</div>
 									<div class="pull-right">
-										<a href="javascript:void(0);" class="btn btn-default btn-download">Download</a>
+										<a href="javascript:void(0);" class="btn btn-default btn-download" (click)="downloadPackage($event, a.asset_id)">Download</a>
 									</div>
 								</div>
 								<div class="asset-footer col-md-12 col-lg-12">
@@ -134,7 +134,7 @@
 					</section>
 					<section class="col-md-12 col-lg-12 col-sm-12 col-xs-12 right-panel-title">
 						<dd class="ptitle"> {{ singleList.asset_name }} </dd>
-						<dd><i> {{ singleList.asset_id }} </i>&nbsp;|&nbsp;<i> {{ singleList.artist.artist_name }} </i></dd>
+						<dd><i> {{ singleList.asset_id }} </i> | <i> {{ singleList.artist.artist_name }} </i></dd>
 						<dd><i>Group name</i></dd>
 					</section>
 					<section class="row col-md-12 col-lg-12 col-sm-12 col-xs-12 ver-section">

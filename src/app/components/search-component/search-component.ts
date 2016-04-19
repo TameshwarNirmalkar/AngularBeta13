@@ -81,7 +81,7 @@ export class SearchComponent {
 
 	scrollPagination(limit, offsetlimit) {
 		this.loadSpiner = false;
-		this._SearchList.inrementalAssets(limit, offsetlimit).map(res => res.json()).subscribe(aslist => {
+		this._SearchList.incrementalAssets(limit, offsetlimit).map(res => res.json()).subscribe(aslist => {
 			this.assetsList = $.merge(this.assetsList, aslist.assets);
 			this.loadSpiner = true;
 		})
@@ -157,6 +157,7 @@ export class SearchComponent {
 
 	downloadPackage(e: Event, id: string) {
 		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(resp => {
+			console.log( resp );
 			let file_id = this._commonclass.convertArrayToString(resp);
 			this.downloadAsset(file_id, id);
 		});
