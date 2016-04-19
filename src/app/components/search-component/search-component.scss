@@ -55,7 +55,7 @@
 	}
 }
 
-.search-component{
+.search-component, .publish-component{
 	.nav-tabs{
 		border-bottom: none;
 	}
@@ -672,4 +672,17 @@
 	}
 
 
+}
+
+.publish-component{
+	font-family: Open Sans;
+	color: #9b9b9b;
+
+	.publish-right-container{
+		ul{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+	}
 }
