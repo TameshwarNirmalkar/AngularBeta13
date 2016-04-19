@@ -24,8 +24,8 @@ Clone this repository and execute in your favourite shell:
 * `npm i superstatic` for superstatic.
 * `bower install` for bower dependencies for static css and js library.
 
-## Play
+## Start
 
 After completing installation type in your favorite shell:
 
-* `gulp` to start a "app" in a new browser window. App files are observed and will be re-transpiled on each change.
+* `gulp` to start an "app" in a new browser window. App files are observed and will be re-transpiled on each change.

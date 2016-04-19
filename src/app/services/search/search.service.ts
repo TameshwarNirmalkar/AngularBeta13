@@ -36,7 +36,9 @@ export class SearchService{
 		})
 	}
 
-	/* @ Get list of package with 1000 data */
+	/**
+	 *  @ Get list of package with 1000 data 
+	 */
 	searchAnAsset(q: String) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
@@ -48,7 +50,7 @@ export class SearchService{
 	/**
 	 *	@ GET load assets for with limit:20 and offsetlimit:incremental of 20;
 	 */
-	inrementalAssets(limit:number, offsetlimit:number) {
+	incrementalAssets(limit:number, offsetlimit:number) {
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
 		return this.http.get(this._ServerConfig.acgimoreasset+limit+"&offset="+offsetlimit, {
@@ -61,6 +63,7 @@ export class SearchService{
 	 */
 	downloadAsset(file_ids:string, asset_id:string){
 		let headers = new Headers();
+		headers.append('ContentType','application/zip, application/octet-stream');
 		this.createAuthorizationHeader(headers);
 		return this.http.get(this._ServerConfig.acgidownload+file_ids+'&asset_id='+asset_id, {
 			headers: headers
