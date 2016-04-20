@@ -35,28 +35,108 @@
 	<div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 publish-left-container">
 		<form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-lg-2 control-label" style="border:1px solid #cfcfcf; padding:5px; height:40px;"> </label>
+                <label class="col-lg-2 col-md-2 control-label" style="border:1px solid #cfcfcf; padding:5px; height:40px;"> </label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" placeholder="Package name">
-					<span>Author name</span>
+                    <span class="col-lg-10 col-md-10"><input type="text" class="form-control" placeholder="Package name"></span>
+                    <span class="col-lg-12 col-md-12">Author name</span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-2 control-label">Others authors</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" placeholder="Name">
-					<span>Author name added</span>
+                <div class="col-lg-10 col-md-10">
+                    <span class="col-lg-10 col-md-10"><input type="text" class="form-control" placeholder="Name"></span>
+                    <span class="col-lg-2 col-md-2">
+                    <button class="btn btn-default">+ Add</button></span>
+					<span class="col-lg-12 col-md-12">Author name added</span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-2 control-label">Descriptions</label>
+                <label class="col-lg-2 col-md-2 control-label">Descriptions</label>
                 <div class="col-lg-10">
-                    <textarea class="form-control" placeholder="Description of what your package does."></textarea>
+                    <span class="col-lg-12 col-md-12"><textarea class="form-control" placeholder="Description of what your package does."></textarea></span>
                 </div>
+            </div>
+            <div class="expand-col col-lg-12 col-md-12">
+                <button data-toggle="collapse" data-target="#more-opt">+ Add more options (Optional...)</button>
+
+				<div id="more-opt" class="collapse col-lg-12 col-md-12">
+					<div class="form-group">
+	                <label class="col-lg-2 col-md-2 control-label">Screenshots</label>
+	                <div class="col-lg-10">
+		                    <div class="panel panel-default col-md-3 col-lg-3">
+							  <div class="panel-body">
+							    +
+							  </div>
+							</div>
+							<div class="panel panel-default col-md-3 col-lg-3">
+							  <div class="panel-body">
+							    +
+							  </div>
+							</div>
+							<div class="panel panel-default col-md-3 col-lg-3">
+							  <div class="panel-body">
+							    +
+							  </div>
+							</div>
+							<div class="panel panel-default col-md-3 col-lg-3">
+							  <div class="panel-body">
+							    +
+							  </div>
+							</div>
+						</div>
+	                </div>
+	                <div class="form-group">
+						<label for="sel1" class="col-lg-2 col-md-2 control-label">Works with:</label>
+						<div class="col-lg-10 col-md-10">
+							<select class="form-control col-lg-10 col-md-10" id="sel1">
+								<option>Choose Dynamo Version</option>
+								<option>Version 01</option>
+								<option>Version 02</option>
+								<option>Version 03</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="sel1" class="col-lg-2 col-md-2 control-label">Dependent packages:</label>
+						<div class="col-lg-8 col-md-8">
+							<select class="form-control col-lg-10 col-md-10" id="sel1">
+								<option>Search package</option>
+								<option>Package 01</option>
+								<option>Package 02</option>
+								<option>Package 03</option>
+							</select>
+						</div>
+						<span class="col-lg-2 col-md-2">
+							<button class="btn btn-default">+ Add</button>
+						</span>
+					</div>
+					<div class="form-group">
+		                <label class="col-lg-2 col-md-2 control-label">Known issues</label>
+		                <div class="col-lg-10">
+		                    <span class="col-lg-12 col-md-12"><textarea class="form-control" placeholder="List of known defects"></textarea></span>
+		                </div>
+		            </div>
+		            <div class="form-group">
+		                <label class="col-lg-2 col-md-2 control-label">License</label>
+		                <div class="col-lg-10">
+		                    <span class="col-lg-5 col-md-5"><input type="text" class="form-control" placeholder="License"></span>
+		                    <span class="col-lg-7 col-md-7"><input type="text" class="form-control" placeholder="License link"></span>
+		                </div>
+		            </div>
+		            <div class="form-group">
+		                <label class="col-lg-2 col-md-2 control-label">Contact</label>
+		                <div class="col-lg-10">
+		                    <span class="col-lg-12 col-md-12"><input type="text" class="form-control" placeholder="Contact email"></span>
+		                    <span class="col-lg-12 col-md-12"><input type="text" class="form-control" placeholder="Marketing URL"></span>
+		                    <span class="col-lg-12 col-md-12"><input type="text" class="form-control" placeholder="Support URL"></span>
+		                    <span class="col-lg-12 col-md-12"><input type="text" class="form-control" placeholder="Repository URL"></span>
+		                </div>
+		            </div>
+				</div>
             </div>
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
-                    <button type="submit" class="btn btn-default">Sign in</button>
+                    <span class="col-lg-10 col-md-10"><button type="submit" class="btn btn-default">Publish</button></span>
                 </div>
             </div>
         </form>
