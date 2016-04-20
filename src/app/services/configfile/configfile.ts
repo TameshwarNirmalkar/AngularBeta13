@@ -11,7 +11,8 @@ const SERVER_CONSTANT = {
     "ACGI_SEARCH": DOMAIN+"/api/v2/assets?q=",
     "ACGI_MOREASSETS": DOMAIN+"/api/v2/assets/?limit=",
     "ACGI_DOWNLOAD": 'https://'+DOWNLOAD+'/api/v2/files/download?file_ids=',
-    "ACGI_TOKEN": TOKENKEY
+    "ACGI_TOKEN": TOKENKEY,
+    "ACG_CREATEASSET": DOMAIN+'api/v2/assets?'
 };
 export class ServerConfig{
     public acgiasset:string = SERVER_CONSTANT.ACGI_ASSETS;
@@ -19,6 +20,6 @@ export class ServerConfig{
     public acgimoreasset:string = SERVER_CONSTANT.ACGI_MOREASSETS;
     public acgidownload:string = SERVER_CONSTANT.ACGI_DOWNLOAD;
     public acgitoken:string = SERVER_CONSTANT.ACGI_TOKEN;
-    
+    public acgcreateasset:string = SERVER_CONSTANT.ACG_CREATEASSET;
     constructor() {}
 }
