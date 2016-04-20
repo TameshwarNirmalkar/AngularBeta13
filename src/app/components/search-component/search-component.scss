@@ -677,6 +677,21 @@
 .publish-component{
 	font-family: Open Sans;
 	color: #9b9b9b;
+	::-webkit-input-placeholder {
+	 color: #4b4b4b;
+	}
+
+	:-moz-placeholder { /* Firefox 18- */
+	 color: #4b4b4b;  
+	}
+
+	::-moz-placeholder {  /* Firefox 19+ */
+	 color: #4b4b4b;  
+	}
+
+	:-ms-input-placeholder {  
+	 color: #4b4b4b;  
+	}
 	.btn-pub-group{
 		background: none;
 		border: 1px solid #9b9b9b;
