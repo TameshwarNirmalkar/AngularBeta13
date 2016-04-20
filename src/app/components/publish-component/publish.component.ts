@@ -39,9 +39,10 @@ export class PublishComponent {
         console.log('PublishComponent initialize');  
     }
     publishPackage(){
-        let body = $.param( this.formelement ).replace('+', ' ');
+        let body = $.param( this.formelement );
+        //body = body.replace(/\+/g, ' ');
         //console.log( decodeURIComponent($.param( this.formelement ).replace(/\+/g, ' ') ) );
-        console.log( body );
+        //console.log( body.replace(/\+/g, ' ') );
         this._PublishSearchService.createAnAsset(body).subscribe(resp => {
             console.log(resp);
         })

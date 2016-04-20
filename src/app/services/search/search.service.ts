@@ -1,5 +1,5 @@
 import {Component, Injectable, Inject}               from 'angular2/core';
-import {Http, Response, Headers, BaseRequestOptions} from 'angular2/http';
+import {Http, Response, Headers, BaseRequestOptions, RequestOptions} from 'angular2/http';
 
 /**
  * Server config import
@@ -29,7 +29,9 @@ export class SearchService{
 		@ GET: get a packages
 	*/
 	getAnAsset(id:String) {
+		let opt = new BaseRequestOptions();
 		let headers = new Headers();
+		headers.append('Content-Type','application/x-www-form-urlencoded');
 		this.createAuthorizationHeader(headers);
 		return this.http.get(this._ServerConfig.acgiasset+id, {
 			headers: headers
@@ -74,8 +76,10 @@ export class SearchService{
 	 * @Post: Create an asset
 	 */
 	createAnAsset(body:string){
+		let opt = new BaseRequestOptions();
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		return this.http.post(this._ServerConfig.acgcreateasset+body, '', {"headers": headers});
+		console.log( headers );
+		return this.http.post(this._ServerConfig.acgcreateasset+body, '', {headers: headers});
 	}
 }
