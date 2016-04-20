@@ -35,53 +35,47 @@
 	<div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 publish-left-container">
 		<form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-lg-2 col-md-2 control-label" > </label>
+                <label class="col-lg-2 col-md-2 text-right"><input type="file" id="myFile" class="logo-holder"></label>
                 <div class="col-lg-10">
                     <span class="col-lg-10 col-md-10"><input type="text" class="form-control" placeholder="Package name"></span>
-                    <span class="col-lg-12 col-md-12">Author name</span>
+                    <span class="col-lg-12 col-md-12">Author name:</span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-2 control-label">Others authors</label>
+                <label class="col-lg-2 control-label">Others authors:</label>
                 <div class="col-lg-10 col-md-10">
                     <span class="col-lg-10 col-md-10"><input type="text" class="form-control" placeholder="Name"></span>
                     <span class="col-lg-2 col-md-2">
-                    <button class="btn btn-default">+ Add</button></span>
+                    <button class="btn btn-default btn-pub-group btn-add">+ Add</button></span>
 					<span class="col-lg-12 col-md-12">Author name added</span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-2 col-md-2 control-label">Descriptions</label>
+                <label class="col-lg-2 col-md-2 control-label">Descriptions:</label>
                 <div class="col-lg-10">
-                    <span class="col-lg-12 col-md-12"><textarea class="form-control" placeholder="Description of what your package does."></textarea></span>
+                    <span class="col-lg-12 col-md-12"><textarea class="form-control" rows="8" placeholder="Description of what your package does."></textarea></span>
                 </div>
             </div>
-            <div class="expand-col col-lg-12 col-md-12">
-                <button data-toggle="collapse" data-target="#more-opt">+ Add more options (Optional...)</button>
+            <div class="expand-col">
+                <div class="col-lg-12 col-md-12"><span class="col-lg-12 col-md-12 coll-btn btn-add">
+                	<a data-toggle="collapse" data-target="#more-opt">+ Add more info (optional)</a>
+                </span></div>
 
-				<div id="more-opt" class="collapse col-lg-12 col-md-12">
+				<div id="more-opt" class="collapse col-lg-12 col-md-12 more-info-container">
 					<div class="form-group">
-	                <label class="col-lg-2 col-md-2 control-label">Screenshots</label>
-	                <div class="col-lg-10">
-		                    <div class="panel panel-default col-md-3 col-lg-3">
-							  <div class="panel-body">
-							    +
-							  </div>
+	                <label class="col-lg-2 col-md-2 control-label">Screenshots:</label>
+	                <div class="col-lg-10 col-md-10 scr-holder">
+		                    <div class="col-md-3 col-lg-3">
+							  <input type="file" id="myFile" class="logo-holder">
 							</div>
-							<div class="panel panel-default col-md-3 col-lg-3">
-							  <div class="panel-body">
-							    +
-							  </div>
+							<div class="col-md-3 col-lg-3">
+							  <input type="file" id="myFile" class="logo-holder">
 							</div>
-							<div class="panel panel-default col-md-3 col-lg-3">
-							  <div class="panel-body">
-							    +
-							  </div>
+							<div class="col-md-3 col-lg-3">
+							  <input type="file" id="myFile" class="logo-holder">
 							</div>
-							<div class="panel panel-default col-md-3 col-lg-3">
-							  <div class="panel-body">
-							    +
-							  </div>
+							<div class="col-md-3 col-lg-3">
+							  <input type="file" id="myFile" class="logo-holder">
 							</div>
 						</div>
 	                </div>
@@ -107,23 +101,23 @@
 							</select>
 						</div>
 						<span class="col-lg-2 col-md-2">
-							<button class="btn btn-default">+ Add</button>
+							<button class="btn btn-default btn-pub-group btn-add">+ Add</button>
 						</span>
 					</div>
 					<div class="form-group">
-		                <label class="col-lg-2 col-md-2 control-label">Known issues</label>
+		                <label class="col-lg-2 col-md-2 control-label">Known issues:</label>
 		                <div class="col-lg-10">
 		                    <textarea class="form-control" placeholder="List of known defects"></textarea>
 		                </div>
 		            </div>
 		            <div class="form-group">
-		                <label class="col-lg-2 col-md-2 control-label">License</label>
+		                <label class="col-lg-2 col-md-2 control-label">License:</label>
 	                    <span class="col-lg-4 col-md-4"><input type="text" class="form-control" placeholder="License"></span>
 		                <span class="col-lg-6 col-md-6"><input type="text" class="form-control" placeholder="License link"></span>
 		            </div>
 		            <div class="form-group">
-		                <label class="col-lg-2 col-md-2 control-label">Contact</label>
-		                <div class="col-lg-10">
+		                <label class="col-lg-2 col-md-2 control-label">Contact:</label>
+		                <div class="col-lg-10 col-md-10 contact-boxes">
 		                    <input type="text" class="form-control" placeholder="Contact email">
 		                    <input type="text" class="form-control" placeholder="Marketing URL">
 		                    <input type="text" class="form-control" placeholder="Support URL">
@@ -133,8 +127,8 @@
 				</div>
             </div>
             <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <button type="submit" class="btn btn-primary" (click)="publishPackage()">Publish</button>
+                <div class="col-lg-12 col-md-12 text-right">
+                    <span class="col-lg-12 col-md-12"><button type="submit" class="btn btn-primary btn-pub-group btn-pub" (click)="publishPackage()">Publish</button></span>
                 </div>
             </div>
         </form>
@@ -147,20 +141,20 @@
 
 			<ul>
 				<li>
-					<span><a href=""><i class="fa fa-minus-circle " aria-hidden="true"></i></a></span>
-					<span><i class="fa fa-calendar-o" aria-hidden="true"></i>CustomNodeName1.dyf</span> 
+					<span class="del-btn"><a href=""><i class="fa fa-minus-circle " aria-hidden="true"></i></a></span>
+					<span><span class="li-icon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>CustomNodeName1.dyf</span> 
 				</li>
 				<li>
-					<span><a href=""><i class="fa fa-minus-circle " aria-hidden="true"></i></a></span>
-					<span><i class="fa fa-calendar-o" aria-hidden="true"></i>CustomNodeName1.dyf</span> 
+					<span class="del-btn"><a href=""><i class="fa fa-minus-circle " aria-hidden="true"></i></a></span>
+					<span><span class="li-icon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span> CustomNodeName1.dyf</span> 
 				</li>
 				<li>
-					<span><a href=""><i class="fa fa-minus-circle " aria-hidden="true"></i></a></span>
-					<span><i class="fa fa-cog" aria-hidden="true"></i>myDLLNAME1.dll</span> 
+					<span class="del-btn"><a href=""><i class="fa fa-minus-circle " aria-hidden="true"></i></a></span>
+					<span><span class="li-icon"><i class="fa fa-cog" aria-hidden="true"></i></span> myDLLNAME1.dll</span> 
 				</li>
 			</ul>
 
-			<button class="btn btn-default ">Add files</button>
+			<span class="col-md-12 col-lg-12 col-sm-12 col-xs-12 text-center btn-add-files"><button class="btn btn-default btn-pub-group">Add files</button></span>
 		</div>
 	</div>
 </div>
