@@ -12,7 +12,7 @@ export class SearchService{
 	constructor( @Inject(Http) private http: Http) { }
 	createAuthorizationHeader(headers: Headers) {
 		headers.append('X-AFC', 'FJKB32');
-		//headers.append('X-Session', TOKENKEY);
+		headers.append('X-Session', this._ServerConfig.acgitoken);
 	}
 	/**
 		@ GET: all the packages list
@@ -67,6 +67,17 @@ export class SearchService{
 		this.createAuthorizationHeader(headers);
 		return this.http.get(this._ServerConfig.acgidownload+file_ids+'&asset_id='+asset_id, {
 			headers: headers
+		})
+	}
+	
+	/**
+	 * @Post: Create an asset
+	 */
+	createAnAsset(body:string){
+		let headers = new Headers();
+		this.createAuthorizationHeader(headers);
+		return this.http.post(this._ServerConfig.acgcreateasset, body, {
+			
 		})
 	}
 }
