@@ -3,8 +3,10 @@
  */
 const DOMAIN = 'https://beta-login-123d.acg.autodesk.com';
 const DOWNLOAD = 'beta-storage.acg.autodesk.com';
-const TOKENKEY = '00DED5F8-E2D9-4A1E-B3D6-F79EFCA7A885';
+const TOKENKEY = '7BA5A8F9-5D7B-48A7-832E-7BEF7615DE55';
+const AFC = 'DY1ONB'; //FJKB32
 const SERVER_CONSTANT = {
+    "AFC": AFC,
     "DOMAIN": DOMAIN,
     "SERVER": "beta-storage.acg.autodesk.com",
     "ACGI_ASSETS" : DOMAIN+"/api/v2/assets/",
@@ -21,5 +23,6 @@ export class ServerConfig{
     public acgidownload:string = SERVER_CONSTANT.ACGI_DOWNLOAD;
     public acgitoken:string = SERVER_CONSTANT.ACGI_TOKEN;
     public acgcreateasset:string = SERVER_CONSTANT.ACG_CREATEASSET;
+    public acgafc:string = SERVER_CONSTANT.AFC;
     constructor() {}
 }

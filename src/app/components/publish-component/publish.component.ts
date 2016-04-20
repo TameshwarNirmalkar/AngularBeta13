@@ -19,13 +19,29 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
  * PublishComponent
  */
 export class PublishComponent {
+    public formelement: Object = {
+        "asset_name":"",
+        "tags": "",
+        "description": "",
+        "media_type_id": 61,
+        "software": 99,
+        "publish": true,
+        "progress_status": 1,
+        //"parent_asset_id": "",
+        "license_id": "MIT",
+        //"asset_taxonomy": "",
+        "language": "en",
+        "region": "US",
+        //"member_id": ""
+    };
     constructor(public params: RouteParams, private router: Router, private _PublishSearchService: SearchService) {}
     ngOnInit() {
         console.log('PublishComponent initialize');  
     }
     publishPackage(){
-        let body = 'asset_name=Alien&description=Mint colored alien';
-        console.log( this._PublishSearchService);
+        let body = $.param( this.formelement ).replace('+', ' ');
+        //console.log( decodeURIComponent($.param( this.formelement ).replace(/\+/g, ' ') ) );
+        console.log( body );
         this._PublishSearchService.createAnAsset(body).subscribe(resp => {
             console.log(resp);
         })

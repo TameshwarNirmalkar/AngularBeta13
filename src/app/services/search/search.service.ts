@@ -11,7 +11,7 @@ export class SearchService{
 	resdata: Object;
 	constructor( @Inject(Http) private http: Http) { }
 	createAuthorizationHeader(headers: Headers) {
-		headers.append('X-AFC', 'FJKB32');
+		headers.append('X-AFC', this._ServerConfig.acgafc);
 		headers.append('X-Session', this._ServerConfig.acgitoken);
 	}
 	/**
@@ -22,7 +22,7 @@ export class SearchService{
 		this.createAuthorizationHeader(headers);
 		return this.http.get(this._ServerConfig.acgiasset, {
 			headers: headers
-		})
+		});
 	}
 
 	/**
@@ -33,7 +33,7 @@ export class SearchService{
 		this.createAuthorizationHeader(headers);
 		return this.http.get(this._ServerConfig.acgiasset+id, {
 			headers: headers
-		})
+		});
 	}
 
 	/**
@@ -44,7 +44,7 @@ export class SearchService{
 		this.createAuthorizationHeader(headers);
 		return this.http.get(this._ServerConfig.acgisearch+q, {
 			headers: headers
-		})
+		});
 	}
 
 	/**
@@ -55,7 +55,7 @@ export class SearchService{
 		this.createAuthorizationHeader(headers);
 		return this.http.get(this._ServerConfig.acgimoreasset+limit+"&offset="+offsetlimit, {
 			headers: headers
-		})
+		});
 	}
 	
 	/**
@@ -67,7 +67,7 @@ export class SearchService{
 		this.createAuthorizationHeader(headers);
 		return this.http.get(this._ServerConfig.acgidownload+file_ids+'&asset_id='+asset_id, {
 			headers: headers
-		})
+		});
 	}
 	
 	/**
@@ -76,8 +76,6 @@ export class SearchService{
 	createAnAsset(body:string){
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		return this.http.post(this._ServerConfig.acgcreateasset, JSON.stringify(body), {
-			
-		})
+		return this.http.post(this._ServerConfig.acgcreateasset+body, '', {"headers": headers});
 	}
 }
