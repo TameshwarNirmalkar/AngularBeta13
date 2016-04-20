@@ -76,7 +76,7 @@ export class SearchService{
 	createAnAsset(body:string){
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		return this.http.post(this._ServerConfig.acgcreateasset, body, {
+		return this.http.post(this._ServerConfig.acgcreateasset, JSON.stringify(body), {
 			
 		})
 	}
