@@ -679,10 +679,20 @@
 	color: #9b9b9b;
 
 	.publish-right-container{
+		background: #212121;
+		height:81vh; 
+		overflow-y:auto;
 		ul{
 			list-style: none;
 			margin: 0;
 			padding: 0;
 		}
+	}
+	.publish-left-container{
+		padding: 5px;
+		background: #2f2f2e;
+		height: 81vh;
+		overflow-y: scroll;
+		overflow-x: hidden;
 	}
 }

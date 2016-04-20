@@ -65,19 +65,7 @@ body {
 }
 
 .input-group{
-  .form-control{
-    background-color: #252525;
-    border-color: #404040;
-    color: #aaaaaa;
-    border-radius: 0;
-    font-size: 16px;
-    height: 40px;
-    padding: 10px 15px;
-    &:focus{
-      box-shadow: none;
-      border-color: #555;
-    }
-  }
+  
   ::-webkit-input-placeholder {
      color: #4b4b4b;
   }
@@ -95,4 +83,17 @@ body {
   }
 
 }
+.form-control{
+    background-color: #252525;
+    border-color: #404040;
+    color: #aaaaaa;
+    border-radius: 0;
+    font-size: 16px;
+    height: 40px;
+    padding: 10px 15px;
+    &:focus{
+      box-shadow: none;
+      border-color: #555;
+    }
+  }
 html, body { width:100%;  overflow:hidden; }
