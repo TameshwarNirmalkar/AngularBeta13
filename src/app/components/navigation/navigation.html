@@ -1,21 +1,35 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
-<div class="collapse navbar-collapse navbar-floating" id="bs-example-navbar-collapse-1">
-	<ul class="nav nav-tabs">
-		<li class="hidden-md hidden-lg">
-			<a [routerLink]="['Home']"><h4>Home</h4></a>
-		</li>
-		<li class="active">
-			<a [routerLink]="['Assets']"><h4>Explore Packages</h4></a>
-		</li>
-		<li>
-			<a href="#"><h4>Explore Authors</h4></a>
-		</li>
-		<li>
-			<a href="#"><h4>My Packages</h4></a>
-		</li>
-		<li>
-			<a [routerLink]="['Publish']"><h4>Publish</h4></a>
-		</li>
-	</ul>
-</div>
+<nav class="navbar nav-tabs">
+	    <div class="navbar-header page-scroll">
+	        
+	        <button type="button" class="pull-left navbar-toggle" data-toggle="collapse" data-target="#navigationcollapse">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	        </button>
+	        <a href="#" class="navbar-toggle pull-left" data-toggle="collapse">Explore Packages</a>
+	        
+	    </div>
+	    <div class="collapse navbar-collapse navbar-floating" id="navigationcollapse">
+	        <button type="button" class="btn-menu-close hidden-md hidden-lg" data-toggle="collapse" data-target="#navigationcollapse" >&#215;</button>
+	        <ul class="nav nav-tabs">
+	            <li class="hidden-md hidden-lg">
+	                <a href="javascript:void(0);"><h4>Home</h4></a>
+	            </li>
+	            <li [class.active]="getLinkStyle('/assets')">
+	                <a [routerLink]="['Assets']"><h4>Explore Packages</h4></a>
+	            </li>
+	            <li>
+	                <a href="javascript:void(0);"><h4>Explore Authors</h4></a>
+	            </li>
+	            <li>
+	                <a href="javascript:void(0);"><h4>My Packages</h4></a>
+	            </li>
+	            <li [class.active]="getLinkStyle('/publish')">
+	                <a [routerLink]="['Publish']"><h4>Publish</h4></a>
+	            </li>
+	        </ul>
+	    </div>
+	</nav>
 <!-- /.navbar-collapse -->

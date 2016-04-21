@@ -7,11 +7,12 @@ import $ from 'jquery';
 import {LoadingMask} from '../../directive/loadingmask/loadingmask';
 import {SearchService} from '../../services/search/search.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { NavigationComponent } from '../navigation/navigation';
 
 @Component({
     selector: 'publish-component',
     templateUrl: 'build/app/components/publish-component/publish.component.html',
-    directives: [ROUTER_DIRECTIVES, LoadingMask],
+    directives: [ROUTER_DIRECTIVES, LoadingMask, NavigationComponent],
     providers: [SearchService, ToastsManager]
 })
 

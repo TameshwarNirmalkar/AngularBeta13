@@ -20,11 +20,12 @@ import {LoadingMask} from '../../directive/loadingmask/loadingmask';
 import OffClickDirective from '../../directive/clickoutsidehide/clickoutsidehide';
 //declare var jQuery: JQueryStatic;
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { NavigationComponent } from '../navigation/navigation';
 
 @Component({
 	selector: 'search-component',
 	templateUrl: 'build/app/components/search-component/search-component.html',
-	directives: [NgFor, NgIf, ROUTER_DIRECTIVES, LoadingMask, OffClickDirective],
+	directives: [NgFor, NgIf, ROUTER_DIRECTIVES, LoadingMask, OffClickDirective, NavigationComponent],
 	providers: [SearchService, DateFormatClass, ToastsManager],
 	pipes: [OrderBy],
 	host: {
@@ -55,6 +56,7 @@ export class SearchComponent {
 	}
 
 	ngOnInit() {
+		console.log('Explore package initialize');
 		/**
 		 * Service call to get all assets.
 		 */
