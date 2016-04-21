@@ -12,20 +12,21 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
     selector: 'publish-component',
     templateUrl: 'build/app/components/publish-component/publish.component.html',
     directives: [ROUTER_DIRECTIVES, LoadingMask],
-    providers: [SearchService]
+    providers: [SearchService, ToastsManager]
 })
 
 /**
  * PublishComponent
  */
 export class PublishComponent {
+    
     public assetsobject: Object = {
         "asset_name":"",
         "tags": "",
         "description": "",
         "media_type_id": 61,
         "software": 99,
-        "publish": true,
+        "publish": false,
         "progress_status": 1,
         "parent_asset_id": "",
         "license_id": "MIT",
@@ -43,7 +44,8 @@ export class PublishComponent {
         "use_https": false
         
     };
-    constructor(public params: RouteParams, private router: Router, private _PublishSearchService: SearchService) {}
+    private _asset_id:number;
+    constructor(public params: RouteParams, private router: Router, private _PublishSearchService: SearchService, public toastr: ToastsManager) {}
     ngOnInit() {
         console.log('PublishComponent initialize');  
     }
@@ -55,7 +57,7 @@ export class PublishComponent {
         /**
          * Step 1. Create an Asset.
          */
-        this._PublishSearchService.createAnAsset(body).subscribe(resp => {
+        this._PublishSearchService.createAnAsset(body).map(res => res.json()).subscribe(resp => {
             console.log(resp);
         })
         /**
