@@ -48,7 +48,8 @@ export class PublishComponent {
     private _asset_id:number;
     constructor(public params: RouteParams, private router: Router, private _PublishSearchService: SearchService, public toastr: ToastsManager) {}
     ngOnInit() {
-        console.log('PublishComponent initialize');  
+        console.log('PublishComponent initialize'); 
+
     }
     publishPackage(){
         let body = $.param( this.assetsobject );
@@ -75,4 +76,5 @@ export class PublishComponent {
          * Thumbnails api call.
          */
     }
+    
 }
