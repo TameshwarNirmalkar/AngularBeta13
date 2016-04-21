@@ -158,7 +158,6 @@ export class SearchComponent {
 
 	downloadPackage(e: Event, id: string) {
 		this._SearchList.getAnAsset(id).map(res => res.json()).subscribe(resp => {
-			console.log( resp );
 			let file_id = this._commonclass.convertArrayToString(resp);
 			if(file_id !== ''){
 				this.downloadAsset(file_id, id);

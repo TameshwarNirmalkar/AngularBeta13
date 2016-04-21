@@ -12,41 +12,68 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
     selector: 'publish-component',
     templateUrl: 'build/app/components/publish-component/publish.component.html',
     directives: [ROUTER_DIRECTIVES, LoadingMask],
-    providers: [SearchService]
+    providers: [SearchService, ToastsManager]
 })
 
 /**
  * PublishComponent
  */
 export class PublishComponent {
-    public formelement: Object = {
+    
+    public assetsobject: Object = {
         "asset_name":"",
         "tags": "",
         "description": "",
         "media_type_id": 61,
         "software": 99,
-        "publish": true,
+        "publish": false,
         "progress_status": 1,
-        //"parent_asset_id": "",
+        "parent_asset_id": "",
         "license_id": "MIT",
-        //"asset_taxonomy": "",
+        "asset_taxonomy": "",
         "language": "en",
         "region": "US",
-        //"member_id": ""
+        "member_id": ""
     };
-    constructor(public params: RouteParams, private router: Router, private _PublishSearchService: SearchService) {}
+    public assetupload: Object = {
+        "unzip":false,
+        "fileurl": "",
+        "filename": "",
+        "public": false,
+        "software": 99,
+        "use_https": false
+        
+    };
+    private _asset_id:number;
+    constructor(public params: RouteParams, private router: Router, private _PublishSearchService: SearchService, public toastr: ToastsManager) {}
     ngOnInit() {
         console.log('PublishComponent initialize'); 
 
     }
     publishPackage(){
-        let body = $.param( this.formelement );
-        //body = body.replace(/\+/g, ' ');
-        //console.log( decodeURIComponent($.param( this.formelement ).replace(/\+/g, ' ') ) );
-        //console.log( body.replace(/\+/g, ' ') );
-        this._PublishSearchService.createAnAsset(body).subscribe(resp => {
+        let body = $.param( this.assetsobject );
+        /**
+         * Step 1. Create an Asset.
+         */
+        this._PublishSearchService.createAnAsset(body).map(res => res.json()).subscribe(resp => {
             console.log(resp);
         })
+        /**
+         * Step 2. File upload.
+         */
+        // this._PublishSearchService.uploadAsset(body).subscribe(resp => {
+        //     console.log(resp);
+        // })
+        /**
+         * Step 3. Create an Asset.
+         */
+        // this._PublishSearchService.addSourceToAsset(body).subscribe(resp => {
+        //     console.log(resp);
+        // })
+        
+        /**
+         * Thumbnails api call.
+         */
     }
     
 }

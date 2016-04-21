@@ -15,16 +15,16 @@
 	        <button type="button" class="btn-menu-close hidden-md hidden-lg" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >&#215;</button>
 	        <ul class="nav nav-tabs">
 	            <li class="hidden-md hidden-lg">
-	                <a href="#"><h4>Home</h4></a>
+	                <a href="javascript:void(0);"><h4>Home</h4></a>
 	            </li>
 	            <li>
 	                <a [routerLink]="['Assets']"><h4>Explore Packages</h4></a>
 	            </li>
 	            <li>
-	                <a class="#"><h4>Explore Authors</h4></a>
+	                <a href="javascript:void(0);"><h4>Explore Authors</h4></a>
 	            </li>
 	            <li>
-	                <a href="#"><h4>My Packages</h4></a>
+	                <a href="javascript:void(0);"><h4>My Packages</h4></a>
 	            </li>
 	            <li class="active">
 	                <a [routerLink]="['Publish']"><h4>Publish</h4></a>
@@ -39,12 +39,13 @@
                 <div class="input-label-group">
                 	
                     <span class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                    	<span class="input-title-text small-box text-hidden">Package Name</span><input type="text" class="form-control logo-width-adjust" placeholder="Package name*" [(ngModel)]="formelement.asset_name"></span>
+                    	<span class="input-title-text small-box text-hidden">Package Name</span><input type="text" class="form-control logo-width-adjust" placeholder="Package name*" [(ngModel)]="assetsobject.asset_name"></span>
                 </div>
                 <div >
                 	<span class="col-lg-8 col-md-8 col-sm-12 col-xs-12 logo-text-width add-margin-top">Author name</span>
-                    <span class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><input type="text" class="form-control logo-width-adjust add-author" placeholder="Other Authors" [(ngModel)]="formelement.tags"></span>
+                    <span class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><input type="text" class="form-control logo-width-adjust add-author" placeholder="Other Authors" [(ngModel)]="assetsobject.tags"></span>
                     <span class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+
                     <button class="btn btn-default btn-pub-group btn-add">+ Add</button></span>
 					<div class="col-lg-6 col-md-6 logo-text-width">
 						<span class="tag label label-auth">
@@ -62,7 +63,7 @@
                 <div >
                     <span class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<span class="input-title-text text-hidden">Package Name</span>
-                    	<textarea class="form-control" rows="8" placeholder="Description*" [(ngModel)]="formelement.description"></textarea></span>
+                    	<textarea class="form-control" rows="8" placeholder="Description*" [(ngModel)]="assetsobject.description"></textarea></span>
                 </div>
             </div>
             <div class="expand-col">
@@ -75,18 +76,18 @@
 					<span class="col-lg-12 col-md-12 col-sm-12 col-xs-12 scr-label">SCREENSHOTS:</span>
 	                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 scr-holder">
 		                    <div class="more-img-holder col-sm-12 col-xs-12">
-							  <input type="file" id="myFile" class="logo-holder">
+							  <input type="file" class="logo-holder">
 							  <span class="scr-sh-holder"></span>
 							</div>
 							<div class="more-img-holder hidden-sm hidden-xs">
-							  <input type="file" id="myFile" class="logo-holder">
+							  <input type="file" class="logo-holder">
 							  <span class="scr-sh-holder"></span>
 							</div>
 							<div class="more-img-holder hidden-sm hidden-xs">
-							  <input type="file" id="myFile" class="logo-holder">
+							  <input type="file" class="logo-holder">
 							</div>
 							<div class="more-img-holder hidden-sm hidden-xs">
-							  <input type="file" id="myFile" class="logo-holder">
+							  <input type="file" class="logo-holder">
 							</div>
 						</div>
 	                </div>
@@ -94,14 +95,14 @@
 		                <div >
 		                    <span class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		                    	<span class="input-title-text text-hidden">Whats New:</span>
-		                    	<textarea class="form-control" rows="8" placeholder="Whats New:" [(ngModel)]="formelement.description"></textarea>
+		                    	<textarea class="form-control" rows="8" placeholder="Whats New:"></textarea>
 		                    </span>
 		                </div>
 		            </div>
 	                <div class="form-group">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<span class="input-title-text text-hidden">Works with:</span>
-							<select class="form-control col-lg-10 col-md-10 col-sm-12 col-xs-12" id="sel1" placeholder="Works with:">
+							<select class="form-control col-lg-10 col-md-10 col-sm-12 col-xs-12" placeholder="Works with:">
 								<option>Works with: Choose Dynamo Version</option>
 								<option>Version 01</option>
 								<option>Version 02</option>
@@ -169,8 +170,6 @@
 		<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 ">
 			<h4>Package files</h4>
 			<p>[Explanation about what the user needs include here]<br>Lorem ipsum dolor sit amet consectuter.</p>
-			
-
 			<ul>
 				<li>
 					<span class="del-btn"><a href=""><i class="fa fa-minus-circle " aria-hidden="true"></i></a></span>
