@@ -19,7 +19,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
  * PublishComponent
  */
 export class PublishComponent {
-    public formelement: Object = {
+    public assetsobject: Object = {
         "asset_name":"",
         "tags": "",
         "description": "",
@@ -27,24 +27,48 @@ export class PublishComponent {
         "software": 99,
         "publish": true,
         "progress_status": 1,
-        //"parent_asset_id": "",
+        "parent_asset_id": "",
         "license_id": "MIT",
-        //"asset_taxonomy": "",
+        "asset_taxonomy": "",
         "language": "en",
         "region": "US",
-        //"member_id": ""
+        "member_id": ""
+    };
+    public assetupload: Object = {
+        "unzip":false,
+        "fileurl": "",
+        "filename": "",
+        "public": false,
+        "software": 99,
+        "use_https": false
+        
     };
     constructor(public params: RouteParams, private router: Router, private _PublishSearchService: SearchService) {}
     ngOnInit() {
         console.log('PublishComponent initialize');  
     }
     publishPackage(){
-        let body = $.param( this.formelement );
+        let body = $.param( this.assetsobject );
         //body = body.replace(/\+/g, ' ');
         //console.log( decodeURIComponent($.param( this.formelement ).replace(/\+/g, ' ') ) );
         //console.log( body.replace(/\+/g, ' ') );
+        /**
+         * Step 1. Create an Asset.
+         */
         this._PublishSearchService.createAnAsset(body).subscribe(resp => {
             console.log(resp);
         })
+        /**
+         * Step 2. File upload.
+         */
+        // this._PublishSearchService.uploadAsset(body).subscribe(resp => {
+        //     console.log(resp);
+        // })
+        /**
+         * Step 3. Create an Asset.
+         */
+        // this._PublishSearchService.addSourceToAsset(body).subscribe(resp => {
+        //     console.log(resp);
+        // })
     }
 }

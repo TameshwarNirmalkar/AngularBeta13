@@ -76,10 +76,26 @@ export class SearchService{
 	 * @Post: Create an asset
 	 */
 	createAnAsset(body:string){
-		let opt = new BaseRequestOptions();
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		console.log( headers );
+		return this.http.post(this._ServerConfig.acgcreateasset+body, '', {headers: headers});
+	}
+	
+	/**
+	 * @Post File upload
+	 */
+	uploadAsset(body:string){
+		let headers = new Headers();
+		this.createAuthorizationHeader(headers);
+		return this.http.post(this._ServerConfig.acgcreateasset+body, '', {headers: headers});
+	}
+	
+	/**
+	 * @Post: Association with asset.
+	 */
+	addSourceToAsset(body:string){
+		let headers = new Headers();
+		this.createAuthorizationHeader(headers);
 		return this.http.post(this._ServerConfig.acgcreateasset+body, '', {headers: headers});
 	}
 }

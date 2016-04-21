@@ -37,14 +37,14 @@
             <div class="form-group">
                 <label class="col-lg-2 col-md-2 text-right"><input type="file" id="myFile" class="logo-holder"></label>
                 <div class="col-lg-10">
-                    <span class="col-lg-10 col-md-10"><input type="text" class="form-control" placeholder="Package name" [(ngModel)]="formelement.asset_name"></span>
+                    <span class="col-lg-10 col-md-10"><input type="text" class="form-control" placeholder="Package name" [(ngModel)]="assetsobject.asset_name"></span>
                     <span class="col-lg-12 col-md-12">Author name</span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-2 control-label">Others authors:</label>
                 <div class="col-lg-10 col-md-10">
-                    <span class="col-lg-10 col-md-10"><input type="text" class="form-control" placeholder="Name" [(ngModel)]="formelement.tags"></span>
+                    <span class="col-lg-10 col-md-10"><input type="text" class="form-control" placeholder="Name" [(ngModel)]="assetsobject.tags"></span>
                     <span class="col-lg-2 col-md-2">
                     <button class="btn btn-default btn-pub-group btn-add">+ Add</button></span>
 					<span class="col-lg-12 col-md-12">Author name added</span>
@@ -53,7 +53,7 @@
             <div class="form-group">
                 <label class="col-lg-2 col-md-2 control-label">Descriptions:</label>
                 <div class="col-lg-10">
-                    <span class="col-lg-12 col-md-12"><textarea class="form-control" rows="8" placeholder="Description of what your package does." [(ngModel)]="formelement.description"></textarea></span>
+                    <span class="col-lg-12 col-md-12"><textarea class="form-control" rows="8" placeholder="Description of what your package does." [(ngModel)]="assetsobject.description"></textarea></span>
                 </div>
             </div>
             <div class="expand-col">
@@ -82,7 +82,7 @@
 	                <div class="form-group">
 						<label for="sel1" class="col-lg-2 col-md-2 control-label">Works with:</label>
 						<div class="col-lg-10 col-md-10">
-							<select class="form-control col-lg-10 col-md-10" id="sel1">
+							<select class="form-control col-lg-10 col-md-10" id="sel1" [(ngModel)]="assetsobject.tags">
 								<option>Choose Dynamo Version</option>
 								<option>Version 01</option>
 								<option>Version 02</option>
