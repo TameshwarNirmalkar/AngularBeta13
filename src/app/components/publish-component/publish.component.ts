@@ -36,7 +36,8 @@ export class PublishComponent {
     };
     constructor(public params: RouteParams, private router: Router, private _PublishSearchService: SearchService) {}
     ngOnInit() {
-        console.log('PublishComponent initialize');  
+        console.log('PublishComponent initialize'); 
+
     }
     publishPackage(){
         let body = $.param( this.formelement );
@@ -47,4 +48,5 @@ export class PublishComponent {
             console.log(resp);
         })
     }
+    
 }
