@@ -51,9 +51,6 @@ export class PublishComponent {
     }
     publishPackage(){
         let body = $.param( this.assetsobject );
-        //body = body.replace(/\+/g, ' ');
-        //console.log( decodeURIComponent($.param( this.formelement ).replace(/\+/g, ' ') ) );
-        //console.log( body.replace(/\+/g, ' ') );
         /**
          * Step 1. Create an Asset.
          */
@@ -72,5 +69,9 @@ export class PublishComponent {
         // this._PublishSearchService.addSourceToAsset(body).subscribe(resp => {
         //     console.log(resp);
         // })
+        
+        /**
+         * Thumbnails api call.
+         */
     }
 }
