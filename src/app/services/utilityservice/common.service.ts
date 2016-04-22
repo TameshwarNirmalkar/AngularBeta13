@@ -17,5 +17,20 @@ export class CommonClass {
     likeUnlike(count:number){
         return (count > 0) ? count : '';
     }
+    
+    readURL(input, imgid) {
+        console.log(input,':',input.target.value);
+        if (input.target.files && input.target.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function () {
+                $('#'+imgid).attr('src', reader.result);
+                //$(input.target).addClass('temp').css('background', '#c00');
+                //$(input.target).addClass('temp');
+            }
+            
+            reader.readAsDataURL(input.target.files[0]);
+        }
+    }
        
 }
