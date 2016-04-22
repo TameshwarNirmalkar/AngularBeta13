@@ -32,7 +32,7 @@
 			<div class="row" style="height:62vh; overflow-y:auto;" data-role="search-list-panel" class="search-list-panel">
 				<div class="searchpanel pull-left" style="width:100%">
 					<ul>
-						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left pkg-item" (click)="getAsset($event, a.asset_id)">
+						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left pkg-item" (click)="getAsset($event, a.asset_id); closeClick = !closeClick">
 							
 
 							<span style="box-sizing:border-box;">
@@ -74,7 +74,10 @@
 
 		</div>
 
-		<div class="col-lg-7 search-right-panel">
+		<div class="col-lg-7 col-md-7 col-xs-12 col-sm-12 search-right-panel search-right-panel-mob" [hidden]="!closeClick">
+			<a class="close-r-panel hidden-md hidden-lg" (click)="closeClick = !closeClick"></a>
+			<div class="col-xs-12 col-sm-12 search-right-panel-inner-mob">
+
 			<div *ngIf="singleList" class="row">
 					<section class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 						<ul class="nav nav-pills pull-right">
@@ -197,6 +200,7 @@
 						  </div>
 					</section>
 			</div>
+		</div>
 			<loading-mask [hidden]="assetloadSpiner"></loading-mask>
 		</div>
 	</div>
