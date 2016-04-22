@@ -45,18 +45,20 @@
 					<span class="col-lg-12 col-md-12 col-sm-12 col-xs-12 scr-label">SCREENSHOTS:</span>
 	                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 scr-holder">
 		                    <div class="more-img-holder col-sm-12 col-xs-12">
-							  <input type="file" class="logo-holder">
-							  <span class="scr-sh-holder"></span>
+							  <input type="file" class="logo-holder" (change)="commonclass.readURL($event,'firstimg')">
+							  <img src="#" id="firstimg" class="scr-sh-holder" />
 							</div>
 							<div class="more-img-holder hidden-sm hidden-xs">
-							  <input type="file" class="logo-holder">
-							  <span class="scr-sh-holder"></span>
+							  <input type="file" class="logo-holder" (change)="commonclass.readURL($event,'secondimg')">
+							  <img src="#" id="secondimg" class="scr-sh-holder" />
 							</div>
 							<div class="more-img-holder hidden-sm hidden-xs">
-							  <input type="file" class="logo-holder">
+							  <input type="file" class="logo-holder" (change)="commonclass.readURL($event,'thirdimg')">
+							  <img src="#" id="thirdimg" class="scr-sh-holder" />
 							</div>
 							<div class="more-img-holder hidden-sm hidden-xs">
-							  <input type="file" class="logo-holder">
+							  <input type="file" class="logo-holder" (change)="commonclass.readURL($event,'fourthimg')">
+							  <img src="#" id="fourthimg" class="scr-sh-holder" />
 							</div>
 						</div>
 	                </div>

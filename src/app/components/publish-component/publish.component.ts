@@ -8,6 +8,7 @@ import {LoadingMask} from '../../directive/loadingmask/loadingmask';
 import {SearchService} from '../../services/search/search.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { NavigationComponent } from '../navigation/navigation';
+import { CommonClass } from '../../services/utilityservice/common.service';
 
 @Component({
     selector: 'publish-component',
@@ -20,7 +21,7 @@ import { NavigationComponent } from '../navigation/navigation';
  * PublishComponent
  */
 export class PublishComponent {
-    
+    private commonclass = new CommonClass();
     public assetsobject: Object = {
         "asset_name":"",
         "tags": "",
