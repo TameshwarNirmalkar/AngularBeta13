@@ -21,6 +21,7 @@ import { CommonClass } from '../../services/utilityservice/common.service';
  * PublishComponent
  */
 export class PublishComponent {
+    myLabel:boolean = false;
     private commonclass = new CommonClass();
     public assetsobject: Object = {
         "asset_name":"",
@@ -77,5 +78,18 @@ export class PublishComponent {
          * Thumbnails api call.
          */
     }
-    
+    onBlurMethod($event){
+       if($event.target.value == "" || $event.target.value == null){
+            this.myLabel = false;
+       }else{
+            this.myLabel = true;
+       }
+    }
+    onKeyup($event){
+        if($event.target.value == "" || $event.target.value == null){
+            this.myLabel = false;
+       }else{
+            this.myLabel = true;
+       }
+    }
 }
