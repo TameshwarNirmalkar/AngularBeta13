@@ -8,7 +8,7 @@
                 <div class="input-label-group">
                 	
                     <span class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                    	<span class="input-title-text small-box text-hidden">Package Name</span><input type="text" class="form-control logo-width-adjust" placeholder="Package name*" [(ngModel)]="assetsobject.asset_name"></span>
+                    	<span class="input-title-text small-box " [hidden]="!myLabel">Package Name</span><input type="text" class="form-control logo-width-adjust" id="a" (keyup)="onKeyup(myLabel = true)" (blur)="onBlurMethod($event)" placeholder="Package name*" [(ngModel)]="assetsobject.asset_name"></span>
                 </div>
                 <div >
                 	<span class="col-lg-8 col-md-8 col-sm-12 col-xs-12 logo-text-width add-margin-top">Author name</span>
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <div >
                     <span class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<span class="input-title-text text-hidden">Package Name</span>
+						<span class="input-title-text">Package Name</span>
                     	<textarea class="form-control" rows="8" placeholder="Description*" [(ngModel)]="assetsobject.description"></textarea></span>
                 </div>
             </div>
