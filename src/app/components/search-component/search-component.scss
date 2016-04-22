@@ -129,6 +129,7 @@
 			.fa{
 				color: #7a7a7a;
 			}
+
 		}
 	}
 	.nav-tabs{
@@ -657,6 +658,13 @@
 			}
 			.right-panel-title{
 				max-width: calc(100% - 125px);
+			}
+			.dtl-section{
+				.footer-list{
+					.mob-date{
+						font-size: 12px;
+					}
+				}
 			}
 
 			.desc-img-section{

@@ -26,6 +26,7 @@ import {Observable} from 'rxjs/Rx';
  * PublishComponent
  */
 export class PublishComponent {
+    myLabel:boolean = false;
     private commonclass = new CommonClass();
     private _asset_id:number = 0;
     private _publishloadSpiner:boolean = true;
@@ -128,5 +129,18 @@ export class PublishComponent {
          * Thumbnails api call.
          */
     }
-    
+    onBlurMethod($event){
+       if($event.target.value == "" || $event.target.value == null){
+            this.myLabel = false;
+       }else{
+            this.myLabel = true;
+       }
+    }
+    onKeyup($event){
+        if($event.target.value == "" || $event.target.value == null){
+            this.myLabel = false;
+       }else{
+            this.myLabel = true;
+       }
+    }
 }

@@ -17,12 +17,13 @@
 	 color: #4b4b4b;  
 	}
 	.btn-pub-group{
-		background: none;
-		border: 1px solid #9b9b9b;
+		background: #4f5c64 !important;
 		border-radius: 0;
+		border: none !important;
 		height: 40px;
-		color: #9b9b9b;
+		color: #929596;
 		background: #212121;
+		font-size: 16px;
 		&:focus{
 			outline: none;
 		}
@@ -66,6 +67,13 @@
 		overflow-y:auto;
 		h4{
 			font-weight: normal;
+			font-family: Open Sans;
+			text-transform: uppercase;
+			color: #5b5b5b;
+		}
+		p{
+			font-size: 18px;
+			color: #9b9b9b;
 		}
 		.btn-add-files{
 			margin-top: 20px;
@@ -79,6 +87,7 @@
 				font-size: 16px;
 				font-weight: normal;
 				margin-bottom: 10px;
+				color: #5b5b5b;
 				.li-icon, .del-btn{
 					i{font-size: 18px;}
 				}
@@ -153,19 +162,6 @@
 				width: 80px;
 				outline: none;
 
-				&:after{
-					content: 'Add Logo';
-					height: 100%;
-					width: 100%;
-					display: inline-block;
-					z-index: 1;
-					position: absolute;
-					top: 0;
-					background: #424242;
-					text-align: center;
-					padding: 65px 20px;
-					
-				}
 				&:focus, &:active{
 					outline: none;
 				}
@@ -173,6 +169,56 @@
 					cursor: pointer;
 				}
 				
+			}
+			.inputfile {
+				width: 0.1px;
+				height: 0.1px;
+				opacity: 0;
+				overflow: hidden;
+				position: absolute;
+				z-index: -1;
+			}
+			.inputfile + label {
+				height: 100%;
+				width: 100%;
+				display: inline-block;
+				z-index: 1;
+				position: absolute;
+				top: 0;
+				background: transparent;
+				text-align: center;
+				display: flex;
+				-ms-flex-direction: column;
+				-webkit-flex-direction: column;
+				flex-direction: column;
+				-webkit-justify-content: center;
+				justify-content: center;
+				max-width: 160px;
+				font-size: 55px;
+				font-weight: 300;
+				border: 1px solid #646464;
+			}
+
+			.inputfile:focus + label,
+			.inputfile + label:hover {
+			    background-color: rgba(0,0,0,0.1);
+			    cursor: pointer;
+			}
+
+			.logo-label-container{
+				
+				height: 160px;
+				.inputfile + label{
+					font-size: 18px;
+					border: 1px solid #646464;
+					left: 12px;
+					display: flex;
+					-ms-flex-direction: column;
+					-webkit-flex-direction: column;
+					flex-direction: column;
+					-webkit-justify-content: center;
+					justify-content: center;
+				}
 			}
 			.label-auth{
 				position: relative;
@@ -229,9 +275,10 @@
 			.btn-pub{
 				margin-top: 10px;
 				border-color: #5a864f;
-				color: #5a864f;
+				
 				text-transform: uppercase;
 				width: 120px;
+				background: #2f8699 !important;
 			}
 			.btn-add{
 				width: 100%;
@@ -258,6 +305,12 @@
 				color: #5b5b5b;
 				margin-bottom: 10px;
 			}
+			.file-upload-holder{
+				&:after{
+					background: transparent;
+					border: 1px solid #6d6d6d !important;
+				}
+			}
 			.scr-holder{
 				.scr-sh-holder{
 					height: 100%;
@@ -266,10 +319,10 @@
 					max-width: 160px;
 					display: inline-block;
 					position: absolute;
-					background: black;
+					background: #424242;
 					position: absolute;
 					top: 0;
-					z-index: 2;
+					z-index: 0;
 				}
 				.more-img-holder{
 					width: 25%;
@@ -289,18 +342,92 @@
 				.logo-holder{
 					height: 100px;
 					float: none;
-					&:after{
-						content:'+';
-						width:100%;
-						max-width: 160px;
-						height: 100%;
-						border: 1px dashed #aaa;
-						font-size: 50px;
-						padding: 48px;
-						font-weight: 300;
-					}
+					
+				}
+				.logo-holder + label{
+					content:'+';
+					width:100%;
+					max-width: 160px;
+					height: 100%;
+					border: 1px dashed #6d6d6d;
+					font-size: 50px;
+					display: flex;
+					-ms-flex-direction: column;
+					-webkit-flex-direction: column;
+					flex-direction: column;
+					-webkit-justify-content: center;
+					justify-content: center;
+					font-weight: 300;
 				}
 			}
 		}
 	}
+}
+
+@media (max-width: 990px) { 
+	.publish-component{
+		.col-sm-12, .col-xs-12{
+			padding: 10px 5px;
+		}
+		.publish-left-container{
+			.logo-label-container{
+				margin-left: 24%;
+			}
+			.form-horizontal{
+				.logo-width-adjust{
+					width: 100%;
+					margin-left: 0;
+				}
+				.logo-text-width{
+					width: 100%;
+					margin-left: 0;
+				}
+				.btn-add{
+					width: 90px;
+					float: right;
+					margin-top: 10px;
+				}
+				.coll-btn{
+					width: 100%;
+					float: none;
+					margin-top: 0;
+				}
+				.contact-boxes{
+					.ex-remove-space{
+						margin-top: 0;
+					}
+					.form-control{
+						margin-top: 20px;
+					}
+
+				}
+				.form-group{
+					margin-bottom: 0 !important;
+
+					.scr-holder{
+						.mob-scrsht-holder{
+							width: 100%;
+							max-width: auto;
+							min-height: 300px;
+							margin-bottom: 10px;
+							.file-upload-holder{
+								max-width: inherit;
+								width: 100%;
+							}
+							.scr-sh-holder{
+								max-width: inherit;
+								width: 100%;
+							}
+						}
+					}
+				}
+				.mob-form-group{
+					margin-top: 20px !important;
+					margin-bottom: 5px !important;
+				}
+			}
+		}
+	}
+	
+
 }
