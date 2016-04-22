@@ -4,7 +4,10 @@
 
 		<form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-lg-2 col-md-2 text-right"><input type="file" id="myFile" class="logo-holder"></label>
+                <label class="col-lg-2 col-md-2 text-right">
+					<input type="file" class="logo-holder" (change)="commonclass.readURL($event,'logoimg')">
+					<img src="#" id="logoimg" />
+				</label>
                 <div class="input-label-group">
                 	
                     <span class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
@@ -15,8 +18,8 @@
                     <span class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><input type="text" class="form-control logo-width-adjust add-author" placeholder="Other Authors" [(ngModel)]="assetsobject.tags"></span>
                     <span class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
 
-                    <button class="btn btn-default btn-pub-group btn-add">+ Add</button></span>
-					<div class="col-lg-6 col-md-6 logo-text-width">
+                    <button class="btn btn-default btn-pub-group btn-add hidden">+ Add</button></span>
+					<div class="col-lg-6 col-md-6 logo-text-width hidden">
 						<span class="tag label label-auth">
 						  <span>Authors 01</span>
 						  <a>&#215;</a> 
@@ -156,7 +159,14 @@
 				</li>
 			</ul>
 
-			<span class="col-md-12 col-lg-12 col-sm-12 col-xs-12 text-center btn-add-files"><button class="btn btn-default btn-pub-group">Add files</button></span>
+			<span class="col-md-12 col-lg-12 col-sm-12 col-xs-12 text-center btn-add-files">
+				<div class="more-img-holder hidden-sm hidden-xs">
+					<input type="file" class="logo-holder"  placeholder="Add files" (change)="filePath($event)">
+				</div>
+			</span>
 		</div>
 	</div>
+	
+	<loading-mask [hidden]="_publishloadSpiner"></loading-mask>
+	
 </div>
