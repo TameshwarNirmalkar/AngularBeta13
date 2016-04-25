@@ -16,6 +16,7 @@ const SERVER_CONSTANT = {
     "ACGI_TOKEN": TOKENKEY,
     "ACG_CREATEASSET": DOMAIN+'/api/v2/assets?',
     "ACG_UPLOAD": 'https://'+STORGAGESERVER+'/api/v2/files/upload?',
+    "ACG_ADDTOSOURCE": DOMAIN+"/api/v2/assets/"
 };
 export class ServerConfig{
     public acgiasset:string = SERVER_CONSTANT.ACGI_ASSETS;
@@ -25,6 +26,7 @@ export class ServerConfig{
     public acgitoken:string = SERVER_CONSTANT.ACGI_TOKEN;
     public acgcreateasset:string = SERVER_CONSTANT.ACG_CREATEASSET;
     public acgafc:string = SERVER_CONSTANT.AFC;
-    public acgupload:string = SERVER_CONSTANT.ACG_UPLOAD
+    public acgupload:string = SERVER_CONSTANT.ACG_UPLOAD;
+    public acgaddtosource:string = SERVER_CONSTANT.ACG_ADDTOSOURCE;
     constructor() {}
 }

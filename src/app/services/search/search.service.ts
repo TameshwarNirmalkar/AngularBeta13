@@ -98,6 +98,6 @@ export class SearchService{
 	addSourceToAsset(body:string){
 		let headers = new Headers();
 		this.createAuthorizationHeader(headers);
-		return this.http.post(this._ServerConfig.acgcreateasset+body, '', {headers: headers});
+		return this.http.post(this._ServerConfig.acgaddtosource+body, '', {headers: headers});
 	}
 }
