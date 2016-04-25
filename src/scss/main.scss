@@ -27,29 +27,14 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-Downloads{
-  vertical-align: middle;
-  &:before {
+.icon-Downloads:before {
     content: "\e900";
-    font-size: 16px;
-    color: #7a7a7a;
-  }
 }
-.icon-LastUpdated{
-  vertical-align: middle;
-  &:before {
+.icon-LastUpdated:before {
     content: "\e901";
-    font-size: 16px;
-    color: #7a7a7a;
-  }
 }
-.icon-Like{
-  vertical-align: middle;
-  &:before {
+.icon-Like:before {
     content: "\e902";
-    font-size: 16px;
-    color: #7a7a7a;
-  }
 }
 a, a:hover{color:#999; text-decoreation:none;}
 /* Sticky footer styles-------------------------------------------------- */
