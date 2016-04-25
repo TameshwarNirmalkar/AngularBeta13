@@ -78,6 +78,23 @@
 		.btn-add-files{
 			margin-top: 20px;
 		}
+		.more-file-holder{
+			.add-files-holder{
+				width: 0;
+				overflow: hidden;
+			}
+			.file-upload-holder{
+				font-size: 16px;
+				font-weight: 300;
+				padding: 10px 20px;
+				background-color: #4f5c64;
+				text-transform: uppercase;
+				&:hover{
+					background-color: #596065;
+					cursor: pointer;
+				}
+			}
+		}
 		ul{
 			list-style: none;
 			margin: 0;
@@ -206,7 +223,19 @@
 			}
 
 			.logo-label-container{
-				
+				.logo-img-holder{
+					height: 100%;
+					width: 100%;
+					min-height: 160px;
+					max-width: 160px;
+					display: inline-block;
+					position: absolute;
+					background: #424242;
+					position: absolute;
+					top: 0;
+					z-index: 0;
+					left: 12px;
+				}
 				height: 160px;
 				.inputfile + label{
 					font-size: 18px;
@@ -219,6 +248,7 @@
 					-webkit-justify-content: center;
 					justify-content: center;
 				}
+
 			}
 			.label-auth{
 				position: relative;
@@ -256,7 +286,7 @@
 					font-size: 16px;
 					text-decoration: none;
 					&:hover{
-						text-decoration: none;
+						text-decoration: underline;
 						cursor: pointer;
 					}
 				}
@@ -279,6 +309,10 @@
 				text-transform: uppercase;
 				width: 120px;
 				background: #2f8699 !important;
+
+				&:hover{
+					background-color: #287f92 !important;
+				}
 			}
 			.btn-add{
 				width: 100%;
@@ -378,6 +412,7 @@
 					width: 100%;
 					margin-left: 0;
 				}
+
 				.logo-text-width{
 					width: 100%;
 					margin-left: 0;
