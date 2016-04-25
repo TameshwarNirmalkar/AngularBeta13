@@ -1,5 +1,5 @@
 {
-  "name": "Angular2_Beta_13",
+  "name": "PackageManager",
   "version": "1.0.0-SNAPSHOT",
   "description": "A minimal Angular2 playground using TypeScript",
   "repository": {
@@ -33,7 +33,6 @@
     "gulp-typescript": "^2.12.2",
     "gulp-watch": "^4.3.5",
     "main-bower-files": "^2.11.1",
-    "ng2-file-upload": "^1.0.0-beta.1",
     "ng2-toastr": "^0.1.8",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",

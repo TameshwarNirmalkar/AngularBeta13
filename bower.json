@@ -1,6 +1,6 @@
 {
-  "name": "Angular2_beta_13",
-  "description": "A minimal Angular2 playground using TypeScript",
+  "name": "PackageManagerBower",
+  "description": "Vender dependencies management.",
   "main": "",
   "authors": [
     "Tameshwar Nirmalkar <tameshwar.nirmalkar@gmail.com>"
