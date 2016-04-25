@@ -86,8 +86,10 @@ export class SearchService{
 	 */
 	uploadAsset(body:string){
 		let headers = new Headers();
+		headers.append('Content-type','multipart/form-data; boundary="---abc123"');
+		//headers.append('Content-type','application/zip, application/octet-stream');
 		this.createAuthorizationHeader(headers);
-		return this.http.post(this._ServerConfig.acgcreateasset+body, '', {headers: headers});
+		return this.http.post(this._ServerConfig.acgupload+body, '', {headers: headers});
 	}
 	
 	/**
