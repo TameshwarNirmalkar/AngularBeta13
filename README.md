@@ -1,4 +1,4 @@
-# Angular 2.0 Version: Beta 13
+# PackageManager
 
 A minimal [Angular2](https://angular.io/) playground using [TypeScript](http://www.typescriptlang.org/) and [SystemJS loader](https://github.com/systemjs/systemjs)
 
@@ -10,6 +10,8 @@ A minimal [Angular2](https://angular.io/) playground using [TypeScript](http://w
 * `wiredep` for bower_components file injection
 * `gulp-cache` for cache the static file.
 * `gulp-typescript` for TypeScript.
+* `jquery` (Dom manipulation) for TypeScript.
+* `moment` (Date time manipulation) for TypeScript.
 
 ## Install
 

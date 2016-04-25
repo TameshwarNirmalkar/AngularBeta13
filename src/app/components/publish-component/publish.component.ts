@@ -91,6 +91,12 @@ export class PublishComponent {
             xhr.setRequestHeader('X-Session','7BA5A8F9-5D7B-48A7-832E-7BEF7615DE55');
             xhr.send(formData);
         });
+        // usage
+        // this.makeFileRequest('https://beta-storage.acg.autodesk.com/api/v2/files/upload?',[],this.filesToUpload).then((result) => {
+        //     console.log(result);
+        // }, (error) => {
+        //     console.error(error);
+        // });
     }
     
     publishPackage(){
@@ -113,11 +119,7 @@ export class PublishComponent {
         this._PublishSearchService.uploadAsset(fileuploadbody).map(res => res.json()).subscribe(resp => {
               console.log(resp);
         })
-        // this.makeFileRequest('https://beta-storage.acg.autodesk.com/api/v2/files/upload?',[],this.filesToUpload).then((result) => {
-        //     console.log(result);
-        // }, (error) => {
-        //     console.error(error);
-        // });
+        
         /**
          * Step 3. Create an Asset.
          */

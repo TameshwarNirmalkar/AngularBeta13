@@ -1,5 +1,5 @@
 import {Component, Injectable, Inject}               from 'angular2/core';
-import {Http, Response, Headers, BaseRequestOptions, RequestOptions} from 'angular2/http';
+import {Http, Response, Headers, BaseRequestOptions} from 'angular2/http';
 
 /**
  * Server config import
