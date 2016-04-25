@@ -32,7 +32,7 @@
 			<div class="row" style="height:62vh; overflow-y:auto;" data-role="search-list-panel" class="search-list-panel">
 				<div class="searchpanel pull-left" style="width:100%">
 					<ul>
-						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left pkg-item" [ngClass]="{'active': isActive == a.asset_id}" (click)="getAsset($event, a.asset_id); closeClick = !closeClick; isActive = a.asset_id">
+						<li *ngFor="#a of assetsList | orderBy:[predicate]" role="button" style="width: inherit;" class="listdisplay pull-left pkg-item" [ngClass]="{'active': isActive == a.asset_id}" (click)="getAsset($event, a.asset_id); closeClick = true; isActive = a.asset_id">
 							
 
 							<span style="box-sizing:border-box;">
