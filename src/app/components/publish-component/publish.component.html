@@ -5,9 +5,9 @@
 		<form class="form-horizontal" role="form">
             <div class="form-group">
                 <label class="col-lg-2 col-md-2 text-right logo-label-container">
-					<input type="file" name="file" id="addlogo" class="inputfile" (change)="commonclass.readURL($event,'logoimg')">
-					<img id="logoimg" />
+					<input type="file" name="file" id="addlogo" class="inputfile" (change)="commonclass.readURL($event,'logoimg')"/>
 					<label for="addlogo" class="file-upload-holder">Add logo</label>
+					<img id="logoimg" class="logo-img-holder" />
 				</label>
                 <div class="input-label-group">
                 	
@@ -17,7 +17,7 @@
                 </div>
                 <div >
                 	<span class="col-lg-8 col-md-8 col-sm-12 col-xs-12 logo-text-width add-margin-top">Author name</span>
-                    <span class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><input type="text" class="form-control logo-width-adjust add-author" placeholder="Other Authors" [(ngModel)]="assetsobject.tags"></span>
+                    <span class="col-lg-10 col-md-10 col-sm-12 col-xs-12"><input type="text" class="form-control logo-width-adjust add-author" placeholder="Other Authors" [(ngModel)]="assetsobject.tags"></span>
                     <span class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
 
                     <button class="btn btn-default btn-pub-group btn-add hidden">+ Add</button></span>
@@ -166,8 +166,9 @@
 			</ul>
 
 			<span class="col-md-12 col-lg-12 col-sm-12 col-xs-12 text-center btn-add-files">
-				<div class="more-img-holder hidden-sm hidden-xs">
-					<input type="file" class="logo-holder"  placeholder="Add files" (change)="filePath($event)">
+				<div class="more-file-holder hidden-sm hidden-xs">
+					<input type="file" class="add-files-holder pull-right" id="add-files" placeholder="Add files" (change)="filePath($event)">
+					<label for="add-files" class="file-upload-holder pull-right">Add Package</label>
 				</div>
 			</span>
 		</div>
