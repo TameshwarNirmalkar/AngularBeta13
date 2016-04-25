@@ -13,6 +13,7 @@
 							<span style="box-sizing:border-box;">
 									<dd> {{ sl.asset_name | lowercase }} </dd>
 							</span>
+
 						</li>
 					</ul>
 				</div>
@@ -52,15 +53,15 @@
 									<ul class="footer-list">
 										<li class="col-md-4 col-lg-4 col-sm-4 col-xs-4 text-left">
 											<dd>Likes:</dd>
-											<dd><i class="fa" [ngClass]="(a.favorite_count == 0) ? 'fa-thumbs-o-up':'fa-thumbs-up'"></i> {{ _commonclass.likeUnlike(a.favorite_count) }}</dd>
+											<dd><i class="" [ngClass]="(a.favorite_count == 0) ? 'icon-Like':'icon-Like'"></i> {{ _commonclass.likeUnlike(a.favorite_count) }}</dd>
 										<li>
 										<li class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
 											<dd>Downloads:</dd>
-											<dd><i class="fa fa-download"></i> {{ a.download_count }}</dd>
+											<dd><i class="icon-Downloads"></i> {{ a.download_count }}</dd>
 										<li>
 										<li class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
 											<dd>Updated:</dd>
-											<dd><i class="fa fa-clock-o"></i>&nbsp;{{ _dfromate.dateHumanizeFromNow(a.date_modified) }}</dd>
+											<dd><i class="icon-LastUpdated"></i>&nbsp;{{ _dfromate.dateHumanizeFromNow(a.date_modified) }}</dd>
 										<li>
 									</ul>
 								</div>
@@ -118,15 +119,15 @@
 						<ul class="footer-list">
 							<li class="col-md-3 col-lg-3 col-sm-3 col-xs-3 text-left">
 								<dd>Likes:</dd>
-								<dd><i class="fa" [ngClass]="(singleList.favorite_count == 0) ? 'fa-thumbs-o-up':'fa-thumbs-up'"></i> {{ _commonclass.likeUnlike(singleList.favorite_count) }} <a href="#" class="link-text">Like</a></dd>
+								<dd><i class="" [ngClass]="(singleList.favorite_count == 0) ? 'icon-Like':'icon-Like'"></i> {{ _commonclass.likeUnlike(singleList.favorite_count) }} <a href="#" class="link-text">Like</a></dd>
 							<li>
 							<li class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
 								<dd>Downloads:</dd>
-								<dd><i class="fa fa-download"></i>&nbsp;&nbsp;{{ singleList.download_count }}</dd>
+								<dd><i class="icon-Downloads"></i>&nbsp;&nbsp;{{ singleList.download_count }}</dd>
 							<li>
 							<li class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
 								<dd>Updated:</dd>
-								<dd class="mob-date"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ _dfromate.dateHumanizeFromNow(singleList.date_modified) }}</dd>
+								<dd class="mob-date"><i class="icon-LastUpdated"></i>&nbsp;&nbsp;{{ _dfromate.dateHumanizeFromNow(singleList.date_modified) }}</dd>
 							<li>
 								<li class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
 								<dd>Size:</dd>
