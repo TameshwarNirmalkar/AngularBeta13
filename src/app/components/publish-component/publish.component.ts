@@ -93,13 +93,12 @@ export class PublishComponent {
     }
     
     publishPackage(){
-        //this._publishloadSpiner = false;
+        this._publishloadSpiner = false;
         let body = $.param( this.assetsobject );
         /**
          * Step 1. Create an Asset.
          */
         this._PublishSearchService.createAnAsset(body).map(res => res.json()).subscribe(resp => {
-            //this._publishloadSpiner = true;
             //console.log(resp);
             this._asset_id = resp.asset_id;
            // this.toastr.success('Asset successfully created', 'Successfully');
@@ -112,7 +111,7 @@ export class PublishComponent {
             }).then((res) => {
                 let sourcebody = '/'+this._asset_id+'/sources?file_ids='+this._file_id;
                 this._PublishSearchService.addSourceToAsset(sourcebody).subscribe(resp => {
-                    console.log(resp);
+                    this._publishloadSpiner = true;
                     this.toastr.success('Asset successfully created', 'Successfully');
                 })    
             });
